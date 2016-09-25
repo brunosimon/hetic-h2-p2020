@@ -1,0 +1,250 @@
+/*FUSEE*/
+#Fusee {
+    transform:translateX(40em) translateY(0em);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform-origin: 0% 100%;
+    position:fixed;
+    left:500px;
+    z-index:4;
+    -webkit-animation : Overview 10s ease 17s 1, ApparitionFusee 10s ease 7s 1;
+    animation : Overview 10s ease 17s 1, ApparitionFusee 10s ease 7s 1;
+}   
+.Fusee2{
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform-origin: 100% 100%;
+    -webkit-animation : TourneFusee 3s linear 27s infinite;
+    animation : TourneFusee 3s linear 27s infinite;
+}
+
+#Nez{
+    position:absolute;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    top:2px;
+    left:0px;
+}
+#Fuselage{
+    position:absolute;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    top:196px;
+    left:10px;
+    width:0px;
+}
+#Moteur{
+    position:absolute;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    top:820px;
+    left:23px;
+}
+
+#Pied{
+    position:absolute;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    top:940px;
+    left:23px;
+}
+#ColonneA{
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+    transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+}
+#ColonneB{
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(120deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+    transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(120deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+}
+#ColonneC{
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(2400deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+    transform:scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(2400deg) rotateZ(0deg) translateX(5em) translateY(0em) translateZ(5em);
+}
+#container {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    text-align:center;
+    transform-origin: 0% 100%;
+    margin:0 auto;
+    top:100%;
+    width:100%;
+    display:block;
+    -webkit-transform: scale(.3);
+    transform: scale(.3);
+    margin:auto;
+}
+
+/*LIVRE*/
+.Couverture{
+    height:100%;
+    width:100%;
+    display:block;
+    padding-top:40px;
+    position:fixed;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+}
+.DeuzDeCouv{
+    background-color: white;
+    transform-origin: left;
+    border:3px solid black;
+    margin:auto;
+    width:360px;
+    -webkit-animation : OuvrirLivre 24s ease 3s 1;
+    animation : OuvrirLivre 24s ease 3s 1;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.Livre{
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    margin:auto;
+    background-image: url(../image/CouvertureBD.png);
+    height:500px;
+    width: 436px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateZ(0.1em);
+    
+}
+.PagePreums{
+    height:500px;
+    width: 360px;
+    margin:auto;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-animation : ZoomLivre 24s ease 3s 1;
+    animation : ZoomLivre 24s ease 3s 1;
+    background-image: url(../image/PageOne.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 3px solid black;
+    opacity:0;
+}
+
+
+
+
+/*BASE DE LANCEMENT*/
+.BaseDeLancement{
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    background-image: url(../image/SolTerre.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:fixed;
+    z-index:6;
+    display:block;
+    height:60%;
+    width:100%;
+    transform: translateY(35em);
+    -webkit-animation : BaseDeLancement 10s ease 7s 1;
+    animation : BaseDeLancement 10s ease 7s 1;
+    opacity:0;
+}
+
+/*FUMEE DECOLLAGE*/
+.Fumee ul li{
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:fixed;
+    opacity:0;
+}
+.Fumee ul li:nth-child(1){
+    background-image: url(../image/Nuage1.png);
+    transform: translateX(13em) translateY(35.2em);
+    width:84px;
+    height:39px;
+    z-index:5;
+    -webkit-animation : NuageA 10s ease 7s 1;
+    animation : NuageA 10s ease 7s 1;
+}
+.Fumee ul li:nth-child(2){
+    background-image: url(../image/Nuage2.png);
+    transform: translateX(18em) translateY(34.5em);
+    width:174px;
+    height:50px;
+    z-index:5;
+    -webkit-animation : NuageB 10s ease 7s 1;
+    animation : NuageB 10s ease 7s 1;
+}
+.Fumee ul li:nth-child(3){
+    background-image: url(../image/Nuage3.png);
+    transform: translateX(20em) translateY(32.7em);
+    width:174px;
+    height:50px;
+    z-index:4;
+    -webkit-animation : NuageC 10s ease 7s 1;
+    animation : NuageC 10s ease 7s 1;
+}
+.Fumee ul li:nth-child(4){
+    background-image: url(../image/Nuage4.png);
+    transform: translateX(12.1em) translateY(31.8em);
+    width:216px;
+    height:92px;
+    z-index:4;
+    -webkit-animation : NuageD 10s ease 7s 1;
+    animation : NuageD 10s ease 7s 1;
+}
+.Fumee ul li:nth-child(5){
+    background-image: url(../image/Nuage5.png);
+    transform: translateX(21em) translateY(29em);
+    width:137px;
+    height:70px;
+    z-index:3;
+    -webkit-animation : NuageE 10s ease 7s 1;
+    animation : NuageE 10s ease 7s 1;
+}
+.Fumee ul li:nth-child(6){
+    background-image: url(../image/Nuage6.png);
+    transform: translateX(12.3em) translateY(26.1em);
+    width:180px;
+    height:147px;
+    z-index:3;
+    -webkit-animation : NuageF 10s ease 7s 1;
+    animation : NuageF 10s ease 7s 1;
+    
+}
+.Fumee ul li:nth-child(7){
+    background-image: url(../image/Nuage7.png);
+    transform: translateX(18em) translateY(22em);
+    width:153px;
+    height:201px;
+    z-index:2;
+    -webkit-animation : NuageG 10s ease 7s 1;
+    animation : NuageG 10s ease 7s 1;
+}
+
+.Terre{
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    background-image: url(../image/Terre.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:fixed;
+    width:350px;
+    height:350px;
+    margin:auto;
+    -webkit-animation : Terre 10s ease 17s 1;
+    animation : Terre 10s ease 17s 1;
+    opacity:0;
+}
+.Lune{
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    background-image: url(../image/Lune.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:200px;
+    height:200px;
+    -webkit-animation : Lune 10s ease 17s 1;
+    animation : Lune 10s ease 17s 1;
+    opacity:0;
+}

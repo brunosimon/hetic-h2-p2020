@@ -1,0 +1,66 @@
+.block
+{
+	width:200px;
+	height:200px;
+	background:#f00;
+	margin:100px auto;
+}
+
+.block.index-1
+{
+	transform:scale(3,1.3);
+}
+
+.block.index-2
+{
+	transform:translate(200px,50px);
+}
+
+.block.index-3
+{
+	transform:rotate(70deg);
+}
+
+.block.index-4
+{
+	transform:skewX(-20deg);
+}
+
+.block.index-5
+{
+	transform-origin:100% 100%;
+	transform:rotate(90deg);
+}
+
+.block.index-6
+{
+	transform:rotate(90deg);
+	transform:skewX(20deg);
+}
+
+.container
+{
+	perspective:800px;
+}
+
+.block.index-7
+{
+	perspective:800px;
+	transform:rotateY(50deg);
+}
+
+.block.index-8
+{
+	transform:rotateX(50deg);
+}
+
+.block.index-9
+{
+	transform:translateZ(200px);
+}
+
+.block.index-10
+{
+	transform:rotateY(95deg);
+    backface-visibility:visible;
+}

@@ -1,0 +1,503 @@
+body {
+	background:#22292f;
+	font-family:Helvetica,Arial;
+	margin: 0;
+	font-size:14px;
+}
+
+body html {
+	height: 100%;
+	width: 100%;
+}
+
+#main {
+	width: 100%;
+}
+
+/*LOGO*/
+#main img {
+	width: 200px;
+	margin: auto;
+	padding-top: 30px;
+	display: block;
+}
+
+/*HAMURGER*/
+#hamburger {
+	width: 555px;
+	height: 266px;
+	margin: auto;
+	margin-top: 40px;
+	padding-left: 50px;
+}
+
+.bread1, .bread2, .tomatoes, .salad, .cheese, .steack {
+	position: absolute;
+	width: 490px;
+	height: 75px;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+
+#b1_left, #b2_left, #b1_top, #b2_top, #b1_right, #b2_right, #t1_left, #t1_right, #t1_top, #t2_left, #t2_right, #t2_top, #sa_left, #sa_right, #sa_top, #c_left, #c_right, #c_top, #st_left, #st_right, #st_top {
+	position: fixed;
+}
+
+/*BREAD*/
+.bread1 {
+	top: 296px;
+	z-index: 6;
+}
+
+.bread2 {
+	top: 456px;
+	z-index: 1;
+}
+
+#b1_left, #b2_left {
+	width: 490px;
+	height: 50px;
+	background-color: #e9c89b;
+	margin-top: 25px;
+}
+
+#b1_top, #b2_top {
+	width: 490px;
+	height: 25px;
+	background-color: #cfaf84;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#b1_right, #b2_right {
+	background-color: #BDA077;
+	width: 29px;
+	height: 51px;
+	transform: skewY(-40deg);
+	margin-left: 490px;
+	margin-top: 12px;
+	float: right;
+}
+
+/*TOMATOES*/
+.tomatoes {
+	top: 346px;
+	z-index: 5;
+}
+
+#tomato1 {
+	width: 245px;
+	height: 75px;
+	margin-top: 0px;
+	margin-left: 25px;
+}
+
+#t1_left {
+	width: 206px;
+	height: 20px;
+	background-color: #F85135;
+	margin-top: 25px;
+}
+
+#t1_top {
+	width: 206px;
+	height: 25px;
+	background-color: #E75840;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#t1_right {
+	background-color: #E24C34;
+	width: 29px;
+	height: 21px;
+	transform: skewY(-40deg);
+	margin-left: 206px;
+	margin-top: 12px;
+	float: right;
+}
+
+#tomato2 {
+	width: 245px;
+	height: 75px;
+	margin-top: -75px;
+	margin-left: 260px;
+}
+
+#t2_left {
+	width: 205px;
+	height: 20px;
+	background-color: #F85135;
+	margin-top: 25px;
+}
+
+#t2_top {
+	width: 205px;
+	height: 25px;
+	background-color: #E75840;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#t2_right {
+	background-color: #E24C34;
+	width: 29px;
+	height: 21px;
+	transform: skewY(-40deg);
+	margin-left: 205px;
+	margin-top: 12px;
+	float: right;
+}
+
+/*SALAD*/
+.salad {
+	margin-left: -15px;
+	top: 366px;
+	z-index: 4;
+}
+
+#sa_left {
+	width: 520px;
+	height: 20px;
+	background-color: #98a053;
+	margin-top: 25px;
+}
+
+#sa_top {
+	width: 520px;
+	height: 25px;
+	background-color: #878D50;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#sa_right {
+	background-color: #7b8143;
+	width: 29px;
+	height: 21px;
+	transform: skewY(-40deg);
+	margin-left: 520px;
+	margin-top: 12px;
+	float: right;
+}
+
+/*CHEESE*/
+.cheese {
+	margin-left: 25px;
+	top: 386px;
+	z-index: 3;
+}
+
+#c_left {
+	width: 440px;
+	height: 20px;
+	background-color: #DFD136;
+	margin-top: 25px;
+}
+
+#c_right {
+	width: 440px;
+	height: 25px;
+	background-color: #DFD02F;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#c_top {
+	background-color: #CABD2F;
+	width: 29px;
+	height: 21px;
+	transform: skewY(-40deg);
+	margin-left: 440px;
+	margin-top: 12px;
+	float: right;
+}
+
+/*STEACK*/
+.steack {
+	top: 406px;
+	margin-left: 25px;
+	z-index: 2;
+}
+
+#st_left {
+	width: 440px;
+	height: 50px;
+	background-color: #69321e;
+	margin-top: 25px;
+}
+
+#st_top {
+	width: 440px;
+	height: 25px;
+	background-color: #552A1A;
+	transform:skewX(-50deg);
+	margin-left: 15px;
+}
+
+#st_right {
+	background-color: #462114;
+	width: 29px;
+	height: 51px;
+	transform: skewY(-40deg);
+	margin-left: 440px;
+	margin-top: 12px;
+	float: right;
+}
+
+/*VIEW BUTTON*/
+#button {
+	width: 200px;
+	height: 50px;
+	color: #22292f;
+	background-color: #f98156;
+	text-align: center;
+	margin: auto;
+	margin-top: 160px;
+}
+
+#button:hover {
+	background-color: #E77850;
+}
+
+#button p {
+	font-size: 19px;
+	padding-top: 12px;
+}
+
+/*LEFT LIST*/
+#personalisation {
+	top: 317px;
+	position: absolute;
+}
+
+#personalisation p {
+	font-size: 30px;
+	margin: 0;
+	margin-left: 20px;
+}
+
+#personalisation p, #button p {
+	letter-spacing: -1px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+/*LEFT LIST > CHOICES' TITLES*/
+#choixs p {
+	font-size: 15px;
+	color: #000;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 7px;
+	padding-top: 5px;
+}
+
+.title p {
+	color: #1f252A;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+}
+
+
+.title p:hover, .titlehovered {
+	color: #f98156 !important;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+}
+
+/*LEFT LIST > CHOICES' SUBTITLES*/
+#ketchup p, #mustard p, #burger p, #bbq p, #creamy p,  #ketchup p, #sevenup p, #fanta p, #coca p, #it p, #water p, #sprite p, #fries p, #potatoes p{
+	opacity: 0;
+}
+
+#ketchup:hover > p, #mustard:hover > p, #burger:hover > p, #bbq:hover > p, #creamy:hover > p,  #ketchup:hover > p, #sevenup:hover > p, #fanta:hover > p, #coca:hover > p, #it:hover > p, #water:hover > p, #sprite:hover > p, #fries:hover > p, #potatoes:hover > p{
+	opacity: 0.4;
+}
+
+/*LEFT LIST > CHOICES' SUBTITLES > SAUCES*/
+#ketchup {
+	background-color: #C90000;
+}
+
+#mustard {
+	background-color: #FFDB58;
+}
+
+#burger {
+	background-color: #F7B75E;
+}
+
+#bbq {
+	background-color: #80000A;
+}
+
+#creamy{
+	background-color: #fce698;
+}
+
+/*LEFT LIST > CHOICES' SUBTITLES > DRINKS*/
+#sevenup {
+	background-color: #18adad;
+}
+
+#fanta {
+	background-color: #18adad;
+}
+
+#coca {
+	background-color: #24e1c8;
+}
+
+#it {
+	background-color: #18adad; 
+}
+
+#water{
+	background-color: #24e1c8;
+}
+
+#sprite{
+	background-color: #24e1c8;
+}
+
+/*LEFT LIST > CHOICES' SUBTITLES > FRIES*/
+#fries{
+	background-color: #f98156;
+}
+
+#potatoes{
+	background-color: #f86055
+}
+
+
+/*LEFT LIST > SOME SETTINGS FOR ANIMATIONS*/
+#ketchup, #mustard, #burger, #bbq, #creamy, #sevenup, #fanta, #coca, #it, #water, #sprite, #fries, #potatoes {
+	margin-left: 20px;
+	width: 145px;
+	height: 15px;
+}
+
+#ketchup:hover, #mustard:hover, #burger:hover, #bbq:hover, #creamy:hover, #sevenup:hover, #fanta:hover, #coca:hover, #it:hover, #water:hover, #sprite:hover, #fries:hover, #potatoes:hover  {
+	width: 170px;
+	height: 30px;
+}
+
+#choixs,  #sauces:hover > #choixs, #boisson:hover > #choixs, #frites:hover > #choixs {
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+}
+
+#choixs { 
+	opacity: 0;
+	height: 0px;
+}
+
+#sauces:hover > #choixs, #boisson:hover > #choixs, #frites:hover > #choixs { 
+	opacity: 1;
+	margin-bottom: 20px;
+}
+
+#sauces:hover > #choixs {
+	height: 75px;
+}
+
+#boisson:hover > #choixs {
+	height: 85px;
+}
+
+
+/*CLASSES  FOR THE HAMBURGER'S ANIMATION*/
+.bread1up {
+	top: 256px;
+}
+
+.tomatoesup {
+	top: 326px;
+}
+
+.saladup {
+	top: 356px;
+}
+
+.cheeseup {
+	top: 386px;
+}
+
+.steackup {
+	top: 426px;
+}
+
+.bread2up {
+	top: 490px;
+}
+
+
+/*RIGHT LIST > CHOICES' TITLES*/
+#summary p {
+	font-size: 30px;
+	letter-spacing: -1px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	text-transform: uppercase;
+	color: #1f252A;
+	margin: 0px;
+}
+
+#summary {
+	float: right;
+	margin-top: -142px;
+	margin-right: 75px;
+	width: 120px;
+}
+
+
+/*RIGHT LIST > SEPARATOR*/
+#line2 {
+	background-color: #18adad;
+	width: 30px;
+	height: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+
+/*LEFT LIST > SEPARATOR*/
+#line1 {
+	background-color: #f98156;
+	width: 30px;
+	height: 5px;
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+
+
+/*INITIAL STATE IN CASE OF EXTRA ADDS*/
+.add {
+	display: none;
+}
+
+
+/*ANIMATION FOR ITEMS ADDED IN THE SUMMARY*/
+.additem{
+ 	-webkit-animation : additem 1s ease-in-out;
+}
+
+@-webkit-keyframes additem {
+	0%   {color:#1f252A;}
+	50%  {color:#00adae; opacity: 0.5;}
+ 	100% {color:#1f252A;}
+}
+
+
+
+
+
