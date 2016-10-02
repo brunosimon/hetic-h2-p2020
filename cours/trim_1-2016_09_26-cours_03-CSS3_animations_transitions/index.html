@@ -225,7 +225,7 @@
 					<ul>
 						<li>
 							<span class="u">transition-timing-function</span>
-							<span class="fragment"><br />Vitesse de la transition (ease, linear, ease-in, ease-out, ease-in-out) aussi appelé easing<br>Défaut : ease</span>
+							<span class="fragment"><br />Vitesse de la transition au fil du temps (ease, linear, ease-in, ease-out, ease-in-out) aussi appelé easing<br>Défaut : ease</span>
 						</li>
 						<li>
 							<span class="u">transition-delay</span>
@@ -289,18 +289,21 @@
 				<section>
 					<h2>Courbes de bézier</h2>
 					<p>Créer ses propres easing</p>
-					<p><a target="_blank" href="http://fr.wikipedia.org/wiki/Courbe_de_B%C3%A9zier">http://goo.gl/F1wlfi</a> : Wikipedia</p>
-					<p><a target="_blank" href="http://matthewlein.com/ceaser/">http://goo.gl/Z5fmL5</a> : Générateur</p>
+					<p><a target="_blank" href="https://fr.wikipedia.org/wiki/Courbe_de_Bézier">https://fr.wikipedia.org/wiki/Courbe_de_Bézier</a> : Wikipedia</p>
+					<p><a target="_blank" href="http://matthewlein.com/ceaser/">http://matthewlein.com/ceaser/</a> : Générateur</p>
 				</section>
 
 				<section>
-					<h2>Courbes de bézier</h2>
+					<p>Ou directement dans le dev tools</p>
+					<img width="300" src="src/img/bezier-curve-del-tools.png" alt="" class="no-style">
+				</section>
+
+				<section>
 					<iframe src="https://player.vimeo.com/video/106757336?title=0&amp;byline=0&amp;portrait=0&amp;color=7d90ff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 				</section>
 
 				<section>
-					<h2>Courbes de bézier</h2>
-					<p>Le choix de la courbe de bézier devrait se décider à l'étape de création mais se fait en général à l'étape de développement</p>
+					<p>Le choix de la courbe de bézier devrait se décider à l'étape de création, mais se fait en général à l'étape de développement</p>
 				</section>
 
 				<section>
@@ -437,17 +440,17 @@
 				<section class="example-5">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation-name     : monanimation;
+    animation-name     : my-super-animation;
     animation-duration : 3s;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s;
+    animation:my-super-animation 3s;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;}
     50%  {left:800px;}
     70%  {left:250px;}
@@ -461,17 +464,17 @@
 				<section class="example-6">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-	animation-name     : monanimation;
+	animation-name     : my-super-animation;
 	animation-duration : 3s;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s;
+    animation:my-super-animation 3s;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;width:100px;}
     50%  {left:800px;width:50px;background:green;}
     70%  {left:700px;width:300px;background:red;}
@@ -485,18 +488,18 @@
 				<section class="example-7">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation-name            : monanimation;
+    animation-name            : my-super-animation;
     animation-duration        : 3s;
     animation-iteration-count : 2;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s ease 0s 2;
+    animation:my-super-animation 3s ease 0s 2;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;}
     50%  {left:800px;}
     70%  {left:250px;}
@@ -510,7 +513,7 @@
 				<section class="example-8">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-	animation-name      : monanimation;
+	animation-name      : my-super-animation;
 	animation-duration  : 3s;
 	animation-direction : reverse; 
 	/* normal / reverse / alternate / alternate-reverse */
@@ -518,11 +521,11 @@
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s ease 0s 2 reverse;
+    animation:my-super-animation 3s ease 0s 2 reverse;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;}
     50%  {left:800px;}
     70%  {left:250px;}
@@ -536,7 +539,7 @@
 				<section class="example-9">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-	animation-name            : monanimation;
+	animation-name            : my-super-animation;
 	animation-duration        : 3s;
 	animation-iteration-count : infinite;
 	animation-direction       : alternate;
@@ -544,11 +547,11 @@
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s ease 0s infinite alternate;
+    animation:my-super-animation 3s ease 0s infinite alternate;
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;}
     50%  {left:800px;}
     70%  {left:250px;}
@@ -561,7 +564,7 @@
 				<section class="example-10">
 					<pre><code data-trim contenteditable class="css">
 .animation {
-    animation:monanimation 3s ease 0s infinite;
+    animation:my-super-animation 3s ease 0s infinite;
     animation-play-state:paused;
 }
 .container:hover .animation {
@@ -569,7 +572,7 @@
 }
 					</code></pre>
 					<pre><code data-trim contenteditable class="css">
-@keyframes monanimation {
+@keyframes my-super-animation {
     0%   {left:0px;}
     50%  {left:800px;}
     70%  {left:250px;}
@@ -593,27 +596,27 @@
 					<pre><code data-trim contenteditable class="css">
 
 .animation {
-    -webkit-animation:monanimation 3s;
-       -moz-animation:monanimation 3s;
-         -o-animation:monanimation 3s;
-            animation:monanimation 3s;
+    -webkit-animation:my-super-animation 3s;
+       -moz-animation:my-super-animation 3s;
+         -o-animation:my-super-animation 3s;
+            animation:my-super-animation 3s;
 }
-@-webkit-keyframes monanimation {
+@-webkit-keyframes my-super-animation {
 	0%   {left:0px;}
 	50%  {left:800px;}
 	70%  {left:250px;}
 }
-@-moz-keyframes monanimation {
+@-moz-keyframes my-super-animation {
 	0%   {left:0px;}
 	50%  {left:800px;}
 	70%  {left:250px;}
 }
-@-o-keyframes monanimation {
+@-o-keyframes my-super-animation {
 	0%   {left:0px;}
 	50%  {left:800px;}
 	70%  {left:250px;}
 }
-@keyframes monanimation {
+@keyframes my-super-animation {
 	0%   {left:0px;}
 	50%  {left:800px;}
 	70%  {left:250px;}
@@ -622,7 +625,82 @@
 				</section>
 
 				<section>
-					<p>Dans un site, vos transition/animations doivent suivre quelques règles :</p>
+					<h2>Optimisations</h2>
+					<p>Les transitions et animations peuvent être très coûteuses en terme de performance.</p>
+					<p>Aujourd'hui on parle de l'objectif <span class="u">60 FPS</span> pour les sites. C'est la fréquence à laquelle ils doivent tourner pour être très agréable visuellement.</p>
+				</section>
+
+				<section>
+					<p>Pour le navigateur, il existe 4 étapes de rendu du DOM</p>
+
+					<ul>
+						<li><span class="u">Styles</span> : Calculs sur les valeurs CSS<br></li>
+						<li><span class="u">Layout</span> (ou reflow) : Positionnement des blocks les uns par rapport aux autres en fonction de leur style<br></li>
+						<li><span class="u">Paint</span> (ou repaint) : Remplissage de ces blocks (texte, fond, ombres, etc.)<br></li>
+						<li><span class="u">Composite</span> : Déformations de transformations et opacité<br></li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Lorsqu'une de ces étapes se produit, toutes les suivantes se produisent aussi.</p>
+					<p>Si par exemple on rajoute un élément dans le DOM, l'étape <span class="u">Layout</span> va être appliquée, suivie de l'étape <span class="u">Paint</span> et de l'étape <span class="u">Composite</span></p>
+				</section>
+
+				<section>
+					<p>Les étapes de <span class="u">Layout</span> et <span class="u">Paint</span> sont lourdes. Il faut les éviter dans la mesure du possible.</p>
+					<p>Certaines propriétés CSS ne déclenchent que l'étape <span class="u">Composite</span> lorsqu'on les modifie. C'est le cas de <span class="u">transform</span> et <span class="u">opacity</span></p>
+				</section>
+
+				<section>
+					<p>Le dev tools permet de monitorer les performances de vos animations</p>
+					<ul>
+						<li>Clique droit n'importe où suivi de <span class="hl">Inspecter</span></li>
+						<li><span class="hl">ESC</span> pour ouvrir la console</li>
+						<li><img src="src/img/dev-tools-button.png" width="50" alt="" class="no-style" style="margin:0;"> pour ouvrir les panneaux optionnels</li>
+						<li>Choisir <span class="hl">Rendering</span></li>
+						<li>Cocher <span class="hl">Paint Flashing</span> pour afficher en vert toutes les étapes de Painting sur la page</li>
+						<li>Cocher <span class="hl">FPS Meter</span> pour afficher un compteur de frames</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Un autre bon outil de monitoring du dev tools est la Timeline (un peu plus difficile à utiliser)</p>
+					<ul>
+						<li>Clique droit n'importe où suivi de <span class="hl">Inspecter</span></li>
+						<li>Ouvrir l'onglet <span class="hl">Timeline</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Lorsqu'une transformation ou l'opacité d'un élément s'apprête à changer, le navigateur crée un calque pour cet élément. Comme dans photoshop, cela permet de le traiter indépendamment du reste et cela permet d'améliorer les performances.</p>
+					<p>La création d'un calque demande un peu de ressources.</p>
+				</section>
+
+				<section>
+					<p>La propriété <span class="u">will-change</span> permet d'avertir le navigateur que telles propriétés vont changer. Le navigateur pourra donc prendre l'initiative de créer un calque tout de suite.</p>
+					<pre><code data-trim contenteditable class="css">
+.transition
+{
+	transition:all 2s;
+	will-change:transform, opacity;
+}
+					</code></pre>
+					<p><a href="http://caniuse.com/#search=will-change" target="_blank">Compatibilité</a></p>
+				</section>
+
+				<section>
+					<p>Quelques articles</p>
+					<ul>
+						<li><a href="https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108" target="_blank">https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108</a></li>
+						<li><a href="https://csstriggers.com/" target="_blank">https://csstriggers.com/</a></li>
+						<li><a href="https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/" target="_blank">https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/</a></li>
+						<li><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/" target="_blank">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Élégance</h2>
+					<p>Vos transition/animations doivent suivre quelques règles :</p>
 					<ul>
 						<li>Subtiles (rapides, peu prononcées)</li>
 						<li>Agréables</li>
@@ -633,8 +711,10 @@
 				</section>
 
 				<section>
-					<a href="https://www.google.com/design/spec/animation/authentic-motion.html" target="_blank">Google Material Design</a>
-					<a href="https://developers.google.com/web/fundamentals/design-and-ui/animations/" target="_blank">Google Developers</a>
+					<ul>
+						<li><a href="https://www.google.com/design/spec/animation/authentic-motion.html" target="_blank">Google Material Design</a></li>
+						<li><a href="https://developers.google.com/web/fundamentals/design-and-ui/animations/" target="_blank">Google Developers</a></li>
+					</ul>
 				</section>
 
 				<section>
@@ -653,13 +733,18 @@
 				</section>
 
 				<section>
-					<h2>L'année dernières</h2>
+					<h2>Les années d'avant</h2>
 					<ul>
-						<li><a href="demos/cabrol-margaux/index.html" target="_blank">Cabrol Margaux</a></li>
-						<li><a href="demos/aguado-nicolas/index.html" target="_blank">Aguado Nicolas</a></li>
-						<li><a href="demos/lapi-romain/index.html" target="_blank">Lapi Romain</a></li>
-						<li><a href="demos/polin-ronan/index.html" target="_blank">Polin Ronan</a></li>
-						<li><a href="demos/wetteren-remi/index.html" target="_blank">Wetteren Remi</a></li>
+						<li><a href="demos/bacholier_theo/index.html" target="_blank">Bacholier Theo</a></li>
+						<li><a href="demos/borensztein_paul/index.html" target="_blank">Borensztein Paul</a></li>
+						<li><a href="demos/clerc_jonathan/index.html" target="_blank">Clerc Jonathan</a></li>
+						<li><a href="demos/espinasse_de_sanglier_de_la_bastie_david/index.html" target="_blank">Espinasse David</a></li>
+						<li><a href="demos/fauqueur_valerian/index.html" target="_blank">Fauqueur Valerian</a></li>
+						<li><a href="demos/ficheux_aude/index.html" target="_blank">Ficheux Aude</a></li>
+						<li><a href="demos/lebelt_guillaume/index.html" target="_blank">Lebelt Guillaume</a></li>
+						<li><a href="demos/polin_ronan/index.html" target="_blank">Polin Ronan</a></li>
+						<li><a href="demos/tallepied_ulysse/index.html" target="_blank">Tallepied Ulysse</a></li>
+						<li><a href="demos/zunda_claire/index.html" target="_blank">Zunda Claire</a></li>
 					</ul>
 				</section>
 			</div>

@@ -1,0 +1,49 @@
+body
+{
+    background:#eee;
+    font-family:Helvetica,Arial;
+    font-size:14px;
+}
+
+.block
+{
+	position:relative;
+	width:800px;
+	height:800px;
+	background:url( 'https://unsplash.it/1600/1600' );
+	background-size:800px 800px;
+}
+
+.block.index-1
+{
+	left:0px;
+	transition:left 1s ease 0s;
+}
+
+.block.index-1:hover
+{
+	left:100px;
+}
+
+.block.index-2
+{
+	transform:translateX(0);
+	transition:transform 1s ease 0s;
+}
+
+.block.index-2:hover
+{
+	transform:translateX(100px);
+}
+
+.block.index-3
+{
+	transform:translateX(0) translateZ(0);
+	will-change:transform;
+	transition:transform 1s ease 0s;
+}
+
+.block.index-3:hover
+{
+	transform:translateX(100px);
+}
