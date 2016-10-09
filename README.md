@@ -7,8 +7,8 @@ GitHub de développement web pour la promotion P2020 H2
 
 ### Trimestre 1
 
-- [ ] CSS3 Transformations
-- [ ] CSS3 Animations/transitions
+- [x] CSS3 Transformations
+- [x] CSS3 Animations/transitions
 - [ ] JS Rappels
 - [ ] HTML5 Audio/video API
 - [ ] Responsive

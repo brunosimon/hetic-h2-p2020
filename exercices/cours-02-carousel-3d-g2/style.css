@@ -24,6 +24,13 @@ body
 	width:0;
 	height:0;
 	transform-style:preserve-3d;
+	animation:carousel-rotation 8s linear infinite;
+}
+
+@keyframes carousel-rotation
+{
+	0%   {transform:rotateY(0deg);}
+	100% {transform:rotateY(360deg);}
 }
 
 .carousel .image
