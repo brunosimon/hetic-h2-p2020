@@ -1,0 +1,48 @@
+body
+{
+    background:#eee;
+    font-family:Helvetica,Arial;
+    font-size:14px;
+}
+
+.player
+{
+	display:inline-block;
+}
+
+.player .toggle-play .pause
+{
+	display:none;
+}
+
+.player .toggle-play .play
+{
+	display:inline-block;
+}
+
+.player.playing .toggle-play .pause
+{
+	display:inline-block;
+}
+
+.player.playing .toggle-play .play
+{
+	display:none;
+}
+
+.player .seek-bar
+{
+	height:30px;
+	background:#ccc;
+}
+
+.player .seek-bar .fill
+{
+	width:100%;
+	height:100%;
+	background:#777;
+	transform:scaleX(0);
+	transform-origin:0 0;
+	transition:transform 0.5s linear;
+	will-change:transform;
+}
