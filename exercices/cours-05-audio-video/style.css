@@ -43,6 +43,5 @@ body
 	background:#777;
 	transform:scaleX(0);
 	transform-origin:0 0;
-	transition:transform 0.5s linear;
 	will-change:transform;
 }

@@ -5,6 +5,7 @@ player.elements.video         = player.elements.container.querySelector( 'video'
 player.elements.toggle_play   = player.elements.container.querySelector( '.toggle-play' );
 player.elements.seek_bar      = player.elements.container.querySelector( '.seek-bar' );
 player.elements.seek_bar_fill = player.elements.seek_bar.querySelector( '.fill' );
+player.interval               = null;
 
 player.elements.toggle_play.addEventListener( 'click', function( event )
 {
@@ -26,10 +27,21 @@ player.elements.video.addEventListener( 'pause', function()
 	player.elements.container.classList.remove( 'playing' );
 } );
 
-player.elements.video.addEventListener( 'timeupdate', function()
+
+function update_seekbar()
 {
 	var ratio = player.elements.video.currentTime / player.elements.video.duration;
 	player.elements.seek_bar_fill.style.transform = 'scaleX(' + ratio + ')';
+}
+
+player.elements.video.addEventListener( 'play', function()
+{
+	player.interval = window.setInterval( update_seekbar, 50 );
+} );
+
+player.elements.video.addEventListener( 'pause', function()
+{
+	window.clearInterval( player.interval );
 } );
 
 player.elements.seek_bar.addEventListener( 'click', function( event )

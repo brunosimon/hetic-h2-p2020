@@ -9,8 +9,8 @@ GitHub de développement web pour la promotion P2020 H2
 
 - [x] CSS3 Transformations
 - [x] CSS3 Animations/transitions
-- [ ] JS Rappels
-- [ ] HTML5 Audio/video API
+- [x] JS Rappels
+- [x] HTML5 Audio/video API
 - [ ] Responsive
 - [ ] Newsletter
 - [ ] Canvas

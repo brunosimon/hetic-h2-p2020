@@ -65,18 +65,6 @@
                 </section>
 
                 <section>
-                    <p>Quelques attributs</p>
-                    <pre><code data-trim contenteditable class="html">
-&lt;audio 
-    src="audio.mp3"
-    autoplay="autoplay"
-    loop="loop"
-    controls="controls"
-&gt;&lt;/audio&gt;
-                    </code></pre>
-                </section>
-
-                <section>
                     <h2>Attributs</h2>
                     <ul>
                         <li><span class="hl">src</span> Fichier source</li>
@@ -86,6 +74,19 @@
                         <li><span class="hl">controls</span> Affiche un controlleur (propre au navigateur)</li>
                         <li><span class="hl">muted</span> Couper le son</li>
                     </ul>
+                </section>
+
+                <section>
+                    <p>Il est inutile d'indiquer une valeurs aux attributs qui n'en nécessitent pas</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;audio 
+    src="audio.mp3"
+    autoplay
+    loop
+    controls
+    muted
+&gt;&lt;/audio&gt;
+                    </code></pre>
                 </section>
 
                 <section>
@@ -139,21 +140,6 @@
                 </section>
 
                 <section>
-                    <p>Avec quelques attributs</p>
-                    <pre><code data-trim contenteditable class="html">
-&lt;video 
-    src="video.mp4" 
-    poster="image.jpg"
-    autoplay="autoplay" 
-    loop="loop" 
-    controls="controls" 
-    width="800"
-    height="600"
-&gt;&lt;/video&gt;
-                    </code></pre>
-                </section>
-
-                <section>
                     <h2>Attributs</h2>
                     <ul>
                         <li><span class="hl">src</span> Fichier source</li>
@@ -171,6 +157,22 @@
                         <li><span class="hl">height</span> Hauteur du player</li>
                         <li><span class="hl">poster</span> Lien de l'image de presentation de la vidéo</li>
                     </ul>
+                </section>
+
+                <section>
+                    <p>Il est inutile d'indiquer une valeurs aux attributs qui n'en nécessitent pas</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;video 
+    src="video.mp4" 
+    poster="image.jpg"
+    autoplay
+    loop
+    controls
+    muted
+    width="800"
+    height="600"
+&gt;&lt;/video&gt;
+                    </code></pre>
                 </section>
 
                 <section>
@@ -214,33 +216,50 @@
                 </section>
 
                 <section>
-                    <p>Avant tout, il faut récupérer l'élément.<br>En JS, il existe plusieurs façon de récupérer un élément HTML</p>
+                    <p>Avant tout, il faut récupérer l'élément et le sauvegarder dans une variable.</p>
                     <pre><code contenteditable class="javascript">
-var video = document.getElementsByTagName('video')[0]; // Renvoie un tableau
-var video = document.getElementById('video'); // Suppose que l'ID est "video"
-var video = document.querySelector('.video'); // Suppose que la classe est "video"
+var video = document.querySelector('video');
                     </code></pre>
                     <p>Une fois récupéré, on va pouvoir utiliser ses méthodes et modifier ses propriétés</p>
                 </section>
 
                 <section>
+                    <p>En JS orienté objet, les objets fonctionnent avec des méthodes, des propriétés et des événements.</p>
+                    <p>Prenons en exemple un humain.</p>
+                    <ul>
+                        <li>
+                            <span class="u">Méthodes</span> : marche, cours, saute
+                            <br>Ce sont des actions qu'on peut lui faire faire
+                        </li>
+                        <li>
+                            <span class="u">Propriétés</span> : âge, hauteur, poids
+                            <br>Ce sont des informations qu'on peut récupérer et modifier
+                        </li>
+                        <li>
+                            <span class="u">Événements</span> : se réveil, s'endort, anniversaire
+                            <br>Ce sont des événements qu'on peut écouter 
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Les objets audio et video fonctionnent de la même manière</p>
+                </section>
+
+                <section>
                     <h2>Méthodes</h2>
-                    <p><small>Fonctions que l'on peut appliquer</small></p>
                     <ul>
                         <li>play()</li>
                         <li>pause()</li>
-                        <li>load()</li>
                     </ul>
                     <pre><code data-trim contenteditable class="javascript">
 video.play();
 video.pause();
-video.load();
                     </code></pre>
                 </section>
 
                 <section>
                     <h2>Propriétés</h2>
-                    <p><small>Informations que l'on peut obtenir et modifier</small></p>
                     <div style="width:60%;margin:0 auto;">
                         <ul style="float:left;">
                             <li>controls</li>
@@ -263,7 +282,6 @@ video.volume += 0.1;
 
                 <section>
                     <h2>Événements</h2>
-                    <p><small>Évenements que l'on peut écouter</small></p>
                     <div style="width:60%;margin:0 auto;">
                         <ul style="float:left;">
                             <li>play</li>
@@ -301,18 +319,18 @@ video.addEventListener('play',function(e)
                     </code></pre>
                     <pre style="clear:both;"><code data-trim contenteditable class="javascript">
 // Récupérer les éléments
-var video     = document.getElementById('video'),
-    volume_up = document.getElementById('volume-up');
+var video     = document.querySelector('video'),
+    volume_up = document.querySelector('.volume-up');
 
 // Écouter les clicks
-volume_up.onclick = function()
+volume_up.addEventListener( 'click', function()
 {
     // Met à jour le volume
     if(video.volume + 0.1 &lt;= 1)
         video.volume += 0.1;
     else
         video.volume = 1;
-};
+} );
                     </code></pre>
                 </section>
 
@@ -322,25 +340,23 @@ volume_up.onclick = function()
 
                     <pre style="clear:both;"><code data-trim contenteditable class="html">
 &lt;video src="#"&gt;&lt;/video&gt;
-<div id="bar">
-    <div id="cursor"></div>
-</div>
+<div class="bar"></div>
                     </code></pre>
                     <pre style="clear:both;"><code data-trim contenteditable class="javascript">
 // Récupérer les éléments
-var video = document.getElementById('video'),
-    bar   = document.getElementById('bar');
+var video = document.querySelector('video'),
+    bar   = document.querySelector('.bar');
 
 // Écouter les clicks
-bar.onclick = function(e)
+bar.addEventListener( 'click', function( event )
 {
     // Calculer le temps de la vidéo par rapport à la position du click sur la bar
-    var ratio   = e.offsetX / bar.offsetWidth,
+    var ratio   = ( event.clientX - bar.offsetLeft ) / bar.offsetWidth,
         current = video.duration * ratio;
 
     // Met à jour la lecture de la vidéo
     video.currentTime = current;
-};
+} );
                     </code></pre>
                 </section>
 
@@ -350,25 +366,24 @@ bar.onclick = function(e)
 
                     <pre style="clear:both;"><code data-trim contenteditable class="html">
 &lt;video src="#"&gt;&lt;/video&gt;
-<div id="bar">
-    <div id="cursor"></div>
+<div class="bar">
+    <div class="cursor"></div>
 </div>
                     </code></pre>
                     <pre style="clear:both;"><code data-trim contenteditable class="javascript">
 // Récupérer les éléments
-var video     = document.getElementById('video'),
-    bar       = document.getElementById('bar'),
-    cursor    = document.getElementById('cursor');
+var video  = document.querySelector('video'),
+    bar    = document.querySelector('.bar'),
+    cursor = document.querySelector('.cursor');
 
 // Executer cette fonction toutes les 50ms
-window.setInterval(function()
+window.setInterval( function()
 {
     // Calcul le pourcentage de vidéo déjà passé
-    var percent = (video.currentTime / video.duration) * 100;
-
-    // Met à jour la bar de lecture
-    cursor.style.width = percent + '%';
-},50);
+    var ratio = video.currentTime / video.duration;
+    
+    cursor.style.transform = 'scaleX(' + ratio + ')';
+}, 50 );
                     </code></pre>
                 </section>
 			</div>
