@@ -1,0 +1,169 @@
+/**
+ * GENERAL
+ */
+body {
+	background:#edeff1;
+	font-family:Helvetica,Arial;
+	font-size:14px;
+	color:#444;
+}
+
+.wrapper {
+	width:840px;
+	margin:0 auto;
+}
+
+/**
+ * HEADER
+ */
+header {
+	position:relative;
+	background:#fff;
+	height:200px;
+}
+
+header h1 {
+	position:absolute;
+	top:65px;
+	left:40px;
+	font-size:60px;
+}
+
+header nav {
+	position:absolute;
+	top:80px;
+	right:20px;
+	font-size:0;
+}
+
+header nav a {
+	display:inline-block;
+	height:40px;
+	line-height:40px;
+	margin:0 0 0 1px;
+	padding:0 20px;
+	text-decoration:none;
+	/*background:#eee;*/
+	font-size:14px;
+}
+
+/**
+ * CONTENT
+ */
+.content {
+	padding:40px 0;
+	font-size:0;
+}
+
+.content article {
+	position:relative;
+	display:inline-block;
+	width:400px;
+	margin-bottom:60px;
+	font-size:14px;
+	background:#fff;
+	vertical-align:top;
+}
+
+.content article:nth-child(odd) {
+	margin-right:40px;
+}
+
+.content article .text {
+	padding:30px 30px 50px 30px;
+}
+
+.content article .text h3 {
+	font-size:18px;
+	font-weight:bold;
+	margin:0 0 20px 0;
+}
+
+.content article .more {
+	display:block;
+	position:absolute;
+	bottom:-20px;
+	right:20px;
+	height:40px;
+	padding:0 20px;
+	line-height:40px;
+	text-decoration:none;
+	color:#fff;
+	background:#fc534c;
+}
+
+/**
+ * FOOTER
+ */
+footer {
+	background:#232729;
+	padding:30px;
+	color:#fff;
+}
+
+/* MEDIA QUERIES */
+@media (max-width:920px) {
+	.wrapper {
+		width:auto;
+		margin-left:40px;
+		margin-right:40px;
+	}
+	header h1 {
+		font-size:50px;
+	}
+	.content article,
+	.content article:nth-child(odd) {
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+
+@media (max-width:760px) {
+	header {
+		text-align:center;
+		height:auto;
+	}
+	header h1 {
+		position:static;
+		padding-top:20px;
+		padding-bottom:20px;
+	}
+	header nav {
+		position:static;
+		padding-bottom:30px;
+	}
+}
+
+@media (max-width:560px) {
+	.wrapper {
+		width:auto;
+		margin-left:0;
+		margin-right:0;
+	}
+	header nav {
+		padding-bottom:0;
+	}
+	header nav a {
+		display:block;
+		border-top:1px solid #edeff1;
+	}
+}
+
+@media (max-width:480px) {
+	.content article {
+		width:320px;
+	}
+	.content article img {
+		width:100%;
+		height:auto;
+	}
+	.content article .more {
+		bottom:0;
+		left:0;
+		right:0;
+	}
+	.content article .text {
+		padding-bottom:70px;
+	}
+}

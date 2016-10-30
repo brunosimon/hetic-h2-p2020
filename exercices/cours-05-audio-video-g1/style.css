@@ -4,3 +4,44 @@ body
     font-family:Helvetica,Arial;
     font-size:14px;
 }
+
+.player
+{
+	margin:40px;
+}
+
+.player .controls .seek-bar
+{
+	width:100%;
+	height:30px;
+	background:#ccc;
+}
+
+.player .controls .seek-bar .fill
+{
+	width:100%;
+	height:100%;
+	background:#888;
+	transform-origin:0 0;
+	will-change:transform;
+}
+
+.player .controls .toggle-play .pause
+{
+	display:none;
+}
+
+.player .controls .toggle-play .play
+{
+	display:block;
+}
+
+.player.playing .controls .toggle-play .pause
+{
+	display:block;
+}
+
+.player.playing .controls .toggle-play .play
+{
+	display:none;
+}
