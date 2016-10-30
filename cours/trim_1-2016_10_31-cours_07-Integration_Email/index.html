@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 1 - Cours 07 - Intégration d'emails</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div id="pagination"></div>
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2020</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 07 - 2016-10-31</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Intégration d'email</h1>
+                    <p class="fragment">:(</p>
+                </section>
+
+                <section>
+                    <p>Vous allez tous en manger</p>
+                </section>
+
+                <section>
+                    <h2>Bonnes pratiques</h2>
+                </section>
+
+                <section>
+                    <h4>Pour les créas</h4>
+                    <ul class="checked-list">
+                        <li><label><input type="checkbox">Uniquement des <a href="http://www.w3schools.com/cssref/css_websafe_fonts.asp" target="_blank">safe fonts</a> (Arial, Times, Verdana, ...)</label></li>
+                        <li><label><input type="checkbox">Largeur maximum de <span class="hl">600px</span></label></li>
+                        <li><label><input type="checkbox">Pas de fond derrière les textes</label></li>
+                        <li><label><input type="checkbox">Possibilité de faire des animations gif</label></li>
+                        <li><label><input type="checkbox">Préférer des fonds de couleur uni</label></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Pour les devs</h4>
+                    <!-- GLOBAL -->
+                    <ul class="checked-list">
+                        <li><label><input type="checkbox">N'utiliser que des <span class="hl">&lt;table&gt;</span>, <span class="hl">&lt;tr&gt;</span>, <span class="hl">&lt;td&gt;</span></label></li>
+                        <li><label><input type="checkbox">Le &lt;table&gt; principal doit avoir <span class="hl">width="98%"</span></label></li>
+                        <li><label><input type="checkbox">Pas plus de 5 &lt;table&gt; imbriqués</label></li>
+                        <li><label><input type="checkbox">Éviter les balises de type block (p, div, ...)</label></li>
+                        <li><label><input type="checkbox">Éviter les colspan</label></li>
+                        <li><label><input type="checkbox">Pas de HTML5/CSS3</label></li>
+                        <li><label><input type="checkbox">Pas de JS</label></li>
+                        <li><label><input type="checkbox">Pas de CSS externe</label></li>
+                        <li><label><input type="checkbox">Appliquer le style sur chaque &lt;td&gt;</label></li>
+                        
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Pour les devs</h4>
+                    <!-- HTML -->
+                    <ul class="checked-list">
+                        <li><label><input type="checkbox">Toutes les images en <span class="hl">gif</span> ou <span class="hl">jpg</span></label></li>
+                        <li><label><input type="checkbox">Rajouter les balises <span class="hl">alt</span> quand c'est utile</label></li>
+                        <li><label><input type="checkbox">Rajouter <span class="hl">display:block;</span> dans le style de chaque &lt;img&gt;</label></li>
+                        <li><label><input type="checkbox">Les images doivent être hébergées sur un serveur</label></li>
+                        <li><label><input type="checkbox">Utiliser l'attribut <span class="hl">valign</span> (middle, top, bottom) pour aligner verticalement dans le &lt;tr&gt;</label></li>
+                        <li><label><input type="checkbox">Tous les liens en <span class="hl">target="_blank"</span> (nouvel onglet)</label></li>
+                        <li><label><input type="checkbox">Mettre un &lt;span&gt; dans chaque &lt;a&gt; avec le même style</label></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Pour les devs</h4>
+                    <!-- CSS -->
+                    <ul class="checked-list">
+                        <li><label><input type="checkbox">Éviter les shorthands CSS (font:10px Arial;)</label></li>
+                        <li><label><input type="checkbox">Éviter les padding et margin</label></li>
+                        <li><label><input type="checkbox">Indiquer les tailles en pixels</label></li>
+                        <li><label><input type="checkbox">Éviter <span class="hl">background-image</span></label></li>
+                        <li><label><input type="checkbox">Pour mettre une couleur de fond, utiliser l'attribut <span class="hl">bgcolor</span> ET le style <span class="hl">background-color</span></label></li>
+                        <li><label><input type="checkbox">Toujours proposer une version web</label></li>
+                        <li><label><input type="checkbox">Toujours proposer une désinscription</label></li>
+                        <li><label><input type="checkbox">Valider <a target="_blank" href="http://validator.w3.org/#validate_by_input">W3C</a></label></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Bon à savoir</h2>
+                    
+                    <ul>
+                        <li>Gmail sauvegarde en cache les images</li>
+                        <li>Une IP d'envoi peut être black-listé</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Template</h2>
+                    <pre><code data-trim contenteditable class="html">
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;title&gt;Newsletter title&lt;/title&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+&lt;/head&gt;
+&lt;body style="margin:0;padding:0;background-color:#ececec;" bgcolor="#ececec"&gt;
+    &lt;table width="98%" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ececec;"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;table width="600" cellpadding="0" cellspacing="0" align="center"&gt;
+                    &lt;tr&gt;
+                        &lt;td width="600" height="200" bgcolor="#00707B" style="background-color:#00707B;font-family:Arial;font-size:12px;text-align:center;color:#ffffff;"&gt;
+                            Contenu
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Compatibilité CSS</h2>
+                    <p><a target="_blank" href="http://www.campaignmonitor.com/css/">Campaign Monitor</a></p>
+                </section>
+
+                <section>
+                    <h2>Popularité des clients mail</h2>
+                    <p><a target="_blank" href="http://www.campaignmonitor.com/resources/will-it-work/email-clients/">Campaign Monitor</a></p>
+                    <p><a target="_blank" href="http://emailclientmarketshare.com/">Litmus</a></p>
+                    <p><a target="_blank" href="http://www.smartinsights.com/email-marketing/email-marketing-analytics/most-popular-email-marketing-clients/">Smart Insights</a></p>
+                </section>
+
+                <section>
+                    <h2>Intégrer un email</h2>
+                </section>
+
+                <section>
+                    <h3>From scratch</h3>
+                    <ul>
+                        <li>Long</li>
+                        <li>Risque d'erreur</li>
+                        <li>Plus facile à corriger</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Avec Fireworks (CS6)</h3>
+                    <img style="margin:0;border:none;box-shadow:none;background:none;" src="src/img/fireworks.png" alt="Fireworks" />
+                </section>
+
+                <section>
+                    <p>Ouvrez votre maquette avec fireworks, recadrez pour enlever le fond et découpez les zones qui composeront les cellules de votre email finale avec l'outil Tranche (k)</p>
+                    <p><img src="src/img/fireworks-outil-tranche.png" alt="Outil tranche" /></p>
+                </section>
+    
+                <section>
+                    <p>Recouvrez la totalité de la maquette. Changez la visibilité des calques si vous avez des problèmes pour distinguer la maquette. Faites attention à ce que les lignes se superposent bien</p>
+                    <p><img src="src/img/fireworks-tranches.png" alt="Exemple tranches" /></p>
+                </section>
+
+                <section>
+                    <p>Dans l'onglet "optimiser", choisissez gif afin d'exporter les images au format gif</p>
+                    <p><img src="src/img/fireworks-gif.png" alt="Optimiser gif" /></p>
+                </section>
+    
+                <section>
+                    <p>Exportez</p>
+                    <p><img src="src/img/fireworks-export.png" alt="Exporter" /></p>
+                </section>
+    
+                <section>
+                    <p>Accédez aux options</p>
+                    <p><img src="src/img/fireworks-options.png" alt="Options" /></p>
+                </section>
+
+                <section>
+                    <p>Utilisez ces options</p>
+                    <p><img src="src/img/fireworks-options-2.png" alt="Options" /></p>
+                </section>
+
+                <section>
+                    <p>Utilisez ces options</p>
+                    <p><img src="src/img/fireworks-options-3.png" alt="Options" /></p>
+                </section>
+
+                <section>
+                    <p>Exportez dans un dossier vide en utilisant un sous dossier pour les images si vous le voulez</p>
+                    <p><img src="src/img/fireworks-export-2.png" alt="Options" /></p>
+                </section>
+    
+                <section>
+                    <p>Si par la suite vous réalisez que vous avez fait une erreur, il vaut souvent mieux recommencer l'export depuis fireworks plutôt que d'essayer de corriger dans l'export</p>
+                </section>
+
+                <section>
+                    <p>Une fois l'export terminé, vous devriez avoir un fichier html ainsi que les images. Supprimez toutes les images qui vont devenir des textes ainsi que toutes les images ne contenant qu'une couleur unie (nous les remplacerons par une couleur dans le code)</p>
+                </section>
+
+                <section>
+                    <p>Ouvrez le html avec un navigateur pour voir le résultat</p>
+                    <p><img src="src/img/fireworks-export-no-image.png" alt="" /></p>
+                </section>
+
+                <section>
+                    <p>Ouvrez le html dans un editeur.</p>
+                    <p>Les exports fireworks contiennent souvent le bug <span class="hl">align=""left"</span><br />Remplacer par <span class="hl">align="left"</span></p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;table style="display: inline-table;" align=""left" border="0" cellpadding="0" cellspacing="0" width="600"&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;table style="display: inline-table;" align="left" border="0" cellpadding="0" cellspacing="0" width="600"&gt;
+                    </code></pre>
+                    
+                </section>
+
+                <section>
+                    <p>Supprimez tous les commentaires inutiles</p>
+                </section>
+
+                <section>
+                    <p>Supprimez les &lt;img&gt; correspondant aux images supprimées mais reportez les dimensions sur le &lt;td&gt; contenant l'image</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;td&gt;&lt;img src="images/email_r1_c1.gif" width="600" height="69" alt="" /&gt;&lt;/td&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;td width="600" height="69"&gt;&lt;/td&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Supprimez les attributs "id" et "name".</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;td&gt;&lt;img name="email_r3_c2" src="images/email_r3_c2.gif" width="14" height="30" id="email_r3_c2" alt="" /&gt;&lt;/td&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;td&gt;&lt;img src="images/email_r3_c2.gif" width="14" height="30" alt="" /&gt;&lt;/td&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Rajoutez tous les background sur les cellules que dont vous avez supprimé l'image</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;td width="38" height="954"&gt;&lt;/td&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;td width="38" height="954" bgcolor="#000000" style="background-color:#000000;"&gt;&lt;/td&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Rajoutez le style <span class="hl">display:block;</span> sur toutes les images</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;img src="images/email_r5_c2.gif" width="517" height="366" alt="" /&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="images/email_r5_c2.gif" width="517" height="366" alt="" /&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Renseignez les attributs <span class="hl">alt</span> des &lt;img&gt; si nécessaire.</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="images/email_r5_c2.gif" width="517" height="366" alt="" /&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="images/email_r5_c2.gif" width="517" height="366" alt="Mon texte" /&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Rajoutez les textes et ajoutez le style de chaque texte sur son &lt;td&gt; le contenant. Utilisez l'attribut <span class="hl">valign</span> pour choisir l'allignement vertical du texte dans sa cellule.</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;td width="600" height="69" bgcolor="#ffffff" style="background-color:#ffffff;"&gt;&lt;/td&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;td width="600" height="69" bgcolor="#ffffff" valign="top" style="background-color:#ffffff;text-align:center;font-family:Arial;font-size:10px;color:#999999;"&gt;
+    Texte
+&lt;/td&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Rajoutez des liens sur les images cliquables sans oublier le style <span class="hl">display:block;</span> sur le &lt;a&gt; ainsi que <span class="hl">border:none;</span> sur le &lt;a&gt; ET le &lt;img&gt;</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="images/email_r14_c4.gif" width="47" height="24" alt="" /&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;a href="#" style="display:block;border:none;"&gt;&lt;img style="display:block;border:none;" src="images/email_r14_c4.gif" width="47" height="24" alt="" /&gt;&lt;/a&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Remplacez les URLs des images par des URLs absolue (après avoir uploadé les images sur un serveur)</p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="images/email_r14_c4.gif" width="47" height="24" alt="" /&gt;
+                    </code></pre>
+                    <p>devient</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;img style="display:block;" src="http://monsite.com/emails/manewsletter/images/email_r14_c4.gif" width="47" height="24" alt="" /&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Centrez l'email en rajoutant un &lt;table&gt; autour du tableau principal</p>
+                    <p>Le premier tableau doit avoir un <span class="hl">width="98%"</span> et les deux doivent avoir <span class="hl">align="center"</span></p>
+
+                    <pre><code data-trim contenteditable class="html">
+&lt;table width="98%" cellpadding="0" cellspacing="0" border="0" align="center"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+      &lt;table width="600" cellpadding="0" cellspacing="0" align="center"&gt;
+        ...
+      &lt;/table&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Valider</h2>
+                    <p><a target="_blank" href="http://validator.w3.org/#validate_by_input">W3C</a></p>
+                </section>
+
+                <section>
+                    <h2>Tester</h2>
+                    <p><a target="_blank" href="http://litmus.com/">Litmus</a> : 7 jours d'essai</p>
+                    <p><a target="_blank" href="http://mailchimp.com/">Mailchimp</a> : abonnés</p>
+                </section>
+
+                <section>
+                    <h2>Envoyer depuis un service</h2>
+                    <p><a target="_blank" href="http://mailchimp.com/">Mail Chimp</a></p>
+                    <ul>
+                        <li>Gratuit sous certaines conditions</li>
+                        <li>Intuitif</li>
+                        <li>Efficace</li>
+                        <li>Gestion des listes</li>
+                        <li>API</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Envoyer depuis un service</h2>
+                    <p><a target="_blank" href="http://mailchimp.com/">Mail Chimp</a></p>
+                    <ul>
+                        <li>Templates de base</li>
+                        <li>Ajout de templates</li>
+                        <li>Templates éditables en WYSIWYG</li>
+                        <li>Organisation de campagnes</li>
+                        <li>Outils de tests</li>
+                        <li>Statistiques</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Envoyer soi-même</h2>
+                    <p>Un script PHP vous est fourni avec ce cours dans le dossier "send_email" de <span class="hl">resources.zip</span> fourni avec ce cours. Il ne fonctionne qu'avec les comptes gmail.</p>
+                    <p>Lancez votre serveur apache local (MAMP ou WAMP par exemple)</p>
+                </section>
+
+                <section>
+                    <p>Ouvrez <span class="hl">index.php</span> avec un éditeur de code et renseignez les différentes variables</p>
+                    <ul>
+                        <li><span class="hl">$to</span> destinataire</li>
+                        <li><span class="hl">$gmail_username</span> votre adresse gmail</li>
+                        <li><span class="hl">$gmail_password</span> votre mot de passe gmail</li>
+                        <li><span class="hl">$subject</span> le sujet du mail</li>
+                        <li><span class="hl">$email</span> le chemin relatif vers le HTML</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Lancez le script php en vous rendant à son adresse avec votre serveur local (exemple http://localhost/newsletters/send_email/index.php)</p>
+                    <p>La page vous indiquera "Sent !" si tout s'est bien passé</p>
+                    <p>Sinon vous aurez un message indiquant l'erreur</p>
+                </section>
+
+                <section>
+                    <p><img src="src/img/good-luck-jesus.jpg" alt=""></p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
