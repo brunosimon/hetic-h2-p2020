@@ -28,6 +28,21 @@
     <a href="#">Lien 2</a>
     <a href="#">Lien 3</a>
 
+    <img
+        src="image-test-1280.png"
+        srcset="image-test-320.png 320w,
+                image-test-640.png 640w,
+                image-test-1280.png 1280w"
+        width="100%"
+    >
+
+    <picture>
+        <source srcset="image-test-320.png" media="(max-width:320px)">
+        <source srcset="image-test-640.png" media="(max-width:640px)">
+        <source srcset="image-test-1280.png" media="(min-width:641px)">
+        <img src="image-test-320.png" width="100%">
+    </picture>
+
     <script src="fastclick.js"></script>
     <script>
         FastClick.attach( document.body );

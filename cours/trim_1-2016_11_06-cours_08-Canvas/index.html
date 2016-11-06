@@ -92,8 +92,8 @@ var canvas  = document.querySelector('canvas'),
                     <p>Pour dessiner, la méthode classique consiste à</p>
                     <ul>
                         <li>Indiquer qu'on commence un tracé</li>
-                        <li>Dessiner la forme</li>
-                        <li>Définir le style</li>
+                        <li>Définir le tracé (un trait ici, un cercle là, etc.)</li>
+                        <li>Définir le style (trait orange large de 20px)</li>
                         <li>Faire apparaitre le tracé sur le canvas</li>
                     </ul>
                 </section>
@@ -103,9 +103,9 @@ var canvas  = document.querySelector('canvas'),
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();     // Commencer un tracé
 
-context.moveTo(50,50);   // Placer le tracé
-context.lineTo(200,200); // Tracer une ligne
-context.lineTo(50,200);  // Tracer autre une ligne
+context.moveTo(50, 50);   // Placer le tracé
+context.lineTo(200, 200); // Tracer une ligne
+context.lineTo(50, 200);  // Tracer autre une ligne
 context.closePath();     // Tracer une dernière ligne qui ferme la forme (pas obligatoire)
 
 context.stroke();        // Faire apparaitre les lignes tracées
@@ -122,9 +122,9 @@ context.stroke();        // Faire apparaitre les lignes tracées
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();     // Commencer un tracé
 
-context.moveTo(50,50);   // Placer le tracé
-context.lineTo(200,200); // Tracer une ligne
-context.lineTo(50,200);  // Tracer autre une ligne
+context.moveTo(50, 50);   // Placer le tracé
+context.lineTo(200, 200); // Tracer une ligne
+context.lineTo(50, 200);  // Tracer autre une ligne
 
 context.fill();          // Faire apparaitre la forme dessinée
                     </code></pre>
@@ -150,9 +150,9 @@ context.fill();          // Faire apparaitre la forme dessinée
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
 
-context.moveTo(50,50);
-context.lineTo(200,200);
-context.lineTo(50,200);
+context.moveTo(50, 50);
+context.lineTo(200, 200);
+context.lineTo(50, 200);
 
 context.lineWidth   = 20;       // Largeur de la ligne
 context.lineCap     = 'round';  // Fin de ligne (round | butt | square)
@@ -173,11 +173,11 @@ context.stroke();
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
 
-context.moveTo(50,50);
-context.lineTo(200,200);
-context.lineTo(50,200);
+context.moveTo(50, 50);
+context.lineTo(200, 200);
+context.lineTo(50, 200);
 
-context.fillStyle = 'rgba(255,0,0,0.5)'; //Couleur du remplissage
+context.fillStyle = 'rgba(255, 0, 0, 0.5)'; //Couleur du remplissage
 context.fill();
                     </code></pre>
                 </section>
@@ -192,11 +192,11 @@ context.fill();
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
 
-context.moveTo(50,50);
-context.lineTo(200,200);
-context.lineTo(50,200);
+context.moveTo(50, 50);
+context.lineTo(200, 200);
+context.lineTo(50, 200);
 
-context.fillStyle     = 'rgba(255,0,0,1)';
+context.fillStyle     = 'rgba(255, 0, 0, 1)';
 context.shadowColor   = 'blue';   // Couleur de l'ombre
 context.shadowBlur    = 50;       // Largeur du flou
 context.shadowOffsetX = 5;        // Décalage en X
@@ -216,14 +216,14 @@ context.fill();
                 </section>
 
                 <section>
-                    <p>Certaines méthodes permettent de dessiner autre chose que des lignes</p>
-                    <p><span class="highlight">rect()</span> permet de dessiner un rectangle</p>
-                    <p><span class="highlight">arc()</span> permet de dessiner un arc de cercle</p>
+                    <p>Certaines méthodes permettent de définir des tracés autre que des lignes</p>
+                    <p><span class="highlight">rect()</span> permet de tracer un rectangle</p>
+                    <p><span class="highlight">arc()</span> permet de tracer un arc de cercle</p>
                 </section>
 
                 <section>
                     <p>La variable globale Math possède plusieurs propriétés et méthodes mathématiques</p>
-                    <p>Celle que nous allons utilisé est <span class="highlight">Math.PI</span> permettant d'obtenir le nombre <span class="highlight">π</span> utile pour dessiner des arc de cercle</p>
+                    <p>Celle que nous allons utilisé est <span class="highlight">Math.PI</span> et permet d'obtenir le nombre <span class="highlight">π</span> utile pour dessiner des arcs de cercle</p>
                     <p><img src="src/img/math-pi.png" width="350" alt=""></p>
                 </section>
 
@@ -235,23 +235,23 @@ contexts.strokeStyle = 'orange';
 
 // Remplissage d'un rectangle
 contexts.beginPath();
-contexts.rect(50,50,200,100);
+contexts.rect(50, 50, 200, 100);
 contexts.fill();
 
 // Remplissage d'un demi cercle
 contexts.beginPath();
-contexts.arc(400,50,100,0,Math.PI,false);
+contexts.arc(400, 50, 100, 0, Math.PI, false);
 contexts.fill();
 
 // Countour d'un recangle
 contexts.beginPath();
 contexts.fillStyle = 'orange';
-contexts.rect(50,200,200,100);
+contexts.rect(50, 200, 200, 100);
 contexts.stroke();
 
 // Contour d'un demi cercle
 contexts.beginPath();
-contexts.arc(400,200,100,0,Math.PI,false);
+contexts.arc(400, 200, 100, 0, Math.PI, false);
 contexts.stroke();
                     </code></pre>
                 </section>
@@ -273,16 +273,16 @@ contexts.stroke();
                     <pre><code  data-trim contenteditable class="javascript">
 context.fillStyle = 'orange';
 
-context.fillRect(50,50,300,160);
-context.clearRect(50,50,100,80);
+context.fillRect(50, 50, 300, 160);
+context.clearRect(50, 50, 100, 80);
 
 context.fillStyle = '#00EEFF';
-context.fillRect(160,60,20,70);
+context.fillRect(160, 60, 20, 70);
 
 context.beginPath();
 context.fillStyle = 'black';
-context.arc(280,210,50,0,Math.PI,false);
-context.arc(120,210,50,0,Math.PI,false);
+context.arc(280, 210, 50, 0, Math.PI, false);
+context.arc(120, 210, 50, 0, Math.PI, false);
 context.fill();
 
                     </code></pre>
@@ -306,8 +306,8 @@ context.textBaseline = 'top';        // Alignement vertical (top | bottom | midd
 
 console.log(context.measureText(text).width); // Affiche la largeur du texte dans la console (sans le dessiner)
 
-context.fillText(text,300,100);      // Faire apparaitre le texte
-context.strokeText(text,300,160);    // Faire apparaitre le contour du texte
+context.fillText(text, 300, 100);      // Faire apparaitre le texte
+context.strokeText(text, 300, 160);    // Faire apparaitre le contour du texte
                     </code></pre>
                 </section>
 
@@ -333,7 +333,7 @@ var image = new Image();
 image.onload = function()
 {
     // Dessine l'image
-    context.drawImage(image,0,0,image.width / 6,image.height / 6);
+    context.drawImage(image, 0, 0, image.width / 6, image.height / 6);
 };
 
 // Ajoute le chemin de l'image
@@ -354,9 +354,9 @@ image.src = 'image-1.jpg';
                     <pre><code  data-trim contenteditable class="javascript">
 var gradient = context.createLinearGradient(50,50,250,250); // x1, y1, x2, y2
 
-gradient.addColorStop(0,  'rgb(255,80,0)');    // Départ
-gradient.addColorStop(0.5,'rgb(255,191,0)');   // Milieu
-gradient.addColorStop(1,  'rgb(255,246,155)'); // Arrivée
+gradient.addColorStop(0,  'rgb(255, 80, 0)');    // Départ
+gradient.addColorStop(0.5,'rgb(255, 191, 0)');   // Milieu
+gradient.addColorStop(1,  'rgb(255, 246, 155)'); // Arrivée
 
 context.fillStyle = gradient;  // Le dégradé devient le style de remplissage
 
@@ -386,13 +386,13 @@ var gradient = context.createRadialGradient(
     350  // Rayon du second cercle
 );
 
-gradient.addColorStop(0,  'rgb(255,80,0)');    // Couleur de départ
-gradient.addColorStop(0.5,'rgb(255,191,0)');   // Couleur de milieu
-gradient.addColorStop(1,  'rgb(255,246,155)'); // Couleur de arrivée
+gradient.addColorStop(0,  'rgb(255, 80, 0)');    // Couleur de départ
+gradient.addColorStop(0.5,'rgb(255, 191, 0)');   // Couleur de milieu
+gradient.addColorStop(1,  'rgb(255, 246, 155)'); // Couleur de arrivée
 
 context.fillStyle = gradient;  // Le dégradé devient le style de remplissage
 
-context.fillRect(0,0,400,400); // Faire apparaître
+context.fillRect(0, 0, 400, 400); // Faire apparaître
                     </code></pre>
                 </section>
 
@@ -408,27 +408,28 @@ context.fillRect(0,0,400,400); // Faire apparaître
                 <section>
                     <p>Les fonctions save() et restore() permettent de sauvegarder l'état du style et de le restaurer</p>
                     <p>Cela équivaut à un historique de pinceau</p>
+                    <p>Ces méthodes ne permettent pas de sauvegarder ou restaurer l'état du canvas !</p>
                 </section>
 
                 <section>
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
-context.moveTo(50,50);
-context.lineTo(300,50);
+context.moveTo(50, 50);
+context.lineTo(300, 50);
 context.save();              // Sauvegarde les propriétés du context
 context.lineWidth = 20;      // Changement d'une des propriétés
 context.stroke();            // Dessin du trait
 
 context.beginPath();
-context.moveTo(50,100);
-context.lineTo(300,100);
+context.moveTo(50, 100);
+context.lineTo(300, 100);
 context.save();              // Nouvelle sauvegarde des propriétés du context
 context.strokeStyle = 'red'; // Changement d'une autre propriété
 context.stroke();            // Dessin du trait
 
 context.beginPath();
-context.moveTo(50,150);
-context.lineTo(300,150);
+context.moveTo(50, 150);
+context.lineTo(300, 150);
 context.restore();           // Restauration des propriétés à la derniène sauvegarde
 context.restore();           // Restauration des propriétés à la sauvegarde encore avant
 context.stroke();            // Dessin du trait
@@ -455,7 +456,7 @@ context.stroke();            // Dessin du trait
                     <p>Courbe de bézier</p>
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
-context.moveTo(50,50); // X et Y du point de départ
+context.moveTo(50, 50); // X et Y du point de départ
 context.bezierCurveTo(
     300, // X du premier point de tension
     100, // Y du premier point de tension
@@ -477,7 +478,7 @@ context.stroke();
                     <p>Courbe de quadratique (de bézier)</p>
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath();
-context.moveTo(50,50); // X et Y du point de départ
+context.moveTo(50, 50); // X et Y du point de départ
 context.quadraticCurveTo(
     300, // X du seul point de tension
     100, // Y du seul point de tension
@@ -502,13 +503,13 @@ context.stroke();
 context.globalAlpha = 0.3; /* Réduction de l'opacité */
 
 context.fillStyle = '#ff0000';
-context.fillRect(50,50,200,200);
+context.fillRect(50, 50, 200, 200);
 
 context.fillStyle = '#00ff00';
-context.fillRect(100,100,200,200);
+context.fillRect(100, 100, 200, 200);
 
 context.fillStyle = '#0000ff';
-context.fillRect(150,150,200,200);
+context.fillRect(150, 150, 200, 200);
                     </code></pre>
                 </section>
 
@@ -530,13 +531,13 @@ context.fillRect(150,150,200,200);
 context.globalCompositeOperation = 'lighter';
 
 context.fillStyle = '#ff0000';
-context.fillRect(50,50,200,200);
+context.fillRect(50, 50, 200, 200);
 
 context.fillStyle = '#00ff00';
-context.fillRect(100,100,200,200);
+context.fillRect(100, 100, 200, 200);
 
 context.fillStyle = '#0000ff';
-context.fillRect(150,150,200,200);
+context.fillRect(150, 150, 200, 200);
                     </code></pre>
                 </section>
 
@@ -547,13 +548,13 @@ context.fillRect(150,150,200,200);
                 <section>
                     <pre><code  data-trim contenteditable class="javascript">
 context.fillStyle = 'red';
-context.fillRect(200,200,200,200);
+context.fillRect(200, 200, 200, 200);
 
 context.globalCompositeOperation = 'destination-out'; /* source-over | source-in | source-out | source-atop | destination-over | destination-in | destination-out | desination-atop | lighter | copy | xor */
 
 context.beginPath();
 context.fillStyle = 'blue';
-context.arc(200,250,100,0,Math.PI,false);
+context.arc(200, 250, 100, 0, Math.PI, false);
 context.fill();
                     </code></pre>
                 </section>
@@ -588,10 +589,10 @@ var image = new Image();
 image.onload = function()
 {
     /* Dessiner l'image chargée dans le canvas */
-    context.drawImage(image,0,0,image.width / 6,image.height / 6);
+    context.drawImage(image, 0, 0, image.width / 6, image.height / 6);
 
     /* Récupérer les pixels dans image_data */
-    var image_data = context.getImageData(0,0,image.width / 6,image.height / 6);
+    var image_data = context.getImageData(0, 0, image.width / 6, image.height / 6);
 
     /* parcourir les pixels 4 par 4 */
     for(var i = 0; i < image_data.data.length; i += 4)
@@ -606,7 +607,7 @@ image.onload = function()
     }
 
     /* Dessiner la nouvelle image par dessus */
-    context.putImageData(image_data,0,0);
+    context.putImageData(image_data, 0, 0);
 };
 image.src = 'image-1.jpg';
                     </code></pre>
@@ -684,33 +685,82 @@ window.requestAnimationFrame(loop);
                 </section>
 
                 <section>
-                    <p>Exemple d'animation</p>
+                    <p>Exemple : Balle rebondissante</p>
                     <pre><code  data-trim contenteditable class="javascript">
-var coords = {x:0,y:200};
+// Coordonnées de base
+var coords = { x: 200, y: 200 };
 
+// Fonction déclenchée à chaque frame
 function loop()
 {
-    requestAnimationFrame(loop); //Avant d'effectuer d'autre action
-    
-    //Mettre à jour la position
+    window.requestAnimationFrame( loop );
+
+    // Mise à jour des coordonnées
     coords.x += 4;
-    if(coords.x > canvas.width + 50)
+    coords.y = 200 - Math.abs( Math.cos( + new Date() / 300 ) ) * 100;
+
+    // Limite
+    if( coords.x > canvas.width + 50 )
         coords.x = -50;
-    
-    //Redessiner le canvas
-    context.clearRect(0,0,canvas.width,canvas.height);
+
+    // Dessin de la balle
+    context.fillStyle = 'rgba(238, 238, 238, 0.2)';
+    context.fillRect( 0, 0, canvas.width, canvas.height );
     context.beginPath();
-    context.arc(coords.x,coords.y,50,0,Math.PI*2);
+    context.arc( coords.x, coords.y, 50, 0, Math.PI * 2 );
     context.fillStyle = 'orange';
     context.fill();
 }
+
 loop();
                     </code></pre>
                 </section>
 
                 <section>
-                    <p>Exemple d'animation</p>
+                    <p>Exemple : Balle rebondissante</p>
                     <canvas id="canvas-19" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle qui suit la souris</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Coordonnées de base
+var coords = { x: 200, y: 200 },
+    mouse  = { x: 0,   y: 0 };
+
+// Fonction déclenchée à chaque frame
+function loop()
+{
+    window.requestAnimationFrame( loop );
+
+    // Mise à jour des coordonnées avec easing
+    coords.x += (mouse.x - coords.x) * 0.01;
+    coords.y += (mouse.y - coords.y) * 0.01;
+
+    // Dessin de la balle
+    context.fillStyle = 'rgba(238, 238, 238, 0.2)';
+    context.fillRect( 0, 0, canvas.width, canvas.height );
+    context.beginPath();
+    context.arc( coords.x, coords.y, 50, 0, Math.PI * 2 );
+    context.fillStyle = 'orange';
+    context.fill();
+}
+
+loop();
+
+// Écoute de l'événement mousemove
+document.addEventListener( 'mousemove', function( event )
+{
+    // Mise à jour des coordonnées
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+} );
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle qui suit la souris</p>
+                    <canvas id="canvas-20" width="600" height="400"></canvas>
                 </section>
 
                 <section>

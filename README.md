@@ -11,8 +11,8 @@ GitHub de développement web pour la promotion P2020 H2
 - [x] CSS3 Animations/transitions
 - [x] JS Rappels
 - [x] HTML5 Audio/video API
-- [ ] Responsive
-- [ ] Newsletter
+- [x] Responsive
+- [x] Newsletter
 - [ ] Canvas
 - [ ] Fonts
 - [ ] Task runners (grunt/gulp)

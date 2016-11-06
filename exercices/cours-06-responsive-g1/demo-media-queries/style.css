@@ -1,0 +1,177 @@
+/**
+ * GENERAL
+ */
+body {
+	background:#bbb;
+	font-family:Helvetica,Arial;
+	font-size:14px;
+	color:#444;
+}
+
+.wrapper {
+	width:840px;
+	margin:0 auto;
+}
+
+/**
+ * HEADER
+ */
+header {
+	position:relative;
+	background:#fff;
+	height:200px;
+}
+
+header h1 {
+	position:absolute;
+	top:65px;
+	left:40px;
+	font-size:60px;
+}
+
+header nav {
+	position:absolute;
+	top:80px;
+	right:20px;
+	font-size:0;
+}
+
+header nav a {
+	display:inline-block;
+	height:40px;
+	line-height:40px;
+	margin:0 0 0 1px;
+	padding:0 20px;
+	text-decoration:none;
+	/*background:#eee;*/
+	font-size:14px;
+}
+
+/**
+ * CONTENT
+ */
+.content {
+	padding:40px 0;
+	font-size:0;
+}
+
+.content article {
+	position:relative;
+	display:inline-block;
+	width:400px;
+	margin-bottom:60px;
+	font-size:14px;
+	background:#fff;
+	vertical-align:top;
+}
+
+.content article:nth-child(odd) {
+	margin-right:40px;
+}
+
+.content article .text {
+	padding:30px 30px 50px 30px;
+}
+
+.content article .text h3 {
+	font-size:18px;
+	font-weight:bold;
+	margin:0 0 20px 0;
+}
+
+.content article .more {
+	display:block;
+	position:absolute;
+	bottom:-20px;
+	right:20px;
+	height:40px;
+	padding:0 20px;
+	line-height:40px;
+	text-decoration:none;
+	color:#fff;
+	background:#fc534c;
+}
+
+/**
+ * FOOTER
+ */
+footer {
+	background:#232729;
+	padding:30px;
+	color:#fff;
+}
+
+@media (max-width:879px)
+{
+	.wrapper
+	{
+		width:auto;
+		margin-right:40px;
+		margin-left:40px;
+	}
+	.content
+	{
+		text-align:center;
+	}
+	.content article:nth-child(odd)
+	{
+		margin-right:0;
+	}
+}
+
+@media (max-width:780px)
+{
+	.wrapper
+	{
+		margin-right:0;
+		margin-left:0;
+	}
+	header
+	{
+		height:auto;
+	}
+	header h1
+	{
+		position:static;
+		text-align:center;
+		padding-top:20px;
+		padding-bottom:20px;
+	}
+	header nav
+	{
+		position:static;
+		text-align:center;
+		padding-bottom:30px;
+	}
+}
+
+@media (max-width:480px)
+{
+	header h1
+	{
+		font-size:45px;
+	}
+	header nav
+	{
+		padding-bottom:0;
+	}
+	header nav a
+	{
+		display:block;
+		border-top:1px solid #bbb;
+	}
+	.content article
+	{
+		width:320px;
+	}
+	.content article img
+	{
+		width:100%;
+		height:auto;
+	}
+	.content article .more
+	{
+		left:0;
+		right:0;
+	}
+}
