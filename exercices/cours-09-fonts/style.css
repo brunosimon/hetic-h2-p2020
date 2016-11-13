@@ -1,0 +1,20 @@
+body
+{
+    background:#eee;
+    font-family:'Open Sans', sans-serif;
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+.light
+{
+	font-weight:lighter;
+}
+.bold
+{
+	font-weight:bold;
+}
+.italic
+{
+	font-style:italic;
+}

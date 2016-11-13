@@ -13,7 +13,7 @@ GitHub de développement web pour la promotion P2020 H2
 - [x] HTML5 Audio/video API
 - [x] Responsive
 - [x] Newsletter
-- [ ] Canvas
+- [x] Canvas
 - [ ] Fonts
 - [ ] Task runners (grunt/gulp)
 - [ ] Sass
