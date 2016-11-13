@@ -1,0 +1,15 @@
+body
+{
+	font-size:14px;
+	background:#ccc;
+}
+
+a
+{
+	color:red;
+	transition:color 1s;
+}
+a:hover
+{
+	color:blue;
+}
