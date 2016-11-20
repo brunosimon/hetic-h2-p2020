@@ -14,16 +14,16 @@ GitHub de développement web pour la promotion P2020 H2
 - [x] Responsive
 - [x] Newsletter
 - [x] Canvas
-- [ ] Fonts
-- [ ] Task runners (grunt/gulp)
-- [ ] Sass
+- [x] Fonts
+- [x] Task runners (gulp)
+- [ ] Stylus
 - [ ] Versionning avec git
 - [ ] JS orienté objet
-- [ ] JS jQuery
 
 Optionnels
 
 - [ ] SVG
+- [ ] JS jQuery
 
 ### Trimestre 2
 
