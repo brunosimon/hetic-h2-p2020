@@ -1,0 +1,31 @@
+@import 'options'
+
+border-radius( $size )
+    -webkit-border-radius $size
+    -moz-border-radius $size
+    -o-border-radius $size
+    border-radius $size
+
+.container
+    background $gray
+    padding $padding
+    border-radius 40px
+
+    .content
+        display inline-block
+        width 100px
+        height 100px
+        margin ( $padding / 4 )
+        padding $padding
+        background $red
+        border-radius ( $padding / 2 )
+        
+        for i in (0...20)
+            &:nth-child( { i } )
+                transform scale( ( 1 - i / 20 ) )
+                
+                if i % 3 == 0
+                    background yellow
+
+        &:hover
+            background $blue

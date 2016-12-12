@@ -16,7 +16,7 @@ GitHub de développement web pour la promotion P2020 H2
 - [x] Canvas
 - [x] Fonts
 - [x] Task runners (gulp)
-- [ ] Stylus
+- [x] Stylus
 - [ ] Versionning avec git
 - [ ] JS orienté objet
 
