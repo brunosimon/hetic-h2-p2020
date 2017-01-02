@@ -610,6 +610,7 @@
                 </section>
 
                 <section>
+                    <p>Créer une branche et passer dessus</p>
                     <table>
                         <tr>
                             <td class="no-wrap"><span class="hl">git branch</span></td>
@@ -623,6 +624,26 @@
                             <td class="no-wrap"><span class="hl">git checkout toto</span></td>
                             <td>passer sur cette branche</td>
                         </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Faire un commit</p>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"></td>
+                            <td>modifier un fichier</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push -u origin toto</span></td>
+                            <td>pusher sur la branche <span class="u">toto</span><br>(-u permet d'en faire la branche par défaut)</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Merger les modification</p>
+                    <table>
                         <tr>
                             <td class="no-wrap"><span class="hl">git checkout master</span></td>
                             <td>retourner sur la branche <span class="u">master</span></td>
@@ -632,8 +653,22 @@
                             <td>fusionner la branche <span class="u">toto</span> sur la branche <span class="u">master</span></td>
                         </tr>
                         <tr>
+                            <td class="no-wrap"><span class="hl">git push</span></td>
+                            <td>pusher sur la branch <span class="u">master</span></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Supprimer la branche</p>
+                    <table>
+                        <tr>
                             <td class="no-wrap"><span class="hl">git branch -d toto</span></td>
-                            <td>supprimer la branche <span class="u">toto</span></td>
+                            <td>supprimer la branche en local</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push origin --delete toto</span></td>
+                            <td>supprimer la branche en remote (sur GitHub)</td>
                         </tr>
                     </table>
                 </section>
