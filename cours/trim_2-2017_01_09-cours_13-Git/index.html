@@ -80,7 +80,7 @@
                     <p>Chaque modification équivaut à une nouvelle version du projet</p>
                     <p>Une modification est appelée <span class="u">commit</span></p>
                     <ul>
-                        <li><span class="u">Quoi ?</span><br>Fichiers concernés (créés, modifiés, supprimés)</li>
+                        <li><span class="u">Quoi ?</span><br>Modification (création, modification, suppression)</li>
                         <li><span class="u">Par qui ?</span><br>Auteur du commit</li>
                         <li><span class="u">Quand ?</span><br>Date de la modification</li>
                         <li><span class="u">Pourquoi ?</span><br>Description de la modification</li>
@@ -118,12 +118,6 @@
                         <li>Lancez le <span class="hl">.exe</span></li>
                         <li>Suivez l'installation</li>
                     </ul>
-                </section>
-
-                <section>
-                    <p>
-                        <img class="no-style" width="600" src="src/img/windows/1.png" alt="">
-                    </p>
                 </section>
 
                 <section>
@@ -335,8 +329,18 @@
                 </section>
 
                 <section>
+                    <ul>
+                        <li><span class="u">Quoi ?</span><br>Fichiers stagés</li>
+                        <li><span class="u">Par qui ?</span><br>Git config</li>
+                        <li><span class="u">Quand ?</span><br>Date actuelle</li>
+                        <li><span class="u">Pourquoi ?</span><br>???</li>
+                    </ul>
+                    <p>Il faut donc rajouter une description à notre commit pour expliquer ce qu'il apporte</p>
+                </section>
+
+                <section>
                     <p>Tapez <span class="hl">git commit -m "Create index file"</span></p>
-                    <p><span class="hl">-m</span> permet de renseigner directement le message décrivant la modification</p>
+                    <p><span class="hl">-m</span> permet de renseigner directement le message associé au commit</p>
                 </section>
 
                 <section>
@@ -374,12 +378,14 @@
                 </section>
 
                 <section>
-                    <p>Avant de faire le <span class="hl">git push</span>, nous faisons un <span class="hl">git pull</span> afin de récupérer la dernière version du projet et que notre commit modifie celle-ci</p>
+                    <p>Avant de faire le <span class="hl">git push</span>, nous faisons un <span class="hl">git pull</span> afin de récupérer la dernière version du projet</p>
+                    <p>Notre modification est censée s'appliquer par dessus la dernière version</p>
+                    <p>Mais que ce passe t'il si un autre développeur à fait une modification entre-temps</p>
                 </section>
 
                 <section>
                     <h3>Conflit sur différents fichiers</h3>
-                    <p>Si un autre fichier a été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur VI va apparaître avec un contenu pré rempli</p>
+                    <p>Si un autre fichier a été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur <span class="hl">vi</span> va apparaître avec un contenu pré rempli</p>
                     <p>
                         <img class="no-style" width="800" src="src/img/terminal-vi-commit-1.png" alt="">
                     </p>
@@ -509,9 +515,9 @@
 
                 <section>
                     <h3>Licenses</h3>
-                    <p>Lorsque vous mettez à disposition des autres un projet, vous souhaitez probablement garder un certain contrôle dessus ou au moins sur sa paternité</p>
+                    <p>Lorsque vous mettez à disposition des autres un projet, vous souhaitez probablement garder un certain contrôle sur son utilisation ou au moins sur sa paternité</p>
                     <p>Cela est possible grâce aux licenses</p>
-                    <p>Le site <a href="http://choosealicense.com/" target="_blank">choosealicense.com</a> créé par GitHub vous permet de choisir une license et vous accompagnera dans sa mise en place</p>
+                    <p>Le site <a href="http://choosealicense.com/" target="_blank">choosealicense.com</a>, créé par GitHub, vous permet de choisir une license et vous accompagnera dans sa mise en place</p>
                 </section>
 
                 <section>
@@ -606,7 +612,7 @@
                     <p>Il peut arriver d'avoir une modification complexe à apporter qui risquerait de créer trop de conflits avec les autres développeurs</p>
                     <p>Git permet de créer des branches</p>
                     <p>Cela revient à créer une copie du projet à un instant T et de pouvoir faire des modifications sur chacune des deux branches sans rentrer en conflit</p>
-                    <p>Une fois la modification terminée, on peut merger les branches en résolvant les éventuels conflits.</p>
+                    <p>Une fois la modification terminée, on peut merger les branches en résolvant les éventuels conflits</p>
                 </section>
 
                 <section>
@@ -698,11 +704,11 @@
                     <table>
                         <tr>
                             <td class="no-wrap"><span class="hl">git clone http://...</span></td>
-                            <td>Récupérer un repo en local</td>
+                            <td>Récupère un repo en local</td>
                         </tr>
                         <tr>
                             <td class="no-wrap"><span class="hl">git pull</span></td>
-                            <td>Récupérer les derniers commits</td>
+                            <td>Récupère les derniers commits</td>
                         </tr>
                         <tr>
                             <td class="no-wrap"><span class="hl">git add ...</span></td>
@@ -735,7 +741,7 @@
                         </tr>
                         <tr>
                             <td class="no-wrap"><span class="hl">git checkout ...</span></td>
-                            <td>Annnule les modifications</td>
+                            <td>Annule les modifications</td>
                         </tr>
                     </table>
                 </section>

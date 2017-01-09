@@ -1,0 +1,205 @@
+.player
+	position absolute
+	top 50%
+	left 50%
+	width 775px
+	height 575px
+	margin-top -287px
+	margin-left -387px
+	box-shadow 0 0 100px rgba(0, 0, 0, 0.2)
+	color #6e5e61
+	
+	.cover
+		position absolute
+		top 0
+		left 0
+		width 300px
+		height 300px
+		background url('../images/cover.jpg')
+		
+	.informations
+		position absolute
+		top 0
+		right 0
+		width 475px
+		height 300px
+		background #c8c5d1
+		
+		.top
+			padding-top 100px
+			padding-left 30px
+			padding-right 30px
+
+			h1
+				margin-bottom 6px
+				font-size 26px
+				
+			h2
+				margin-bottom 8px
+				font-size 13px
+				
+			.songs-count
+				font-size 10px
+				color #fff
+				
+		.bottom
+			position absolute
+			bottom 0
+			left 0
+			width 100%
+			height 65px
+			padding-left 30px
+			line-height 65px
+			background #dad8e4
+			font-size 10px
+			font-weight bold
+			
+			.toggle-play
+				position absolute
+				top -30px
+				right 30px
+				width 60px
+				height 60px
+				border-radius 30px
+				background #dad8e4
+				box-shadow 0 5px 10px rgba(0, 0, 0, 0.1)
+				
+				.icon
+					position absolute
+					top 50%
+					left 50%
+					width 11px
+					height 14px
+					margin-top -5px
+					margin-left -4px
+					background url('../images/play-icon.png')
+		
+	.description
+		position absolute
+		top 300px
+		left 0
+		width 300px
+		height 210px
+		padding 30px
+		background #eef5f7
+		
+		.title
+			margin-bottom 22px
+			font-size 13px
+			font-weight bold
+			
+		p
+			line-height 12px
+			font-size 10px
+		
+	.playlist
+		position absolute
+		top 300px
+		left 300px
+		width 475px
+		height 210px
+		background #ffffff
+		overflow scroll
+		
+		.songs
+			padding-top 20px
+			
+			.song
+				font-size 0
+				line-height 40px
+				
+				.index
+					display inline-block
+					width 65px
+					text-align center
+					font-size 12px
+				.name
+					display inline-block
+					width calc(100% - 65px - 65px)
+					font-size 13px
+					font-weight bold
+					color #7c4b67
+				.time
+					display inline-block
+					width 65px
+					font-size 12px
+		
+	.controls
+		position absolute
+		bottom 0
+		left 0
+		width 100%
+		height 65px
+		padding-top 10px
+		background #eef5f7
+		text-align center
+
+		.progress-bar
+			position absolute
+			top 0
+			left 0
+			width 60%
+			height 3px
+			background #dad8e4
+			
+		.song
+			position absolute
+			top 24px
+			left 30px
+			font-size 13px
+			font-weight bold
+			color #7c4b67
+			
+		.time
+			position absolute
+			top 24px
+			right 30px
+			font-size 12px
+			
+		.previous
+			position relative
+			display inline-block
+			width 40px
+			height 40px
+			
+			.icon
+				position absolute
+				top 50%
+				left 50%
+				width 14px
+				height 9px
+				margin-top -4px
+				margin-left -7px
+				background url('../images/previous-icon.png')
+			
+		.toggle-play
+			position relative
+			display inline-block
+			width 40px
+			height 40px
+			
+			.icon
+				position absolute
+				top 50%
+				left 50%
+				width 9px
+				height 9px
+				margin-top -4px
+				margin-left -4px
+				background url('../images/pause-icon.png')
+			
+		.next
+			position relative
+			display inline-block
+			width 40px
+			height 40px
+			
+			.icon
+				position absolute
+				top 50%
+				left 50%
+				width 14px
+				height 9px
+				margin-top -4px
+				margin-left -7px
+				background url('../images/next-icon.png')
