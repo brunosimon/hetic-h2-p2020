@@ -344,19 +344,7 @@
                 </section>
 
                 <section>
-                    <h3>Envoyer sur GitHub</h3>
-                    <p>Notre commit est prêt, mais en local</p>
-                    <p>Avant d'envoyer au serveur, il est nécessaire de récupérer d'éventuelles modifications faites par d'autres développeurs entre-temps</p>
-                    <p>La commande <span class="hl">git pull</span> permet de faire cela</p>
-                </section>
-
-                <section>
-                    <p>Astuce</p>
-                    <p>Faites un <span class="hl">git pull</span> avant de commencer à travailler pour vous assurer d'avoir la dernière version du projet</p>
-                </section>
-
-                <section>
-                    <p>Désormais, nous pouvons envoyer serainement notre commit sur le serveur</p>
+                    <p>Nous pouvons désormais envoyer notre commit sur le serveur</p>
                     <p>Tapez <span class="hl">git push</span></p>
                     <p>
                         À cette étape, le terminal devrait vous demander de rentrer votre pseudo et mot de passe GitHub
@@ -372,20 +360,46 @@
                     </p>
                 </section>
 
+                <section>
+                    <p>Ceci était un workflow classique lorsqu'on travaille <span class="u">seul</span> sur le projet</p>
+                    <ul>
+                        <li>Faire la modification</li>
+                        <li>Stager les fichiers avec <span class="hl">git add</span></li>
+                        <li>Commiter avec <span class="hl">git commit</span></li>
+                        <li>Pusher avec <span class="hl">git push</span></li>
+                    </ul>
+                </section>
+
                 <!-- RESOLVE CONFLICT -->
                 <section id="resolve-conflit">
                     <h2>Résoudre un conflit</h2>
                 </section>
 
                 <section>
-                    <p>Avant de faire le <span class="hl">git push</span>, nous faisons un <span class="hl">git pull</span> afin de récupérer la dernière version du projet</p>
-                    <p>Notre modification est censée s'appliquer par dessus la dernière version</p>
-                    <p>Mais que ce passe t'il si un autre développeur à fait une modification entre-temps</p>
+                    <p>
+                        Avant de pusher notre commit, si un autre développeur a déjà envoyé un commit, git rejettera notre push
+                        <br><img class="no-style" width="800" src="src/img/terminal-git-push-rejected.png" alt="">
+                    </p>
                 </section>
 
                 <section>
-                    <h3>Conflit sur différents fichiers</h3>
-                    <p>Si un autre fichier a été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur <span class="hl">vi</span> va apparaître avec un contenu pré rempli</p>
+                    <p>Il est nécessaire de récupérer d'éventuelles modifications faites par d'autres développeurs afin que notre commit s'applique sur la dernière version du projet</p>
+                    <p>La commande <span class="hl">git pull</span> permet de faire cela</p>
+                </section>
+
+                <section>
+                    <p>Faites un <span class="hl">git pull</span></p>
+                    <p>Si des fichiers ont été modifiés entre-temps, nous allons devoir <span class="u">merger</span> les commits</p>
+                    <p>Deux cas peuvent se produire</p>
+                    <ul>
+                        <li>D'autres fichiers ont été modifiés</li>
+                        <li>Des fichiers communs ont été modifiés</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>D'autres fichiers ont été modifiés</h3>
+                    <p>Si d'autres fichiers ont été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur <span class="hl">vi</span> va apparaître avec un contenu pré rempli</p>
                     <p>
                         <img class="no-style" width="800" src="src/img/terminal-vi-commit-1.png" alt="">
                     </p>
@@ -410,7 +424,7 @@
                 </section>
 
                 <section>
-                    <h3>Conflit sur même fichiers</h3>
+                    <h3>Des fichiers communs ont été modifiés</h3>
                     <p>Si un développeur a modifié le même fichier que vous, il va falloir choisir quelle modification conserver</p>
                     <p>
                         <img class="no-style" width="800" src="src/img/terminal-conflit-same-file.png" alt="">
@@ -444,7 +458,12 @@
 
                 <section>
                     <p>La résolution de conflits et la partie la plus difficile à maîtriser</p>
-                    <p>Il faut faire preuve de rigueur et d'organisation au sein de la team</p>
+                    <p>Il faut faire preuve de rigueur et d'organisation dans la team</p>
+                </section>
+
+                <section>
+                    <p>Astuce</p>
+                    <p>Faites un <span class="hl">git pull</span> avant de commencer à travailler pour vous assurer d'avoir la dernière version du projet</p>
                 </section>
 
                 <section>
@@ -765,14 +784,14 @@
                 </section>
 
                 <section id="tutorials">
-                    <h2>TUTORIELS</h2>
+                    <h2>Tutoriels</h2>
                     <ul>
                         <li><a href="https://www.git-tower.com/learn/git/videos/" target="_blank">www.git-tower.com/learn/git/videos/</a></li>
                     </ul>
                 </section>
 
                 <section id="applications">
-                    <h2>APPLICATIONS</h2>
+                    <h2>Applications</h2>
                 </section>
 
                 <section>

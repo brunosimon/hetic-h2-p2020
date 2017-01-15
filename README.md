@@ -17,13 +17,14 @@ GitHub de développement web pour la promotion P2020 H2
 - [x] Fonts
 - [x] Task runners (gulp)
 - [x] Stylus
-- [ ] Versionning avec git
-- [ ] JS orienté objet
+- [x] Versionning avec git
 
 Optionnels
 
 - [ ] SVG
 - [ ] JS jQuery
+- [ ] JS orienté objet
+- [ ] ES6
 
 ### Trimestre 2
 
