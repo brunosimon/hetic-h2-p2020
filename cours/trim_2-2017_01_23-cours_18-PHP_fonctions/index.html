@@ -26,7 +26,7 @@
                 <section>
                     <h3>H2 - P2020</h3>
                     <h1>Développement web</h1>
-                    <h3>Cours 18 - 2017-01-16</h3>
+                    <h3>Cours 18 - 2017-01-23</h3>
                     <ul>
                         <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
                         <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
@@ -41,7 +41,7 @@
 
                 <section>
                     <p>Une fonction exécute des instructions</p>
-                    <p>Il est impossible d'enlever accolades <span class="highlight">{ }</span> même s'il n'y a qu'une seule instruction</p>
+                    <p>Il est <span class="u">impossible</span> d'enlever accolades <span class="highlight">{ }</span> même s'il n'y a qu'une seule instruction</p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?php
     function hello_world()
@@ -98,10 +98,12 @@
                 </section>
 
                 <section>
-                    <h3>Scope PHP</h3>
+                    <h2>Scope PHP</h2>
+                </section>
+
+                <section>
                     <p>Les variables déclarées en dehors de la fonction n'existent pas à l'intérieur</p>
-                    <p>Il faut utiliser l'instruction <span class="highlight">global</span> pour y avoir accès</p>
-                    <p>Sinon vous pouvez toujours passer la variable en paramètre</p>
+                    <p>Il faut utiliser l'instruction <span class="highlight">global</span> suivie de la variable pour y avoir accès dans la fonction</p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?php
     $c = 30;
@@ -113,7 +115,21 @@
     }
 
     echo multiply();
+                    </code></pre>
+                </section>
 
+                <section>
+                    <p>Les variables globales ne prennent pas en compte le scope</p>
+                    <pre><code  data-trim contenteditable class="php">
+&lt;?php
+    define( 'C', 30 );
+
+    function multiply($a = 10, $b = 20)
+    {
+        return $a * $b * C;
+    }
+
+    echo multiply();
                     </code></pre>
                 </section>
             </div>

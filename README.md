@@ -28,10 +28,10 @@ Optionnels
 
 ### Trimestre 2
 
-- [ ] PHP les bases
-- [ ] PHP variables
+- [x] PHP les bases
+- [x] PHP variables
+- [x] PHP boucles
 - [ ] PHP conditions
-- [ ] PHP boucles
 - [ ] PHP fonctions
 - [ ] PHP includes
 - [ ] PHP debug
