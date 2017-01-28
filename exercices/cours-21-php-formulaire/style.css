@@ -1,0 +1,25 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+.messages
+{
+	padding: 20px 0;
+}
+
+.messages.errors
+{
+	color: red;
+}
+
+.messages.success
+{
+	color: green;
+}
+
+.input.error
+{
+	color: red;
+}

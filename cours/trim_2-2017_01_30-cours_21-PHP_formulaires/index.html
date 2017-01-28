@@ -44,9 +44,9 @@
                 </section>
 
                 <section>
-                    <p>En HTML, un formulaire se créé avec le tag <span class="highlight">form</span></p>
-                    <p>L'attribut <span class="highlight">action</span> correspond à l'adresse de destination lorsque l'utilisateur va valider le formulaire</p>
-                    <p>L'attribut <span class="highlight">method</span> correpond à la méthode d'envoi des données. Nous en reparlerons plus tard</p>
+                    <p>En HTML, un formulaire se créé avec le tag <span class="hl">form</span></p>
+                    <p>L'attribut <span class="hl">action</span> correspond à l'adresse de destination lorsque l'utilisateur va valider le formulaire</p>
+                    <p>L'attribut <span class="hl">method</span> correpond à la méthode d'envoi des données. Nous en reparlerons plus tard</p>
                 </section>
 
                 <section>
@@ -59,7 +59,7 @@
 
                 <section>
                     <p>Les différents champs sont en général créés à l'aide d'inputs</p>
-                    <p>Il existe des exceptions comme le <span class="highlight">select</span> ou le <span class="highlight">textarea</span></p>
+                    <p>Il existe des exceptions comme le <span class="hl">select</span> ou le <span class="hl">textarea</span></p>
                     <p>Certains ne sont pas compatibles avec tous les navigateurs et l'affichage peut varier</p>
                 </section>
 
@@ -67,79 +67,80 @@
                     <p>Exemple</p>
                     <pre><code  data-trim contenteditable class="html">
 &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
-    &lt;input type="text" name="text" value="Mon text"&gt;
+    &lt;input type="text" value="Mon text"&gt;
 
     &lt;br&gt;
-    &lt;input type="password" name="password" value="password"&gt;
+    &lt;input type="password" value="password"&gt;
 
     &lt;br&gt;
-    &lt;input type="search" name="search" value="search"&gt;
+    &lt;input type="search" value="search"&gt;
 
     &lt;br&gt;
-    &lt;input type="color" name="color" value="#ff0000"&gt;
+    &lt;input type="color" value="#ff0000"&gt;
 
     &lt;br&gt;
-    &lt;input type="date" name="date" value="1990-01-17"&gt;
+    &lt;input type="date" value="1990-01-17"&gt;
 
     &lt;br&gt;
-    &lt;input type="month" name="month" value="2014-03"&gt;
+    &lt;input type="month" value="2014-03"&gt;
 
     &lt;br&gt;
-    &lt;input type="week" name="week" value="2014-W12"&gt;
+    &lt;input type="week" value="2014-W12"&gt;
 
     &lt;br&gt;
-    &lt;input type="time" name="time" value="10:25"&gt;
+    &lt;input type="time" value="10:25"&gt;
 
     &lt;br&gt;
-    &lt;input type="email" name="email" value="toto@tata.com"&gt;
+    &lt;input type="email" value="toto@tata.com"&gt;
 
     &lt;br&gt;
-    &lt;input type="tel" name="tel" value="+33631446033"&gt;
+    &lt;input type="tel" value="+33631446033"&gt;
 
     &lt;br&gt;
-    &lt;input type="url" name="url" value="http://google.com"&gt;
+    &lt;input type="url" value="http://google.com"&gt;
 
     &lt;br&gt;
-    &lt;input type="number" name="number" value="1337"&gt;
+    &lt;input type="number" value="1337"&gt;
 
     &lt;br&gt;
-    &lt;input type="checkbox" name="checkbox" value="1"&gt;
+    &lt;input type="checkbox" value="1"&gt;
 
     &lt;br&gt;
-    &lt;input type="radio" name="radio" value="value"&gt;
+    &lt;input type="radio" value="value"&gt;
 
     &lt;br&gt;
-    &lt;input type="range" name="range" value="60" max="100" max="20"&gt;
+    &lt;input type="range" value="60" max="100" max="20"&gt;
 
     &lt;br&gt;
-    &lt;input type="file" name="file"&gt;
+    &lt;input type="file"&gt;
 
     &lt;br&gt;
-    &lt;select name="select" multiple&gt;
+    &lt;select multiple&gt;
         &lt;option value="1"&gt;Toto&lt;/option&gt;
         &lt;option value="2"&gt;Tata&lt;/option&gt;
         &lt;option value="3"&gt;Tutu&lt;/option&gt;
     &lt;/select&gt;
 
     &lt;br&gt;
-    &lt;textarea name="textarea" cols="30" rows="10"&gt;Mon text&lt;/textarea&gt;
+    &lt;textarea cols="30" rows="10"&gt;Mon text&lt;/textarea&gt;
 
     &lt;br&gt;
-    &lt;input type="hidden" name="hidden" value="value"&gt;
+    &lt;input type="hidden" value="value"&gt;
 
     &lt;br&gt;
-    &lt;input type="reset" name="reset" value="reset"&gt;
+    &lt;input type="reset" value="reset"&gt;
 
     &lt;br&gt;
-    &lt;input type="submit" name="submit" value="submit"&gt;
+    &lt;input type="submit" value="submit"&gt;
 &lt;/form&gt;
                     </code></pre>
                 </section>
 
                 <section>
-                    <p>Les différents champs peuvent être organisés dans des <span class="highlight">fieldsets</span></p>
-                    <p>La balise <span class="highlight">fieldset</span> va créer un cadre englobant les champs</p>
-                    <p>La balise <span class="highlight">legend</span> permet de rajouter un titre au fieldset</p>
+                    <p>Les différents champs peuvent être organisés dans des <span class="hl">fieldsets</span></p>
+                    <p>La balise <span class="hl">fieldset</span> va créer un cadre englobant les champs</p>
+                    <p>La balise <span class="hl">legend</span> permet de rajouter un titre au fieldset</p>
+                    <p class="fragment">Pas franchement utile</p>
                 </section>
 
                 <section>
@@ -158,16 +159,16 @@
                 <section>
                     <p>La majorité des champs sont des inputs et ont plusieurs attributs</p>
                     <ul>
-                        <li><span class="highlight">type</span> correspond au type de champ</li>
-                        <li><span class="highlight">name</span> correspond au nom du champ (nécessaire pour récupérer en PHP)</li>
-                        <li><span class="highlight">value</span> correpond à la valeur</li>
-                        <li><span class="highlight">placeholder</span> permet d'afficher un texte par défaut<br />(<a target="_blank" href="http://caniuse.com/input-placeholder">non compatible IE 9</a>)</li>
+                        <li><span class="hl">type</span> correspond au type de champ</li>
+                        <li><span class="hl">name</span> correspond au nom du champ (nécessaire pour récupérer en PHP)</li>
+                        <li><span class="hl">value</span> correpond à la valeur</li>
+                        <li><span class="hl">placeholder</span> permet d'afficher un texte par défaut<br />(<a target="_blank" href="http://caniuse.com/input-placeholder">non compatible IE 9</a>)</li>
                     </ul>
                 </section>
 
                 <section>
-                    <p>Un <span class="highlight">input</span> peut-être accompagné d'un <span class="highlight">label</span></p>
-                    <p>Si l'attribut <span class="highlight">for</span> du label correspond à l'<span class="highlight">id</span> de l'input, cliquer sur le label aura pour effet de cliquer sur l'input</p>
+                    <p>Un <span class="hl">input</span> peut-être accompagné d'un <span class="hl">label</span></p>
+                    <p>Si l'attribut <span class="hl">for</span> du label correspond à l'<span class="hl">id</span> de l'input, cliquer sur le label aura pour effet de cliquer sur l'input</p>
                     <pre><code  data-trim contenteditable class="html">
 <form action="#">
     <label for="foo">Label</label>
@@ -177,7 +178,7 @@
                 </section>
 
                 <section>
-                    <p>Dans le cadre des inputs de types <span class="highlight">checkbox</span> et <span class="highlight">radio</span>, le label peut contenir l'input</p>
+                    <p>Dans le cadre des inputs de types <span class="hl">checkbox</span> et <span class="hl">radio</span>, le label peut contenir l'input</p>
                     <pre><code  data-trim contenteditable class="html">
 <form action="#">
     <label>
@@ -186,7 +187,7 @@
     </label>
 </form>
                     </code></pre>
-                    <p>Il n'est plus nécessaire de mettre le <span class="highlight">for</span> et l'<span class="highlight">id</span></p>
+                    <p>Il n'est plus nécessaire de mettre le <span class="hl">for</span> et l'<span class="hl">id</span></p>
                 </section>
 
                 <section>
@@ -194,7 +195,7 @@
                 </section>
 
                 <section>
-                    <p>Il existe deux manière d'envoyer les données d'un formulaire, en <span class="highlight">GET</span> et en <span class="highlight">POST</span></p>
+                    <p>Il existe deux manière d'envoyer les données d'un formulaire, en <span class="hl">GET</span> et en <span class="hl">POST</span></p>
                     <ul>
                         <li>Les données en GET se trouvent dans l'URL</li>
                         <li>Les données en POST n'apparaissent pas dans l'URL</li>
@@ -203,27 +204,49 @@
                 </section>
 
                 <section>
-                    <p>En PHP il est possible de récupérer les données envoyées dans les variables <span class="highlight">$_POST</span> ou <span class="highlight">$_GET</span> selon la méthode d'envoi</p>
+                    <p>Pour choisir la méthode, il suffit de changer l'attribut <span class="hl">method</span> du formulaire</p>
+                    <pre><code  data-trim contenteditable class="html">
+&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+&lt;/form&gt;
+                    </code></pre>
+                    <pre><code  data-trim contenteditable class="html">
+&lt;form action=&quot;#&quot; method=&quot;get&quot;&gt;
+&lt;/form&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>En PHP il est possible de récupérer les données envoyées dans les variables <span class="hl">$_POST</span> ou <span class="hl">$_GET</span> selon la méthode d'envoi</p>
                     <p>Ce sont des tableaux associatifs</p>
-                    <p>Les clés du tableau correspondent aux attributs <span class="highlight">name</span> des champs</p>
-                    <p>Les valeurs correspondent aux attributs <span class="highlight">value</span> des champs</p>
+                    <p>Les clés du tableau correspondent aux attributs <span class="hl">name</span> des champs</p>
+                    <p>Les valeurs correspondent aux attributs <span class="hl">value</span> des champs</p>
                 </section>
 
                 <section>
                     <p>Exemple</p>
-                    <pre><code  data-trim contenteditable class="php">
-&lt;?php 
-    echo &#039;&lt;pre&gt;&#039;;
+                    <pre><code  data-trim contenteditable class="html">
+&lt;?php
+    echo '&lt;pre&gt;';
     print_r($_POST);
-    echo &#039;&lt;/pre&gt;&#039;;
+    echo '&lt;/pre&gt;';
 ?&gt;
-</code></pre>
-<pre><code  data-trim contenteditable class="html">
-&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;value&quot;&gt;
-    &lt;input type=&quot;submit&quot;&gt;
-&lt;/form&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action="#" method="post"&gt;
+        &lt;input type="text" name="name" value="value"&gt;
+        &lt;input type="submit"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
                     </code></pre>
+                </section>
+
+                <section>
+                    <p>Ayez pour habitude de faire le traitement PHP avant le HTML</p>
                 </section>
 
             </div>
