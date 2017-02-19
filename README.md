@@ -31,10 +31,10 @@ Optionnels
 - [x] PHP les bases
 - [x] PHP variables
 - [x] PHP boucles
-- [ ] PHP conditions
-- [ ] PHP fonctions
-- [ ] PHP includes
-- [ ] PHP debug
+- [x] PHP conditions
+- [x] PHP fonctions
+- [x] PHP includes
+- [x] PHP debug
 - [ ] HTML/PHP formulaire
 - [ ] PHP/SQL Base de données MySQL
 - [ ] PHP/SQL Mots de passes
