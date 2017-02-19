@@ -44,21 +44,42 @@
                 </section>
 
                 <section>
-                    <p>En HTML, un formulaire se créé avec le tag <span class="hl">form</span></p>
+                    <p>En HTML, un formulaire se créé avec la balise <span class="hl">form</span></p>
                     <p>L'attribut <span class="hl">action</span> correspond à l'adresse de destination lorsque l'utilisateur va valider le formulaire</p>
-                    <p>L'attribut <span class="hl">method</span> correpond à la méthode d'envoi des données. Nous en reparlerons plus tard</p>
+                    <p>L'attribut <span class="hl">method</span> correpond à la méthode d'envoi des données</p>
                 </section>
 
                 <section>
-                    <p>Exemple</p>
+                    <p>Exemple simple</p>
                     <pre><code  data-trim contenteditable class="html">
 &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;toto&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
 &lt;/form&gt;
                     </code></pre>
                 </section>
 
                 <section>
-                    <p>Les différents champs sont en général créés à l'aide d'inputs</p>
+                    <p>Pour l'attribut <span class="hl">action</span>, on peut indiquer une autre page (<span class="u">autre-page.php</span>) ou la même page (<span class="u">index.php</span>)</p>
+                    <p>En général, la destination est toujours la même page afin de gérer les éventuelles erreurs et de refaire apparaître le même formulaire s'il y en a</p>
+                    <p>Plutôt que d'indiquer à chaque fois le chemin de la page courrante, on peut aussi écrire un <span class="u">#</span></p>
+                </section>
+
+                <section>
+                    <p>Pour l'attribut <span class="hl">method</span>, il existe deux valeurs, <span class="u">get</span> et <span class="u">post</span></p>
+                    <ul>
+                        <li>Les données envoyées en GET sont visible dans l'URL</li>
+                        <li>Les données envoyées en POST n'apparaissent pas dans l'URL</li>
+                    </ul>
+                    <p>Il vaut, en général, mieux utiliser POST</p>
+                </section>
+
+                <section>
+                    <h2>Les champs</h2>
+                </section>
+
+                <section>
+                    <p>Les différents champs sont en général créés à l'aide de balises input</p>
                     <p>Il existe des exceptions comme le <span class="hl">select</span> ou le <span class="hl">textarea</span></p>
                     <p>Certains ne sont pas compatibles avec tous les navigateurs et l'affichage peut varier</p>
                 </section>
@@ -192,27 +213,6 @@
 
                 <section>
                     <h2>Gérer les données</h2>
-                </section>
-
-                <section>
-                    <p>Il existe deux manière d'envoyer les données d'un formulaire, en <span class="hl">GET</span> et en <span class="hl">POST</span></p>
-                    <ul>
-                        <li>Les données en GET se trouvent dans l'URL</li>
-                        <li>Les données en POST n'apparaissent pas dans l'URL</li>
-                    </ul>
-                    <p>Pour les formulaires, il vaut mieux utiliser POST</p>
-                </section>
-
-                <section>
-                    <p>Pour choisir la méthode, il suffit de changer l'attribut <span class="hl">method</span> du formulaire</p>
-                    <pre><code  data-trim contenteditable class="html">
-&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
-&lt;/form&gt;
-                    </code></pre>
-                    <pre><code  data-trim contenteditable class="html">
-&lt;form action=&quot;#&quot; method=&quot;get&quot;&gt;
-&lt;/form&gt;
-                    </code></pre>
                 </section>
 
                 <section>
