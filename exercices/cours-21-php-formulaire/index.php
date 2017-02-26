@@ -1,50 +1,6 @@
 <?php
-    $error_messages = array();
-    $success_messages = array();
-
-    // Form sent
-    if(!empty($_POST))
-    {
-    	// Default gender if doesn't exist
-    	if(!isset($_POST['gender']))
-    		$_POST['gender'] = '';
-
-    	// Retrieve data
-    	$first_name = $_POST['first-name'];
-    	$age        = $_POST['age'];
-    	$gender     = $_POST['gender'];
-
-    	// Name error
-    	if(empty($first_name))
-    		$error_messages['first-name'] = 'Missing value';
-
-    	// Age error
-    	if(empty($age))
-    		$error_messages['age'] = 'Missing value';
-    	else if($age < 0 || $age > 120)
-    		$error_messages['age'] = 'Wrong value';
-
-    	// Gender
-    	if(empty($gender))
-    		$error_messages['gender'] = 'Missing value';
-    	else if($gender != 'male' && $gender != 'female')
-    		$error_messages['gender'] = 'Wrong value';
-
-    	// Success
-    	if(empty($error_messages))
-    	{
-			$_POST['first-name'] = '';
-			$_POST['age']        = '';
-			$_POST['gender']     = '';
-    		$success_messages[] = 'User registered';
-    	}
-    }
-    else
-    {
-		$_POST['first-name'] = '';
-		$_POST['age']        = '';
-		$_POST['gender']     = '';
-    }
+    require './includes/config.php';
+    require './includes/handle_form.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,5 +65,22 @@
 	    	<input type="submit">
 	    </div>
 	</form>
+
+	<table>
+		<tr>
+			<th>#</th>
+			<th>First name</th>
+			<th>Age</th>
+			<th>Gender</th>
+		</tr>
+		<?php foreach($users as $_user): ?>
+			<tr>
+				<td><?= $_user->id ?></td>
+				<td><?= $_user->first_name ?></td>
+				<td><?= $_user->age ?></td>
+				<td><?= $_user->gender ?></td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
 </body>
 </html>

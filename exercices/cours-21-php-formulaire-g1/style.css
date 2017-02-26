@@ -1,0 +1,17 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.messages.success
+{
+	color: green;
+}
+.messages.errors
+{
+	color: red;
+}
+.error label
+{
+	color: red;
+}

@@ -35,7 +35,7 @@ Optionnels
 - [x] PHP fonctions
 - [x] PHP includes
 - [x] PHP debug
-- [ ] HTML/PHP formulaire
+- [x] HTML/PHP formulaire
 - [ ] PHP/SQL Base de données MySQL
 - [ ] PHP/SQL Mots de passes
 - [ ] PHP cookies/sessions
