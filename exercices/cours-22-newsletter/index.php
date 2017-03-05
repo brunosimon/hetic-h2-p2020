@@ -19,10 +19,19 @@
 	    die('Could not connect');
 	}
 
+	// Add
 	if(!empty($_POST))
 	{
 		$prepare = $pdo->prepare('INSERT INTO subscriptions (email) VALUES (:email)');
 		$prepare->bindValue('email', $_POST['email']);
+		$prepare->execute();
+	}
+
+	// Delete
+	if(!empty($_GET['delete']))
+	{
+		$prepare = $pdo->prepare('DELETE FROM subscriptions WHERE id = :id');
+		$prepare->bindValue('id', $_GET['delete']);
 		$prepare->execute();
 	}
 
@@ -43,9 +52,16 @@
 	</form>
 
 	<?php foreach($subscriptions as $_subscription): ?>
-		<div>
-			<?= $_subscription->email ?>
-		</div>
+	<?php 
+		$date = date('Y-m-d', strtotime($_subscription->date));
+	?>
+		<table>
+			<tr>
+				<td><?= $_subscription->email ?></td>
+				<td><?= $date ?></td>
+				<td><a href="?delete=<?= $_subscription->id ?>">Delete</a></td>
+			</tr>
+		</table>
 	<?php endforeach; ?>
 </body>
 </html>

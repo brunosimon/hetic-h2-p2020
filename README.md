@@ -36,12 +36,12 @@ Optionnels
 - [x] PHP includes
 - [x] PHP debug
 - [x] HTML/PHP formulaire
-- [ ] PHP/SQL Base de données MySQL
+- [x] PHP/SQL Base de données MySQL
+- [ ] PHP routing
+- [ ] PHP APIs
 - [ ] PHP/SQL Mots de passes
 - [ ] PHP cookies/sessions
 - [ ] PHP regex
-- [ ] PHP routing
-- [ ] PHP APIs
 
 ### Trimestre 3
 

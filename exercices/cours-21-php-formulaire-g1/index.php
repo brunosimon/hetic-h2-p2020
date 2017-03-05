@@ -1,58 +1,10 @@
 <?php 
 
-	// Messages
-	$error_messages = array();
-	$success_messages = array();
+	include 'includes/config.php';
+	include 'includes/handle_form.php';
 
-	// Form sent
-	if(!empty($_POST))
-	{
-		// Default value for gender
-		if(!isset($_POST['gender']))
-			$_POST['gender'] = '';
-
-		// Retrieve data
-		$first_name = trim($_POST['first-name']);
-		$age        = (int)$_POST['age'];
-		$gender     = $_POST['gender'];
-
-		// First name errors
-		if(empty($first_name))
-			$error_messages['first-name'] = 'should not be empty';
-
-		// Age errors
-		if(empty($age))
-			$error_messages['age'] = 'should not be empty';
-		else if($age < 0 || $age > 150)
-			$error_messages['age'] = 'wrong value';
-
-		// Gender errors
-		if(empty($gender))
-			$error_messages['gender'] = 'should not be empty';
-		else if(!in_array($gender, array('male', 'female')))
-			$error_messages['gender'] = 'wrong value';
-
-		// No errors
-		if(empty($error_messages))
-		{
-			// Add success message
-			$success_messages[] = 'User registered';
-
-			// Reset values
-			$_POST['first-name'] = '';
-			$_POST['age']        = '';
-			$_POST['gender']     = '';
-		}
-	}
-
-	// No data sent
-	else
-	{
-		// Default values
-		$_POST['first-name'] = '';
-		$_POST['age']        = '';
-		$_POST['gender']     = '';
-	}
+	$query = $pdo->query('SELECT * FROM users');
+	$users = $query->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -99,5 +51,13 @@
 			<input type="submit">
 		</div>
 	</form>
+
+	<?php foreach($users as $_user): ?>
+		<div>
+			<?= $_user->first_name ?>
+			<?= $_user->age ?>
+			<?= $_user->gender ?>
+		</div>
+	<?php endforeach; ?>
 </body>
 </html>
