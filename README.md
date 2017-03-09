@@ -37,7 +37,7 @@ Optionnels
 - [x] PHP debug
 - [x] HTML/PHP formulaire
 - [x] PHP/SQL Base de données MySQL
-- [ ] PHP routing
+- [x] PHP routing
 - [ ] PHP APIs
 - [ ] PHP/SQL Mots de passes
 - [ ] PHP cookies/sessions

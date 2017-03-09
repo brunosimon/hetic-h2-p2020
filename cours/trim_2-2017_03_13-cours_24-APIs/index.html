@@ -36,7 +36,7 @@
 
                 <section>
                     <h3>PHP</h3>
-                    <h1 class="default">APIs</h1>
+                    <h1 class="default">API</h1>
                 </section>
 
                 <section>
@@ -44,11 +44,11 @@
                 </section>
 
                 <section>
-                    <p>
+                    <p class="fragment">
                         Définition général :
                         <br>Ensemble de classes, méthodes et fonctions d'un service
                     </p>
-                    <p>
+                    <p class="fragment">
                         Définition web :
                         <br>Interface de communication d'un service web accessible par protocole HTTP
                     </p>
@@ -83,8 +83,13 @@
                         <li><a href="http://www.brewerydb.com/developers" target="_blank">Brewery DB</a> (Bières)</li>
                         <li><a href="http://pokeapi.co/" target="_blank">Poké API</a> (Pokemons)</li>
                         <li><a href="http://avatars.adorable.io/" target="_blank">Adorable Avatars</a> (Image d'avatar)</li>
+                        <li><a href="https://robohash.org/" target="_blank">RoboHash</a> (Image d'avatar)</li>
                         <li><a href="https://github.com/toddmotto/public-apis" target="_blank">Et bien d'autres</a></li>
                     </ul>
+                </section>
+
+                <section>
+                    <p>Les API permettent de faire plein de choses, mais on les utilise en général pour récupérer des données</p>
                 </section>
 
                 <section>
@@ -109,20 +114,20 @@
 
                 <section>
                     <ul>
-                        <li>Chaque API est en général accompagnée d'une documentation</li>
-                        <li>Elles ne sont pas toujours au top</li>
+                        <li>Les API sont en général accompagnées d'une documentation</li>
+                        <li>Celles-ci ne sont pas toujours de qualité</li>
                         <li>Explorez intégralement la documentation avant de commencer</li>
                         <li>Si vous développez une API, ne négligez pas la documentation</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>Limites</h2>
+                    <h2>Limitations</h2>
                 </section>
 
                 <section>
                     <ul>
-                        <li>La majorité des APIs possède des limites. Cela permet d'empêcher les abus et une surcharge du serveur.</li>
+                        <li>La majorité des API possède des limites. Cela permet d'empêcher les abus et une surcharge du serveur.</li>
                         <li>Renseignez-vous sur ces limites et minimisez le nombre d'appels</li>
                         <li>Une bonne astuce consiste à utiliser du cache</li>
                     </ul>
@@ -133,7 +138,7 @@
                 </section>
 
                 <section>
-                    <p>Certaines APIs sont qualifiées de REST (Representational State Transfer)</p>
+                    <p>Certaines API sont qualifiées de REST (Representational State Transfer)</p>
                     <ul>
                         <li>URI</li>
                         <li>HTTP</li>
@@ -162,15 +167,15 @@
 
                 <section>
                     <h3>MIME Types</h3>
-                    <p>Les APIs peuvent renvoyer du JSON, des images, du HTML, des excel, etc.</p>
+                    <p>Les API peuvent renvoyer du JSON, des images, du HTML, des excel, etc.</p>
                     <p>Lorsque la donnée est renvoyée, elle doit être accompagnée d'un MIME Type permettant d'indiquer clairement le type</p>
                     <p><a href="http://www.sitepoint.com/web-foundations/mime-types-complete-list/" target="_blank">Liste des mime types</a></p>
                 </section>
 
                 <section>
                     <h3>Liens de transition inter-ressource</h3>
-                    <p>Pour être considérée comme REST, l'API doit renvoyer de données en fournissant les URI permettant d'accéder aux données voisines</p>
-                    <p>Si par exemple on récupère une catégorie et que celle-ci renvoie des ressources, les URI de ces ressources doivent être indiquée. Cela permet aux développeur de facilement aller récupérer les ressources après avoir récupérer la catégorie.</p>
+                    <p>L'API doit renvoyer des données en fournissant les URI permettant d'accéder aux autres données qui sont liées à la première</p>
+                    <p>Si par exemple on récupère une catégorie et que celle-ci renvoie des ressources, les URI de ces ressources doivent être indiquée. Cela permet aux développeur de facilement aller récupérer les ressources liées.</p>
                 </section>
 
                 <section>
@@ -178,7 +183,7 @@
                     <p>Moins officiellement, on considère une API comme REST dans ces deux conditions :</p>
                     <ul>
                         <li><span class="hl">ID</span> : Chaque ressource est identifiée de façon unique avec un ID</li>
-                        <li><span class="hl">Stateless</span> : Une URI doit toujours renvoyer le même résultat (sauf si la donnée a changé). Il ne peut pas  y avoir de flux d'actions.</li>
+                        <li><span class="hl">Stateless</span> : Une URI doit toujours renvoyer la même donnée (sauf si celle-ci a été modifée). Il ne peut pas  y avoir de flux d'actions.</li>
                     </ul>
                 </section>
 
@@ -188,7 +193,7 @@
 
                 <section>
                     <p>Nous allons prendre comme exemple l'API de météo <a href="http://openweathermap.org/api" target="_blank">OpenWeatherMap</a></p>
-                    <p>Comme de nombreuses APIs, celle-ci nécessite de s'enregistrer afin d'optenir une <span class="hl">API KEY</span>.<br>Il faudra envoyer cette API KEY avec chaque requête</p>
+                    <p>Comme de nombreuses API, celle-ci nécessite de s'enregistrer afin d'optenir une <span class="hl">API KEY</span>.<br>Il faudra envoyer cette API KEY avec chaque requête</p>
                     <pre><code contenteditable class="html">
 API KEY : 9e8150c9d6fbf87d678d2cf7f7a2c00a
                     </code></pre>
@@ -196,7 +201,7 @@ API KEY : 9e8150c9d6fbf87d678d2cf7f7a2c00a
 
                 <section>
                     <p>L'API de OpenWeatherMap est gratuite jusqu'à certaines limites</p>
-                    <p><img src="src/img/openweathermap-limits.png" alt="" width="700"></p>
+                    <p><img src="src/img/openweathermap-limits.png" alt="" width="900"></p>
                 </section>
 
                 <section>
@@ -205,7 +210,7 @@ API KEY : 9e8150c9d6fbf87d678d2cf7f7a2c00a
                 </section>
 
                 <section>
-                    <p>Puisque les APIs sont accessibles en HTTP via des URLs, on peut les tester directement depuis n'importe quel navigateur</p>
+                    <p>Puisque les API sont accessibles en HTTP via des URLs, on peut les tester directement depuis n'importe quel navigateur</p>
                     <p>Tapez l'URL suivante dans votre navigateur</p>
                     <pre><code contenteditable class="html">
 http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=9e8150c9d6fbf87d678d2cf7f7a2c00a
@@ -244,7 +249,7 @@ http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=9e8150c9d6fbf87d678
                 </section>
 
                 <section>
-                    <p>En JS natif</p>
+                    <p>En JS natif compatible</p>
                     <pre><code contenteditable class="js">
 // Instanciate request
 var xhr = new XMLHttpRequest();
@@ -291,6 +296,22 @@ $.getJSON(
                 </section>
 
                 <section>
+                    <p>En JS natif ES6</p>
+                    <pre><code contenteditable class="js">
+fetch( 'http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=9e8150c9d6fbf87d678d2cf7f7a2c00a' )
+    .then( ( response ) =>
+    {
+        return response.json()
+    } )
+    .then( ( result ) =>
+    {
+        console.log( result )
+    } )
+                    </code></pre>
+                    <p>Cette méthode utilise la fonction <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Fetch</a>, les <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">Arrow function</a> et les <a href="https://developer.mozilla.org/fr/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise" target="_blank">Promises</a>. Ces techniques ne fonctionneront pas sur tous les navigateurs</p>
+                </section>
+
+                <section>
                     <p>Problèmes :</p>
                     <ul>
                         <li>Votre API KEY est visible et n'importe qui pourra la récupérer</li>
@@ -319,7 +340,7 @@ $result = json_decode($result);
 
 // Show result
 echo '<pre>';
-print_r($result->weather[0]->description);
+print_r($result);
 echo '</pre>';
                     </code></pre>
                 </section>
@@ -335,14 +356,14 @@ $result = json_decode($result);
 
 // Show result
 echo '<pre>';
-print_r($result->weather[0]->description);
+print_r($result);
 echo '</pre>';
                     </code></pre>
                     <p>Attention, certains serveurs limitent l'utilisation de file_get_contents à des fichiers locaux</p>
                 </section>
 
                 <section>
-                    <p>Avantages</p>
+                    <p>Avantages en PHP</p>
                     <ul>
                         <li>Possibilité de mettre en cache les requêtes</li>
                         <li>Possibilité de sauvegarder les données dans une BDD</li>
