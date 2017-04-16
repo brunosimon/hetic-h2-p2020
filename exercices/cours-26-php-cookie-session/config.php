@@ -1,0 +1,2 @@
+<?php 
+	// Config here
