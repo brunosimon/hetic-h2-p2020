@@ -323,6 +323,7 @@ catch (Exception $e)
                 </section>
 
                 <section>
+                    <p>La solution consiste à hasher le mot de passe pour le rendre méconnaissable</p>
                     <ul>
                         <li>
                             <span class="hl">Encrypter</span> : Transformer une donnée pour la rendre méconnaissable, mais <span class="u">réversiblement</span>
@@ -336,7 +337,13 @@ catch (Exception $e)
                 </section>
 
                 <section>
-                    <p>La solution consiste à hasher le mot de passe pour le rendre méconnaissable</p>
+                    <p>À l'<span class="u">inscription</span>, nous allons hasher le mot de passe avant de l'enregistrer dans la BDD</p>
+                    <p>Un individu ayant accès à la BDD ne connaîtra pas le mot de passe d'origine</p>
+                    <p>Au <span class="u">login</span>, nous allons hasher le mot de passe et le comparer à celui sauvegardé en BDD</p>
+                    <p>Si les deux hash sont identiques, c'est le même mot de passe</p>
+                </section>
+
+                <section>
                     <p>Pour cela nous allons utiliser la fonction <a href="http://www.php.net/manual/fr/function.hash.php" target="_blank">hash()</a></p>
                     <pre><code contenteditable data-trim class="php">
 echo hash('sha256', 'monmotdepasse');
@@ -423,7 +430,7 @@ $password = hash('sha256', $_POST['password']); // Hash
                 </section>
 
                 <section>
-                    <p>Rajouter quelques caractères au mot de passe pour être certain qu'il n'existe pas dans les rainbow tables</p>
+                    <p>Nous allons rajouter quelques caractères au mot de passe pour être certain qu'il n'existe pas dans les rainbow tables</p>
                     <p>Le mot de passe <span class="u">azerty</span> deviendra par exemple <span class="u">76t!"ed#azerty</span></p>
                     <p>Cette technique s'appelle le salage (salt)</p>
                 </section>
@@ -471,7 +478,7 @@ $password = hash('sha256', SALT.$_POST['password']); // Hash + salt
 
                 <section>
                     <h5>Problème 3</h5>
-                    <p>Si le hackeur accède au scripts PHP, il pourra récupérer le SALT et regénérer l'intégralité de la rainbow table en prenant en compte le SALT</p>
+                    <p>Si le hacker accède au scripts PHP, il pourra récupérer le SALT et regénérer l'intégralité de la rainbow table en prenant en compte le SALT</p>
                 </section>
 
                 <section>
