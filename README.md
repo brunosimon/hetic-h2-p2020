@@ -39,7 +39,7 @@ Optionnels
 - [x] PHP/SQL Base de données MySQL
 - [x] PHP routing
 - [x] PHP APIs
-- [ ] PHP/SQL Mots de passes
+- [x] PHP/SQL Mots de passes
 - [ ] PHP cookies/sessions
 - [ ] PHP regex
 

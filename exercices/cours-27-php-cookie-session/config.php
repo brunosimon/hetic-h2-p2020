@@ -1,0 +1,3 @@
+<?php 
+
+	// Ma config ici
