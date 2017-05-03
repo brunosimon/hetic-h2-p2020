@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 30 - PHP Object</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2020</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 30 - 2017-05-03</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>PHP Orienté objet</h1>
+                </section>
+
+                <!-- PROBLEM -->
+                <section>
+                    <h2>Problème</h2>
+                </section>
+
+                <section>
+                    <p>Code organisé à l'arrache (procédural, spaghetti)</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;?php
+    
+    // Some php here
+
+?&gt;&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Solutions</p>
+                    <ul>
+                        <li class="fragment">Organiser dans des fichiers PHP</li>
+                        <li class="fragment">Utiliser des fonctions</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Plusieurs problèmes</p>
+                    <ul>
+                        <li>Mêmes noms de variables et de fonctions</li>
+                        <li>Mal organisé</li>
+                        <li>Pas de hiérarchie</li>
+                        <li>Pas maintenable</li>
+                        <li>Difficilement réutilisable</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Solution</h2>
+                </section>
+
+                <section>
+                    <p>Organiser la logique dans des objets</p>
+                    <p>Exemple PDO :</p>
+                    <pre><code contenteditable data-trim class="php">
+$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASS);
+
+$pdo->exec('INSERT INTO ...');
+$query = $pdo->query('SELECT ...');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>On parle de code <span class="hl">orienté objet</span>, de <span class="hl">classe</span>, d'<span class="hl">instance</span>, de <span class="hl">modèle</span>, ...</p>
+                    <p>Ces termes sont liés, mais n'ont pas le même sens</p>
+                </section>
+
+                <section>
+                    <h2>Exemple</h2>
+                    <p>Création d'une classe</p>
+                    <pre><code contenteditable data-trim class="php">
+class MyClass
+{
+    public $foo = 'bar';
+
+    public function doSomething()
+    {
+        echo '<br>foo is equal to '.$this->foo;
+    }
+}
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="php">
+$myClass = new MyClass();
+$myClass->doSomething();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Instances</h3>
+                    <ul>
+                        <li>Le nom de la classe est en général en PascalCase</li>
+                        <li><span class="hl">$myClass</span> correspond à une <span class="hl">instance</span> de la classe <span class="hl">MyClass</span></li>
+                        <li>
+                            Il est possible d'instancier plusieurs objets avec une même classe
+                            <pre><code contenteditable data-trim class="php">
+$myClass1 = new MyClass();
+$myClass2 = new MyClass();
+$myClass3 = new MyClass();
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Propriétés</h3>
+                    <ul>
+                        <li><span class="hl">$foo</span> est une <span class="hl">propriété</span></li>
+                        <li>On utilise en général de l'underscore ou du camelCase</li>
+                        <li>À l'intérieur de la classe, on y accède avec <span class="hl">$this->foo</span></li>
+                        <li>
+                            À l'extérieur de la classe, on y accède avec <span class="hl">$instance->foo</span>
+                            <pre><code contenteditable data-trim class="php">
+$myClass = new MyClass();
+echo $myClass->foo;
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Méthodes</h3>
+                    <ul>
+                        <li><span class="hl">doSomething</span> est une fonction, mais on parle de <span class="hl">méthode</span> car elle à l'intérieur d'un objet</li>
+                        <li>Cette méthode s'appelle comme une propriété, mais en rajoutant <span class="hl">()</span> pour la déclencher</li>
+                        <li>
+                            Il est possible de les appeler plusieurs fois
+                            <pre><code contenteditable data-trim class="php">
+$myClass = new MyClass();
+$myClass->doSomething();
+$myClass->doSomething();
+$myClass->doSomething();
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Context</h3>
+                    <ul>
+                        <li>À l'intérieur des méthodes, <span class="hl">$this</span> correspond à l'instance (pas à la classe)</li>
+                        <li>Il permet d'appeler les méthodes et de récupérer/modifier les propriétés</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Visibilité</h3>
+                    <p>Le <span class="hl">public</span> devant les propriétés et méthodes correspond à la <span class="hl">visibilité</span>. Puisque nous débutons, nous mettrons toujours <span class="hl">public</span>.</p>
+                    <p>Pour information, les autres modes de visibilité sont</p>
+                    <ul>
+                        <li>private</li>
+                        <li>protected</li>
+                        <li>static</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Constructeur</h3>
+                    <p>Il est possible de déclencher une méthode dès que la classe est instanciée</p>
+                    <p>Il suffit de créer une méthode appellée <span class="hl">__construct</span></p>
+                    <pre><code contenteditable data-trim class="php">
+class MyClass
+{
+    public function __construct()
+    {
+        echo '<br>Bonjour';
+    }
+}
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="php">
+$myClass = new MyClass();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Modèle</h3>
+                    <p>On appelle <span class="hl">Modèle</span> une classe dont le rôle est de traiter une donnée précise</p>
+                    <p>Par exemple, une classe chargée de sauvegarder, récupérer, supprimer ou modifier des dépenses dans une table SQL</p>
+                </section>
+
+                <section>
+                    <p>Tout ce qui compose notre site peut être orienté objet</p>
+                    <ul>
+                        <li>Router</li>
+                        <li>Controllers</li>
+                        <li>Vues</li>
+                        <li>Cache</li>
+                        <li>Formulaire</li>
+                        <li>Données de la BDD</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Exercice</h2>
+                    <p>Créer la classe modèle de la BDD suivante</p>
+                    <pre><code contenteditable data-trim class="sql">
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `date` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `id_author` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `articles` (`id`, `title`, `slug`, `date`, `text`, `id_author`) VALUES
+(1, 'Article 1', 'article-1', 1493756573, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis suscipit deleniti necessitatibus vero illum dicta ducimus, aliquam doloribus pariatur hic inventore autem modi tempora, numquam officiis voluptate molestias facilis.', 2),
+(2, 'Article 2', 'article-2', 1493583804, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet impedit numquam ipsam, eius dolorem nesciunt asperiores expedita necessitatibus eaque modi, est atque temporibus saepe assumenda nam nemo nulla quo ipsum.', 2),
+(3, 'Article 3', 'article-3', 1493670235, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quidem recusandae vel eaque suscipit doloremque explicabo quasi, nulla ut inventore, distinctio harum eos obcaecati laudantium eius excepturi molestias aliquid, culpa!', 1),
+(4, 'Article 4', 'article-4', 1493713476, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias esse assumenda inventore libero fuga laboriosam repellat pariatur voluptatem, debitis maiores fugiat, praesentium. Enim odio dolorem ducimus molestias accusantium dolor ex.', 3),
+(5, 'Article 5', 'article-5', 1493713488, 'Molestias esse assumenda inventore libero fuga laboriosam repellat pariatur voluptatem, debitis maiores fugiat, praesentium. Enim odio dolorem ducimus molestias accusantium dolor ex.', 2);
+
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `authors` (`id`, `name`, `age`) VALUES
+(1, 'Toto', 27),
+(2, 'Tata', 33),
+(3, 'Tutu', 21);
+
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `authors`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+                    </code></pre>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

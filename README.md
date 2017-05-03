@@ -40,8 +40,8 @@ Optionnels
 - [x] PHP routing
 - [x] PHP APIs
 - [x] PHP/SQL Mots de passes
-- [ ] PHP cookies/sessions
-- [ ] PHP regex
+- [x] PHP cookies/sessions
+- [x] PHP regex
 
 ### Trimestre 3
 

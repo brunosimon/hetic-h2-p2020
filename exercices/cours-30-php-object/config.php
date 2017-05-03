@@ -1,11 +1,8 @@
 <?php
 
-// Salt
-define('SALT', '9!ssù^^éaç!');
-
 // Connexion variables
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'hetic_p2020_g1_passwords');
+define('DB_NAME', 'hetic_p2020_blog');
 define('DB_USER', 'root');
 define('DB_PASS', 'root'); // '' par défaut sur windows
 
@@ -22,6 +19,3 @@ catch (Exception $e)
     // Failed to connect
     die('Could not connect');
 }
-
-// Session
-session_start();

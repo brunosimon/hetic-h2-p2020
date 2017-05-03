@@ -22,7 +22,10 @@
 		{
 			if(password_verify($password, $user->password))
 			{
-				$message = 'Good password';
+				$_SESSION['user'] = $user;
+
+				header('Location:index.php');
+				exit;
 			}
 			else
 			{

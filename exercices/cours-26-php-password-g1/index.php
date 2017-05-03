@@ -2,8 +2,11 @@
 
 	include 'config.php';
 
-	header('Location:login.php');
-	exit;
+	if(empty($_SESSION['user']))
+	{
+		header('Location:login.php');
+		exit;
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -15,6 +18,10 @@
 <body>
 	
 	<h1>Private</h1>
+
+	<a href="logout.php">Logout</a>
+
+	<p>Email: <?= $_SESSION['user']->email ?></p>
 
 </body>
 </html>
