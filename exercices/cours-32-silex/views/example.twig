@@ -1,0 +1,10 @@
+{{ include('partials/header.twig', {title:'example'}) }}
+
+	{{ value }}
+
+	{% set foo = 'bar' %}
+	{{ foo }}
+
+	<a href="{{ path('hello') }}">Hello</a>
+
+{{ include('partials/footer.twig') }}

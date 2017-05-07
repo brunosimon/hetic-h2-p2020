@@ -1,0 +1,7 @@
+{
+    "require": {
+        "silex/silex": "~2.0",
+        "twig/twig": "^2.3",
+        "symfony/twig-bridge": "^3.2"
+    }
+}

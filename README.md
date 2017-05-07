@@ -45,8 +45,8 @@ Optionnels
 
 ### Trimestre 3
 
-- [ ] PHP/SQL Avancé
-- [ ] PHP orienté objet
+- [x] PHP/SQL Avancé
+- [x] PHP orienté objet
 - [ ] PHP frameworks
 - [ ] Silex
 
