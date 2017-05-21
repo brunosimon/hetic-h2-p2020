@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokedex</title>
+	<link rel="stylesheet" href="{{ global.request.basepath }}/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ global.request.basepath }}/assets/stylesheet/main.css">
+</head>
+<body>
+
+	<div class="container">
+
+		<header class="navbar navbar-inverse bg-inverse mb-4">
+			<nav class="nav">
+				<a class="navbar-brand" href="{{ url('home') }}">Pokedex</a>
+				<a class="nav-item nav-link text-white" href="{{ url('home') }}">Home</a>
+				<a class="nav-item nav-link text-white" href="{{ url('pokemons') }}">Pokemons</a>
+				<a class="nav-item nav-link text-white" href="{{ url('add') }}">Add</a>
+			</nav>
+		</header>

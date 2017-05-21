@@ -1,0 +1,7 @@
+{{ include('partials/header.twig', {title: 'example'}) }}
+
+	{% for index in range(1, 5) %}
+		<a href="{{ url('page', {number: index}) }}">{{ index }}</a>
+	{% endfor %}
+
+{{ include('partials/footer.twig') }}

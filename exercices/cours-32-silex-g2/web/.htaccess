@@ -1,0 +1,6 @@
+Options -MultiViews
+
+RewriteEngine On
+RewriteBase /p2020/exercices/cours-32-silex-g2/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]

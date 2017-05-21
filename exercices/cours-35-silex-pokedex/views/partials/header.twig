@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="{{ global.request.basepath }}/assets/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Nav -->
+        <header class="navbar navbar-inverse bg-inverse mb-5">
+            <nav class="nav">
+                <a class="navbar-brand" href="{{ url('home') }}">Pokedex</a>
+                <a class="nav-item nav-link text-white" href="{{ url('home') }}">Home</a>
+                <a class="nav-item nav-link text-white" href="{{ url('pokemons') }}">Pokemons</a>
+                <a class="nav-item nav-link text-white" href="{{ url('add') }}">Add</a>
+                <a class="nav-item nav-link text-white" href="{{ url('contact') }}">Contact</a>
+            </nav>
+        </header>
+        

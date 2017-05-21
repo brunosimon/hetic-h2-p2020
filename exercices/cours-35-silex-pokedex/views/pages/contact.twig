@@ -1,0 +1,46 @@
+{{ include('partials/header.twig') }}
+
+<h2>Contact</h2>
+
+{{ form_start(contact_form) }}
+
+	<div class="form-group">
+		{{ form_label(contact_form.name) }}
+		{{ form_widget(contact_form.name, { attr: { class: 'form-control' } }) }}
+	    <div class="text-danger">
+	        {{ form_errors(contact_form.name) }}
+	    </div>
+    </div>
+
+	<div class="form-group">
+		{{ form_label(contact_form.email) }}
+		{{ form_widget(contact_form.email, { attr: { class: 'form-control' } }) }}
+	    <div class="text-danger">
+	        {{ form_errors(contact_form.email) }}
+	    </div>
+    </div>
+
+	<div class="form-group">
+		{{ form_label(contact_form.subject) }}
+		{{ form_widget(contact_form.subject, { attr: { class: 'form-control' } }) }}
+	    <div class="text-danger">
+	        {{ form_errors(contact_form.subject) }}
+	    </div>
+    </div>
+
+	<div class="form-group">
+		{{ form_label(contact_form.message) }}
+		{{ form_widget(contact_form.message, { attr: { class: 'form-control' } }) }}
+	    <div class="text-danger">
+	        {{ form_errors(contact_form.message) }}
+	    </div>
+    </div>
+
+	<div class="form-group">
+		{{ form_widget(contact_form.submit, { attr: { class: 'btn btn-primary' } }) }}
+    </div>
+
+{{ form_end(contact_form) }}
+
+
+{{ include('partials/footer.twig') }}

@@ -4,7 +4,9 @@
 
 	{% set foo = 'bar' %}
 	{{ foo }}
+	{{ global.request.basepath }}
 
-	<a href="{{ path('hello') }}">Hello</a>
+	<div>{{ path('hello') }}</div>
+	<div>{{ url('hello') }}</div>
 
 {{ include('partials/footer.twig') }}

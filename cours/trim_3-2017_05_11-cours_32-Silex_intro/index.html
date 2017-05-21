@@ -44,7 +44,7 @@
                     <ul>
                         <li>Silex est un "micro-framework" PHP</li>
                         <li>Développé par <a href="http://sensiolabs.com/" target="_blank">SensioLabs</a></li>
-                        <li>Repose sur certains composants du Framework Symfony 2</li>
+                        <li>Repose sur certains composants du Framework Symfony</li>
                         <li>Beaucoup moins complexe et lourd, mais très performant</li>
                         <li>Courbe d'apprentissage élevée</li>
                         <li>Nécessite au minimum PHP 5.5</li>
@@ -105,7 +105,7 @@ sudo mv composer.phar /usr/local/bin/composer
                         <li>Lancez la commande suivante</li>
                     </ul>
                     <pre><code contenteditable data-trim class="">
-composer require silex/silex "~2.0"
+composer require silex/silex
                     </code></pre>
                 </section>
 
@@ -113,7 +113,7 @@ composer require silex/silex "~2.0"
                     <ul>
                         <li>Le dossier <span class="hl">vendor</span> contient Silex ainsi que d'autres composants que nous verrons plus tard</li>
                         <li>Le fichier <span class="hl">composer.json</span> contient la liste des dépendances requises</li>
-                        <li>Le fichier <span class="hl">composer.lock</span> contient la liste des dépendances chargées (permet de s'assurer que tous les développeurs ont les mêmes versions)</li>
+                        <li>Le fichier <span class="hl">composer.lock</span> contient la liste des dépendances utilisées (permet de s'assurer que tous les développeurs ont les mêmes versions)</li>
                     </ul>
                 </section>
 
@@ -140,7 +140,7 @@ RewriteBase /path/to/web
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
                     </code></pre>
-                    <p>Remplacez <span class="hl">/path/to/app</span> par le chemin vers votre site<br />Exemple : Si votre chemin est <span class="hl">http://localhost/silex/web/</span>, indiquez <span class="hl">/silex/web</span></p>
+                    <p>Remplacez <span class="hl">/path/to/web</span> par le chemin vers votre site<br />Exemple : Si votre chemin est <span class="hl">http://localhost/silex/web/</span>, indiquez <span class="hl">/silex/web</span></p>
                 </section>
 
                 <section>
@@ -177,7 +177,7 @@ $app->run();
                         </li>
                         <li class="fragment">
                             Rajoutez <span class="hl">hello</span> à la fin de l'url
-                            <br><a href="http://localhost/silex/web/hello" target="_blank">http://localhost/monchemin/web/hello</a>
+                            <br><a href="http://localhost/silex/web/hello" target="_blank">http://localhost/silex/web/hello</a>
                             <br>Vous devriez obtenir le message <span class="hl">Hello!</span>
                             <img width="300" src="src/img/good-job.gif" alt="" class="no-style">
                         </li>
@@ -283,7 +283,7 @@ $app['debug'] = true;
                     <ul>
                         <li><a href="http://silex.sensiolabs.org/documentation" target="_blank">http://silex.sensiolabs.org/documentation</a></li>
                         <li>Plutôt bien faite</li>
-                        <li>Pas mal d'exemple (pas toujours les meilleurs)</li>
+                        <li>Pas mal d'exemples (pas toujours les meilleurs)</li>
                         <li>Survolez-la entièrement au moins une fois</li>
                     </ul>
                 </section>

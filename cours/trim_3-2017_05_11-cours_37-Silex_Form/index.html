@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 37 - Silex Form</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2020</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 37 - 2017-05-22</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Silex</h1>
+                    <h2>Formulaires</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Silex fourni un service pour gérer les formulaires "facilement"</li>
+                        <li>Il s'agit de <a href="http://silex.sensiolabs.org/doc/providers/form.html" target="_blank">FormServiceProvider</a></li>
+                        <li>Il existe de nombreuses façons de l'utiliser selon le contexte</li>
+                        <li>La documentation Silex est incomplète, il vaut mieux utiliser la <a href="http://symfony.com/doc/current/forms.html" target="_blank">documentation Symfony</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Nous allons créer un formulaire de contact dans la page Contact</p>
+                </section>
+
+                <section>
+                    <h3>1 - Créer la page</h3>
+                    <ul>
+                        <li>
+                            Créez une route <span class="hl">/contact</span>
+                            <pre><code contenteditable data-trim class="php">
+$app->match('/contact', function() use ($app)
+{
+    $data = array();
+
+    return $app['twig']->render('pages/contact.twig', $data);
+})
+->bind('contact');
+                            </code></pre>
+                        </li>
+                        <li>
+                            Créez le template twig
+                            <pre><code contenteditable data-trim class="php">
+{{ include('partials/header.twig') }}
+
+<h2>Contact</h2>
+
+{{ include('partials/footer.twig') }}
+                            </code></pre>
+                        </li>
+                        <li>Rajouter le lien dans le header</li>
+                        <li>Accédez à la page</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h3>2 - Rajouter la dépendance</h3>
+                    <ul>
+                        <li>Ouvrez le terminal à la racine du projet</li>
+                        <li>
+                            Lancez
+                            <pre><code contenteditable data-trim class="php">
+composer require symfony/form
+                            </code></pre>
+                            <pre><code contenteditable data-trim class="php">
+composer require symfony/validator symfony/config
+                            </code></pre>
+                            <pre><code contenteditable data-trim class="php">
+composer require symfony/twig-bridge
+                            </code></pre>
+                        </li>
+                    </ul>
+                    <p>(Avec sudo sur mac si une erreur apparait)</p>
+                </section>
+
+                <section>
+                    <h3>3 - Rajouter les services</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Comme pour <span class="highlight">Twig</span>, il faut rajouter le service à Silex</li>
+                        <li>Le formulaire nécessite les 4 services suivant</li>
+                    </ul>
+                    <p>Dans index.php</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Silex\Provider\TranslationServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
+$app->register(new Silex\Provider\LocaleServiceProvider());
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>4 - Créer le formulaire</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>La création d'un formulaire passe par la création d'un <span class="highlight">builder</span></li>
+                        <li>Ce builder va permettre de paramétrer le formulaire et ses différents champs</li>
+                        <li>Nous allons faire un simple champ de texte pour commencer</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Dans la route <span class="highlight">/contact</span></p>
+                    <pre><code contenteditable data-trim class="php">
+// Create builder
+$form_builder = $app['form.factory']->createBuilder();
+
+// Set method and action
+$form_builder->setMethod('post');
+$form_builder->setAction($app['url_generator']->generate('contact'));
+
+// Add input
+$form_builder->add('name', Symfony\Component\Form\Extension\Core\Type\TextType::class);
+$form_builder->add('submit', Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+
+// Create form
+$form = $form_builder->getForm();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>5 - Afficher dans twig</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Nous devons envoyer le formulaire à Twig</li>
+                        <li>Nous avons déjà créer le tableau <span class="hl">$data</span> envoyé à la vue</li>
+                    </ul>
+                    <p>Dans la route <span class="highlight">/contact</span> après avoir créé le formulaire</p>
+                    <pre><code contenteditable data-trim class="php">
+// Send the form to the view
+$data['contact_form'] = $form->createView();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Lorsque nous avons ajouté le service FormServiceProvider, plusieurs fonctions permettant de gérer le formulaire ont été ajoutées à twig</li>
+                        <li>L'une de ces méthodes est <span class="highlight">form()</span> et permet de créer le formulaire entier</li>
+                        <li>Nous verrons les autres méthodes plus tard</li>
+                    </ul>
+                    <p>Dans la vue <span class="highlight">/view/contact.twig</span></p>
+                    <pre><code contenteditable data-trim class="php">
+{{ form(contact_form) }}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>6 - Gérer les données envoyées</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Le formulaire s'affiche bien</li>
+                        <li>Mais si on clique sur submit, Silex indique que la route n'existe pas</li>
+                        <li class="fragment">Les routes ont été créé avec la method <span class="highlight">get()</span> ne supportant que des requêtes en GET</li>
+                        <li class="fragment">Il suffit de remplacer <span class="highlight">get()</span> par <span class="highlight">match()</span></li>
+                        <pre class="fragment"><code contenteditable data-trim class="php">
+$app->match('/contact', function() use ($app) {
+
+    /* ... */
+
+})
+->bind('contact');
+                        </code></pre>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Maintenant que la requête fonctionne, nous avons besoin de récupérer les données envoyées</li>
+                        <li>Pour cela, il faut rajouter un paramètre dans la fonction de la route</li>
+                        <li><span class="highlight">$request</span> va contenir toutes les informations liées à la requête</li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="php">
+$app->match('/contact', function(Symfony\Component\HttpFoundation\Request $request) use ($app)
+{
+    /* ... */
+})
+->bind('contact');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Le namespace est long à écrire</li>
+                        <li>Une astuce consiste à écrire le chemin du namespace au début du script php précédé par <span class="highlight">use</span></li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="php">
+use Symfony\Component\HttpFoundation\Request;
+
+/* ... */
+
+$app->match('/contact', function(Request $request) use ($app)
+{
+    /* ... */
+})
+->bind('contact');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Cette astuce est valable pour les types d'input</p>
+                    <pre><code contenteditable data-trim class="php">
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+/* ... */
+
+$form_builder->add('name', TextType::class);
+$form_builder->add('submit', SubmitType::class);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>La variable <span class="highlight">$form</span> possède plusieurs méthodes qui vont permettre de tester/gérer les données envoyées</p>
+                    <ul>
+                        <li><span class="highlight">handleRequest($request)</span> lui indique de gérer les données envoyées</li>
+                        <li><span class="highlight">isSubmitted()</span> indique si le formulaire à été envoyé</li>
+                        <li><span class="highlight">isValid()</span> indique si les données envoyées sont valide</li>
+                        <li><span class="highlight">getData()</span> permet de récupérer les valeurs</li>
+                        <li><span class="highlight">setData($data)</span> permet de mettre les valeurs</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Dans la route <span class="highlight">/contact</span>, après avoir créé le formulaire et avant de l'envoyer à la vue</p>
+                    <pre><code contenteditable data-trim class="php">
+
+// Handle request
+$form->handleRequest($request);
+
+// Is submited and is valid
+if($form->isSubmitted() && $form->isValid())
+{
+    // Get form data
+    $form_data = $form->getData();
+
+    // Send email here
+    // Redirect to success page
+
+    echo '<pre>';
+    print_r($form_data);
+    echo '</pre>';
+    exit;
+}
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>7 - Rajouter des champs</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Les champs se rajoutent directement sur le <span class="highlight">builder</span> avec la méthode <span class="highlight">add()</span></li>
+                        <li>Nous avons vu les champs <span class="highlight">TextType</span> et <span class="highlight">SubmitType</span></li>
+                        <li>Il en existe bien d'autres (<a href="http://symfony.com/doc/current/reference/forms/types.html" target="_blank">liste complète</a>)</li>
+                        <li>Nous allons tester les champs, <span class="highlight">TextareaType</span>, <span class="highlight">EmailType</span> et <span class="highlight">ChoiceType</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Add()</h3>
+                    <ul>
+                        <li>Le premier paramètre correspond au nom de l'input</li>
+                        <li>Le deuxième paramètre correspond à la <a href="http://symfony.com/doc/current/reference/forms/types.html" target="_blank">classe de type</a></li>
+                        <li>
+                            Le troisième paramètre (optionnel) correspond aux options
+                            <ul>
+                                <li>Les différentes options sont listées dans la documentation de chaque type de champ</li>
+                                <li>Elles permettent par exemple de limiter la longueur, de trimer, de changer le label, etc.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Name (text)</h3>
+                    <pre><code contenteditable data-trim class="php">
+$form_builder->add(
+    'name',
+    TextType::class,
+    array(
+        'label' => 'Your name',
+        'trim' => true,
+        'required' => true,
+    )
+);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Email (email)</h3>
+                    <pre><code contenteditable data-trim class="php">
+$form_builder->add(
+    'email',
+    EmailType::class,
+    array(
+        'label' => 'Your email',
+        'trim' => true,
+        'required' => true,
+    )
+);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Subject (choice)</h3>
+                    <pre><code contenteditable data-trim class="php">
+$form_builder->add(
+    'subject',
+    ChoiceType::class,
+    array(
+        'label' => 'Subject',
+        'required' => true,
+        // 'multiple' => true,
+        // 'expanded' => true,
+        'choices' => array(
+            'Informations' => 'Informations',
+            'Proposition' => 'Proposition',
+            'Other' => 'Other',
+        )
+    )
+);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Message (textarea)</h3>
+                    <pre><code contenteditable data-trim class="php">
+$form_builder->add(
+    'message',
+    TextareaType::class,
+    array(
+        'label' => 'Message',
+        'trim' => true,
+        'required' => true,
+    )
+);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>8 - Gestion des erreurs</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Une grande partie des erreurs sont gérées directement en HTML<br><img src="src/img/screen-form-validation-1.png" width="400"></li>
+                        <li>Il est possible de rajouter d'autres contraintes comme "égal à", "différent de", "parmi", "regex", etc. (<a href="http://symfony.com/fr/doc/current/book/validation.html" target="_blank">Liste complète</a>)</li>
+                        <li>Il suffit de rajouter <span class="highlight">constraints</span> dans le tableau d'options du champ</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Une contrainte se créée de la manière suivante</p>
+                    <pre><code contenteditable data-trim class="php">
+use Symfony\Component\Validator\Constraints\Length;
+
+/* ... */
+
+new Length(
+    array(
+        'max' => 20,
+        'min' => 3,
+        'minMessage' => 'Too short',
+        'maxMessage' => 'Too long',
+    )
+)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Exemple complet avec le champ Name</p>
+                    <pre><code contenteditable data-trim class="php">
+$form_builder->add(
+    'name',
+    TextType::class,
+    array(
+        'label' => 'Your name',
+        'trim' => true,
+        'required' => true,
+        'constraints' => array(
+            new Length(
+                array(
+                    'max' => 20,
+                    'min' => 3,
+                    'minMessage' => 'Too short',
+                    'maxMessage' => 'Too long',
+                )
+            )
+        ),
+    )
+);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Résultat<br>
+                        <img src="src/img/screen-form-validation-2.png" width="360">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>9 - Personnaliser le front</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            Actuellement le code front ressemble à ça
+                            <pre><code contenteditable data-trim class="php">
+{{ form(contact_form) }}
+                            </code></pre>
+                        </li>
+                        <li>Cela peut parfois suffir mais cela peut aussi devenir problématique si on souhaite personnaliser le formulaire, notamment lorsqu'on utilise un framework front</li>
+                        <li>Il existe des fonctions permettant de n'afficher que des morceaux du formulaire</li>
+                        <li><a href="http://symfony.com/doc/current/reference/forms/twig_reference.html#form-view-variables" target="_blank">Liste complète</a></li>
+                    </ul>                    
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="highlight">form_start()</span> : Ajoute la balise ouvrante</li>
+                        <li><span class="highlight">form_end()</span> : Ajoute la balise fermante</li>
+                        <li><span class="highlight">form_row()</span> : Ajoute le champ complet (label + input)</li>
+                        <li><span class="highlight">form_label()</span> : Ajoute le label du champ</li>
+                        <li><span class="highlight">form_widget()</span> : Ajoute l'input du champ</li>
+                        <li><span class="highlight">form_errors()</span> : Ajoute les erreurs</li>
+                    </ul>                    
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            Certaines de ces fonctions attendent le formulaire complet en paramètre
+                            <pre><code contenteditable data-trim class="html">
+{{ form_start(contact_form) }}
+                            </code></pre>
+                        </li>
+                        <li>
+                            D'autres attendent un champ particulier du formulaire
+                            <pre><code contenteditable data-trim class="html">
+{{ form_widget(contact_form.name) }}
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Le deuxième paramètre de ces fonctions permettent de spécifier des options</li>
+                        <li>Les options dépendent de chaque fonction<br>(<a href="http://symfony.com/doc/current/reference/forms/twig_reference.html#form-row-form-name-variables" target="_blank">Cf. documentation</a>)</li>
+                        <li>
+                            Exemple :
+                            <pre><code contenteditable data-trim class="html">
+{{ form_widget(contact_form.name, { attr: { class: 'form-control' } }) }}
+                            </code></pre>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Exemple complet dans <span class="highlight">contact.twig</span></p>
+                    <pre><code contenteditable data-trim class="html">
+{{ form_start(contact_form) }}
+
+    <div class="form-group">
+        {{ form_label(contact_form.name) }}
+        {{ form_widget(contact_form.name, { attr: { class: 'form-control' } }) }}
+        <div class="text-danger">
+            {{ form_errors(contact_form.name) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(contact_form.email) }}
+        {{ form_widget(contact_form.email, { attr: { class: 'form-control' } }) }}
+        <div class="text-danger">
+            {{ form_errors(contact_form.email) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(contact_form.subject) }}
+        {{ form_widget(contact_form.subject, { attr: { class: 'form-control' } }) }}
+        <div class="text-danger">
+            {{ form_errors(contact_form.subject) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(contact_form.message) }}
+        {{ form_widget(contact_form.message, { attr: { class: 'form-control' } }) }}
+        <div class="text-danger">
+            {{ form_errors(contact_form.message) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_widget(contact_form.submit, { attr: { class: 'btn btn-primary' } }) }}
+    </div>
+
+{{ form_end(contact_form) }}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>10 - Envoyer le mail</h3>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Silex fourni un service pour gérer l'envoi de mails</li>
+                        <li>Il s'agit de <a href="http://silex.sensiolabs.org/doc/providers/swiftmailer.html" target="_blank">SwiftmailerServiceProvider</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Rajouter la dépendance</p>
+                    <ul>
+                        <li>Ouvrez le terminal à la racine du projet</li>
+                        <li>
+                            Lancez
+                            <pre><code contenteditable data-trim class="php">
+composer require swiftmailer/swiftmailer
+                            </code></pre>
+                        </li>
+                    </ul>
+                    <p>(Avec sudo sur mac si une erreur apparait)</p>
+                </section>
+
+                <section>
+                    <p>Rajouter le service</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->register(new Silex\Provider\SwiftmailerServiceProvider(), array(
+    'swiftmailer.options' => array(
+        'host'       => 'smtp.gmail.com',
+        'port'       => 465,
+        'username'   => 'smtp.hetic.p2020@gmail.com',
+        'password'   => 'heticp2020smtp',
+        'encryption' => 'ssl',
+        'auth_mode'  => 'login'
+    )
+));
+                    </code></pre>
+                    <p>Le service est configuré pour envoyer des mails à partir du serveur SMTP de google avec un compte perso</p>
+                </section>
+
+                <section>
+                    <p>Envoyer le mail</p>
+                    <p>Dans la route <span class="highlight">/contact</span> lorsque le formulaire est validé</p>
+                    <pre><code contenteditable data-trim class="php">
+$message = \Swift_Message::newInstance();
+$message->setSubject($form_data['subject'].' ('.$form_data['email'].')');
+$message->setFrom(array($form_data['email']));
+$message->setTo(array('bruno.simon@hetic.net'));
+$message->setBody($form_data['message']);
+
+$app['mailer']->send($message);
+
+return $app->redirect($app['url_generator']->generate('contact'));
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Vous connaissez les formulaire Silex/Symfony</p>
+                    <img src="src/img/mad-max-tom-hardy-thumbs-up-1.gif" alt="">
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

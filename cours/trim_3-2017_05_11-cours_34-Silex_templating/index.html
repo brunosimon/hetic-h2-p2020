@@ -84,7 +84,13 @@
                     <h3>Rajouter la dépendance</h3>
                     <ul>
                         <li>Ouvrez le terminal à la racine du projet</li>
-                        <li>Lancez <span class="hl">sudo composer require twig/twig</span><br>(Sans sudo sur windows)</li>
+                        <li>
+                            Lancez
+                            <pre><code contenteditable data-trim class="">
+sudo composer require twig/twig
+                            </code></pre>
+                            (Sans sudo sur windows)
+                        </li>
                     </ul>
                 </section>
 
@@ -182,7 +188,7 @@ $app->get('/', function()
                 <section>
                     <p>Alternative à <span class="highlight">global $app</span></p>
                     <pre><code contenteditable data-trim class="php">
-$app->get('/', function() use (Silex\Application $app)
+$app->get('/', function() use ($app)
 {
     /* ... */
 });
@@ -342,18 +348,6 @@ return $app['twig']->render('example.twig',$data);
                 </section>
 
                 <section>
-                    <h2>Fichiers sources (CSS, JS, Images, ...)</h2>
-                </section>
-
-                <section>
-                    <p>Si vous souhaitez faire un lien vers un fichier, il est nécessaire de l'écrire en absolu</p>
-                    <p>Vous pouvez récupérer l'URL du site de cette manière</p>
-                    <pre><code contenteditable data-trim class="html">
-&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ app.request.basepath }}/src/css/style.css&quot;&gt;
-                    </code></pre>
-                </section>
-
-                <section>
                     <h2>Include</h2>
                 </section>
 
@@ -361,7 +355,7 @@ return $app['twig']->render('example.twig',$data);
                     <p>Il est possible d'inclure d'autres templates Twig</p>
                     <p>example.twig</p>
                     <pre><code contenteditable data-trim class="html">
-{{ include('partials/header.twig', {title:'example'}) }}
+{{ include('partials/header.twig', {title: 'example'}) }}
 {{ include('partials/footer.twig') }}
                     </code></pre>
                     <p>partials/header.twig</p>
@@ -404,7 +398,13 @@ return $app['twig']->render('example.twig',$data);
                     <p>Silex gère déjà la création d'URL, mais il faut faire le lien avec Twig pour pouvoir utiliser les fonctions directement dans le template</p>
                     <ul>
                         <li>Ouvrez le terminal à la racine du projet</li>
-                        <li>Lancez <span class="hl">sudo composer require symfony/twig-bridge</span><br>(Sans sudo sur windows)</li>
+                        <li>
+                            Lancez
+                            <pre><code contenteditable data-trim class="">
+composer require symfony/twig-bridge
+                            </code></pre>
+                            (Sans sudo sur windows)
+                        </li>
                     </ul>
                 </section>
 
@@ -431,7 +431,7 @@ return $app['twig']->render('example.twig',$data);
                             <pre><code contenteditable data-trim class="html">
 &lt;a href=&quot;{{ url(&#039;home&#039;) }}&quot;&gt;Home&lt;/a&gt;
 
-&lt;a href=&quot;{{ url(&#039;category&#039;, {category:'test'}) }}&quot;&gt;Category test&lt;/a&gt;
+&lt;a href=&quot;{{ url(&#039;category&#039;, {category: 'test'}) }}&quot;&gt;Category test&lt;/a&gt;
                             </code></pre>
                         </li>
                     </ul>
@@ -439,80 +439,17 @@ return $app['twig']->render('example.twig',$data);
                 </section>
 
                 <section>
-                    <h2>Structure du site</h2>
+                    <h2>Fichiers sources (CSS, JS, Images, ...)</h2>
                 </section>
 
                 <section>
-                    <p>Nous allons développer un pokedex</p>
-                    <p>Nous n'allons avoir que quelques pages et nous allons utiliser un framework front</p>
+                    <p>Si vous souhaitez faire un lien vers un fichier, il est nécessaire de l'écrire en absolu</p>
+                    <p>Vous pouvez récupérer l'URL du site de cette manière</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ global.request.basepath }}/src/css/style.css&quot;&gt;
+                    </code></pre>
                 </section>
 
-                <section>
-                    <ul>
-                        <li>
-                            Créez les routes suivantes
-                            <ul>
-                                <li>home : /</li>
-                                <li>pokemons : /pokemons</li>
-                                <li>pokemon : /pokemon/{id}</li>
-                                <li>about : /about</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>Bindez les routes avec <span class="highlight">bind()</span></li>
-                        <li>Rajouter les contraintes sur les paramètres avec <span class="highlight">assert()</span></li>
-                    </ul>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>
-                            Créez les différents templates
-                            <ul>
-                                <li>home : /pages/home.twig</li>
-                                <li>pokemons : /pages/pokemons.twig</li>
-                                <li>pokemon : /pages/pokemon.twig</li>
-                                <li>about : /pages/about.twig</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-
-                    <ul>
-                        <li>
-                            Créez les partials
-                            <ul>
-                                <li>partials/header.twig</li>
-                                <li>partials/footer.twig</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>
-                            Rajouter <a href="https://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap 4</a>
-                            <ul>
-                                <li>Rajoutez le <span class="hl">&lt;link&gt;</span></li>
-                                <li>Rajoutez le <span class="hl">&lt;script&gt;</span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>Récupérer la ressource <span class="u">pokedex.zip</span> et ajouter le dossier <span class="u">pokemons</span> dans web/src/medias</li>
-                        <li>Rajouter quelques contenus statiques</li>
-                    </ul>
-                </section>
             </div>
         </div>
 

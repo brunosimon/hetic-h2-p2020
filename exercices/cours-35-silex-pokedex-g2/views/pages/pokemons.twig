@@ -1,0 +1,18 @@
+{{ include('partials/header.twig') }}
+
+<h2 class="mb-4">Pokemons</h2>
+
+<div class="d-flex flex-wrap">
+	<a href="{{ url('pokemon', {id: 4}) }}" class="card w-25 text-center">
+		<span class="card-header">Name</span>
+		<span class="card-block">
+			<img
+				src="{{ global.request.basepath }}/uploads/pokemons/4.png"
+				width="100%"
+				class="pixelated"
+			>
+		</span>
+	</a>
+</div>
+
+{{ include('partials/footer.twig') }}
