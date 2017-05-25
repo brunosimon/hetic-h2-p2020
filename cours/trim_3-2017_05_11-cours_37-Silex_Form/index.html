@@ -137,18 +137,18 @@ $app->register(new Silex\Provider\LocaleServiceProvider());
                     <p>Dans la route <span class="highlight">/contact</span></p>
                     <pre><code contenteditable data-trim class="php">
 // Create builder
-$form_builder = $app['form.factory']->createBuilder();
+$formBuilder = $app['form.factory']->createBuilder();
 
 // Set method and action
-$form_builder->setMethod('post');
-$form_builder->setAction($app['url_generator']->generate('contact'));
+$formBuilder->setMethod('post');
+$formBuilder->setAction($app['url_generator']->generate('contact'));
 
 // Add input
-$form_builder->add('name', Symfony\Component\Form\Extension\Core\Type\TextType::class);
-$form_builder->add('submit', Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+$formBuilder->add('name', Symfony\Component\Form\Extension\Core\Type\TextType::class);
+$formBuilder->add('submit', Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
 
 // Create form
-$form = $form_builder->getForm();
+$form = $formBuilder->getForm();
                     </code></pre>
                 </section>
 
@@ -189,7 +189,7 @@ $data['contact_form'] = $form->createView();
                         <li>Le formulaire s'affiche bien</li>
                         <li>Mais si on clique sur submit, Silex indique que la route n'existe pas</li>
                         <li class="fragment">Les routes ont été créé avec la method <span class="highlight">get()</span> ne supportant que des requêtes en GET</li>
-                        <li class="fragment">Il suffit de remplacer <span class="highlight">get()</span> par <span class="highlight">match()</span></li>
+                        <li class="fragment">Il suffit de remplacer <span class="highlight">get()</span> par <span class="highlight fragment">match()</span></li>
                         <pre class="fragment"><code contenteditable data-trim class="php">
 $app->match('/contact', function() use ($app) {
 
@@ -242,8 +242,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /* ... */
 
-$form_builder->add('name', TextType::class);
-$form_builder->add('submit', SubmitType::class);
+$formBuilder->add('name', TextType::class);
+$formBuilder->add('submit', SubmitType::class);
                     </code></pre>
                 </section>
 
@@ -314,7 +314,11 @@ if($form->isSubmitted() && $form->isValid())
                 <section>
                     <h3>Name (text)</h3>
                     <pre><code contenteditable data-trim class="php">
-$form_builder->add(
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+/* ... */
+
+$formBuilder->add(
     'name',
     TextType::class,
     array(
@@ -329,7 +333,11 @@ $form_builder->add(
                 <section>
                     <h3>Email (email)</h3>
                     <pre><code contenteditable data-trim class="php">
-$form_builder->add(
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
+/* ... */
+
+$formBuilder->add(
     'email',
     EmailType::class,
     array(
@@ -344,7 +352,11 @@ $form_builder->add(
                 <section>
                     <h3>Subject (choice)</h3>
                     <pre><code contenteditable data-trim class="php">
-$form_builder->add(
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+/* ... */
+
+$formBuilder->add(
     'subject',
     ChoiceType::class,
     array(
@@ -365,7 +377,11 @@ $form_builder->add(
                 <section>
                     <h3>Message (textarea)</h3>
                     <pre><code contenteditable data-trim class="php">
-$form_builder->add(
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+/* ... */
+
+$formBuilder->add(
     'message',
     TextareaType::class,
     array(
@@ -410,7 +426,7 @@ new Length(
                 <section>
                     <p>Exemple complet avec le champ Name</p>
                     <pre><code contenteditable data-trim class="php">
-$form_builder->add(
+$formBuilder->add(
     'name',
     TextType::class,
     array(
@@ -479,7 +495,7 @@ $form_builder->add(
                         <li>
                             D'autres attendent un champ particulier du formulaire
                             <pre><code contenteditable data-trim class="html">
-{{ form_widget(contact_form.name) }}
+{{ form_widget(contact_form.email) }}
                             </code></pre>
                         </li>
                     </ul>
@@ -492,7 +508,7 @@ $form_builder->add(
                         <li>
                             Exemple :
                             <pre><code contenteditable data-trim class="html">
-{{ form_widget(contact_form.name, { attr: { class: 'form-control' } }) }}
+{{ form_widget(contact_form.email, { attr: { class: 'form-control' } }) }}
                             </code></pre>
                         </li>
                     </ul>
@@ -589,7 +605,7 @@ $app->register(new Silex\Provider\SwiftmailerServiceProvider(), array(
                     <p>Envoyer le mail</p>
                     <p>Dans la route <span class="highlight">/contact</span> lorsque le formulaire est validé</p>
                     <pre><code contenteditable data-trim class="php">
-$message = \Swift_Message::newInstance();
+$message = new \Swift_Message();
 $message->setSubject($form_data['subject'].' ('.$form_data['email'].')');
 $message->setFrom(array($form_data['email']));
 $message->setTo(array('bruno.simon@hetic.net'));

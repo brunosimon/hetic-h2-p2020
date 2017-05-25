@@ -7,3 +7,5 @@ temp/
 tools/
 semaines-intensives/
 node_modules/
+composer.phar
+vendor/

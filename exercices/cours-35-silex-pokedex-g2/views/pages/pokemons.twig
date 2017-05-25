@@ -3,16 +3,18 @@
 <h2 class="mb-4">Pokemons</h2>
 
 <div class="d-flex flex-wrap">
-	<a href="{{ url('pokemon', {id: 4}) }}" class="card w-25 text-center">
-		<span class="card-header">Name</span>
-		<span class="card-block">
-			<img
-				src="{{ global.request.basepath }}/uploads/pokemons/4.png"
-				width="100%"
-				class="pixelated"
-			>
-		</span>
-	</a>
+	{% for _pokemon in pokemons %}
+		<a href="{{ url('pokemon', {id: _pokemon.id}) }}" class="card w-25 text-center">
+			<span class="card-header">{{ _pokemon.name }}</span>
+			<span class="card-block">
+				<img
+					src="{{ global.request.basepath }}/uploads/pokemons/{{ _pokemon.id }}.png"
+					width="100%"
+					class="pixelated"
+				>
+			</span>
+		</a>
+	{% endfor %}
 </div>
 
 {{ include('partials/footer.twig') }}

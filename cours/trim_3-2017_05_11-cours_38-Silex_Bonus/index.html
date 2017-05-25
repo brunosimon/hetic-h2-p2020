@@ -26,7 +26,7 @@
                 <section>
                     <h3>H2 - P2020</h3>
                     <h1>Développement web</h1>
-                    <h3>Cours 37 - 2017-05-38</h3>
+                    <h3>Cours 38 - 2017-05-38</h3>
                     <ul>
                         <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
                         <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
@@ -53,16 +53,19 @@
 $app->before(function() use ($app)
 {
     // Code exécuté avant la route
+    echo '1';
 });
 
 $app->after(function() use ($app)
 {
     // Code exécuté après la route
+    echo '2';
 });
 
 $app->finish(function() use ($app)
 {
     // Code exécuté après que la page ait été renvoyée au visiteur
+    echo '3';
 });
                     </code></pre>
                 </section>
@@ -70,16 +73,16 @@ $app->finish(function() use ($app)
                 <section>
                     <p>Il est possible d'associer des middleswares uniquement à certaines routes</p>
                     <pre><code contenteditable data-trim class="php">
-$before = function() use ($app)
-{
-    // ...
-};
-
-$app->get('/', function()
-{
-    // ...
-})
-->before($before);
+$app
+    ->get('/', function()
+    {
+        // ...
+    })
+    ->before(function() use ($app)
+    {
+        // ...
+    })
+;
                     </code></pre>
                 </section>
 
@@ -96,10 +99,10 @@ $app->get('/', function()
                     </ul>
                     <pre><code contenteditable data-trim class="php">
 
-$app->before() use ($app) {
-    $app['twig']->addGlobal('title','Hetic Pokedex');
+$app->before(function() use ($app)
+{
+    $app['twig']->addGlobal('title', 'Hetic Pokedex');
 });
-
                     </code></pre>
 
                     <pre><code contenteditable data-trim class="html">
@@ -217,15 +220,18 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
                 <section>
                     <p>Dans <span class="highlight">index.php</span></p>
                     <pre><code contenteditable data-trim class="php">
+use Symfony\Component\HttpFoundation\Request;
+
+/* ... */
 
 // Error
-$app->error(function (\Exception $e, $code) use ($app)
+$app->error(function (\Exception $e, Request $request, $code) use ($app)
 {
-    $data = array(
-        'title' => 'Error'
-    );
+    $data = array();
+    $data['title'] = 'Error';
+    $data['code'] = $code;
 
-    return $app['twig']->render('pages/error.twig',$data);
+    return $app['twig']->render('pages/error.twig', $data);
 });
 
                     </code></pre>
@@ -237,7 +243,7 @@ $app->error(function (\Exception $e, $code) use ($app)
 
 {{include('partials/header.twig')}}
 
-Page not found
+<h1>Error {{ code }}</h1>
 
 {{include('partials/footer.twig')}}
 
@@ -251,19 +257,43 @@ Page not found
                     </ul>
                     <pre><code contenteditable data-trim class="php">
 
+use Symfony\Component\HttpFoundation\Request;
+
+/* ... */
+
 // Error
-$app->error(function (\Exception $e, $code) use ($app)
+$app->error(function (\Exception $e, Request $request, $code) use ($app)
 {
     if($app['debug'])
+    {
         return;
+    }
+    
+    $data = array();
+    $data['title'] = 'Error';
+    $data['code'] = $code;
 
-    $data = array(
-        'title' => 'Error'
-    );
-
-    return $app['twig']->render('error.twig', $data);
+    return $app['twig']->render('pages/error.twig', $data);
 });
 
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il est possible de déclencher une erreur Silex nous-même, par exemple, si le pokemon n'a pas été trouvé dans la BDD</p>
+                    <pre><code contenteditable data-trim class="php">
+/* ... */
+
+$pokemonsModel = new Site\Models\Pokemons($app['db']);
+$pokemon = $pokemonsModel->getBySlug($slug);
+
+if(!$pokemon)
+{
+    $app->abort(404);
+}
+
+/* ... */
                     </code></pre>
                 </section>
 
@@ -280,22 +310,20 @@ $app->error(function (\Exception $e, $code) use ($app)
                 </section>
 
                 <section>
-                    <p>Dans la route <span class="highlight">home</span></p>
+                    <p>Dans la route <span class="highlight">/pokemons</span></p>
                     <pre><code contenteditable data-trim class="php">
 
-$app->get('/', function() use ($app, $articles_model) {
+$app->get('/pokemons', function() use ($app)
+{
+    $data = array();
 
-    $query    = $app['db']->query('SELECT * FROM articles');
-    $articles = $query->fetchAll();
+    $query = $app['db']->query('SELECT * FROM pokemons');
+    $pokemons = $query->fetchAll();
+    $data['pokemons'] = $pokemons;
 
-    $data = array(
-        'title'    => 'Home',
-        'articles' => $articles
-    );
-
-    return $app['twig']->render('page.twig', $data);
+    return $app['twig']->render('pages/pokemons.twig', $data);
 })
-->bind('home');
+->bind('pokemons');
 
                     </code></pre>
                 </section>
@@ -310,31 +338,100 @@ $app->get('/', function() use ($app, $articles_model) {
                         <li>Pour créer le chemin vers la route, il suffit d'utiliser <span class="highlight">$app['url_generator']->generate()</span></li>
                     </ul>
                     <pre><code contenteditable data-trim class="php">
-
-$app->get('/test', function() use ($app)
+$app->get('/random', function() use ($app)
 {
-    $url = $app['url_generator']->generate('pokemon', array('id'=>88));
+    $url = $app['url_generator']->generate('pokemon', array('id' => rand(1, 811)));
     return $app->redirect($url);
 });
                     </code></pre>
                 </section>
 
                 <section>
-                    <h2>Bootstrap Silex</h2>
+                    <h2>Templates Silex</h2>
                 </section>
 
                 <section>
                     <ul>
-                        <li>Mettre en place un bootstrap n'est pas toujours facile et on a rapidement des problèmes de structure</li>
+                        <li>Mettre en place un template Silex n'est pas toujours facile et on a rapidement des problèmes de structure</li>
                         <li>
                             Il existe des versions "toutes faites" permettant de gagner du temps
                             <ul>
-                                <li><a href="https://github.com/lyrixx/Silex-Kitchen-Edition" target="_blanl">Silex - Kitchen Sink Edition</a></li>
-                                <li><a href="https://github.com/aptoma/silex-bootstrap" target="_blank">Silex Boostrap</a></li>
+                                <li><a href="https://github.com/lyrixx/Silex-Kitchen-Edition" target="_blank">github.com/lyrixx/Silex-Kitchen-Edition</a></li>
+                                <li><a href="https://github.com/aptoma/silex-bootstrap" target="_blank">github.com/aptoma/silex-bootstrap</a></li>
+                                <li><a href="https://github.com/brunosimon/silex-template" target="_blank">github.com/brunosimon/silex-template</a></li>
                             </ul>
                         </li>
-                        <li>Étudiez-les / modifiez-les / utilisez-les comme bon vous semble</li>
+                        <li>Étudiez-les, modifiez-les et utilisez-les comme bon vous semble</li>
                     </ul>
+                </section>
+
+                <section>
+                    <h2>Dépendances</h2>
+                    <p>Commandes pour installer Silex et les principales fonctionnalités vues en cours</p>
+                </section>
+
+                <section>
+                    <p>Silex et twig</p>
+                    <pre><code contenteditable data-trim class="">
+composer require silex/silex twig/twig symfony/twig-bridge
+                    </code></pre>
+
+                    <p>Doctrine pour la BDD</p>
+                    <pre><code contenteditable data-trim class="">
+composer require doctrine/dbal
+                    </code></pre>
+
+                    <p>Formulaires</p>
+                    <pre><code contenteditable data-trim class="">
+composer require symfony/form symfony/validator symfony/config
+                    </code></pre>
+
+                    <p>Mails</p>
+                    <pre><code contenteditable data-trim class="">
+composer require swiftmailer/swiftmailer
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Autoload</h2>
+                </section>
+
+                <section>
+                    <p>Pour rajouter nos propres classes, nous avons utilisé la méthode <span class="hl">addPsr4()</span></p>
+                    <pre><code contenteditable data-trim class="php">
+$loader = require_once __DIR__.'/../vendor/autoload.php';
+$loader->addPsr4('Site\\', __DIR__.'/../src/');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il est possible de se passer de cette méthode en rajoutant l'instruction directement dans <span class="hl">composer.json</span></p>
+                    <pre><code contenteditable data-trim class="json">
+{
+    "require": {
+        "silex/silex": "~2.0",
+        "symfony/twig-bridge": "^3.2",
+        "doctrine/dbal": "~2.2",
+        "symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/config": "^3.2",
+        "swiftmailer/swiftmailer": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Site\\": "src/"
+        }
+    }
+}
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Depuis le terminal, à la racine, lancez la commande suivante pour que vos classes soient prises en compte</p>
+                    <pre><code contenteditable data-trim class="">
+composer install
+                    </code></pre>
                 </section>
 
             </div>

@@ -34,6 +34,7 @@ class ComposerStaticInita080bd822ce8b8987ddb87c4ce761ef3
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Bridge\\Twig\\' => 20,
+            'Site\\' => 5,
             'Silex\\' => 6,
         ),
         'P' => 
@@ -120,6 +121,10 @@ class ComposerStaticInita080bd822ce8b8987ddb87c4ce761ef3
         'Symfony\\Bridge\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/twig-bridge',
+        ),
+        'Site\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Silex\\' => 
         array (

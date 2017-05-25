@@ -4,18 +4,20 @@
 
 <div class="d-flex flex-wrap">
 
-	<a class="card w-25 text-center" href="{{ url('pokemon', {id: 4}) }}">
-		<span class="card-header">
-			Name
-		</span>
-		<span class="card-block">
-			<img
-				src="{{ global.request.basepath }}/uploads/pokemons/4.png"
-				width="100%"
-				class="pixelated"
-			>
-		</span>
-	</a>
+	{% for _pokemon in pokemons %}
+		<a class="card w-25 text-center" href="{{ url('pokemon', {id: _pokemon.id}) }}">
+			<span class="card-header">
+				{{ _pokemon.name }}
+			</span>
+			<span class="card-block">
+				<img
+					src="{{ global.request.basepath }}/uploads/pokemons/{{ _pokemon.id }}.png"
+					width="100%"
+					class="pixelated"
+				>
+			</span>
+		</a>
+	{% endfor %}
 
 </div>
 

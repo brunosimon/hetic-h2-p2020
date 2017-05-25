@@ -19,10 +19,10 @@ class Pokemons
     	return $pokemons;
     }
 
-    public function getBySlug($slug)
+    public function getById($id)
     {
-    	$prepare = $this->db->prepare('SELECT * FROM pokemons WHERE slug = :slug');
-    	$prepare->bindValue('slug', $slug);
+    	$prepare = $this->db->prepare('SELECT * FROM pokemons WHERE id = :id');
+    	$prepare->bindValue('id', $id);
     	$prepare->execute();
     	$pokemon = $prepare->fetch();
 

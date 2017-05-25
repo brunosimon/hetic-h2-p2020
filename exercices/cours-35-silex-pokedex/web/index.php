@@ -9,12 +9,56 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Length;
 
 // Require dependendies
-$loader = require_once __DIR__.'/../vendor/autoload.php';
-$loader->addPsr4('Site\\', __DIR__.'/../src/');
+require_once __DIR__.'/../vendor/autoload.php';
+
+// Config
+$config = array();
+switch($_SERVER['HTTP_HOST'])
+{
+    case 'localhost':
+        $config['debug'] = true;
+        $config['db_host'] = 'localhost';
+        $config['db_name'] = 'hetic_p2020_pokedex';
+        $config['db_user'] = 'root';
+        $config['db_pass'] = 'root';
+        break;
+
+    case 'preprod.monsite.com':
+        $config['debug'] = false;
+        $config['db_host'] = '';
+        $config['db_name'] = '';
+        $config['db_user'] = '';
+        $config['db_pass'] = '';
+        break;
+
+    default:
+        $config['debug'] = false;
+        $config['db_host'] = '';
+        $config['db_name'] = '';
+        $config['db_user'] = '';
+        $config['db_pass'] = '';
+        break;
+}
 
 // Init Silex
 $app = new Silex\Application();
-$app['debug'] = true;
+$app['config'] = $config;
+$app['debug'] = $app['config']['debug'];
+
+$app->before(function() use ($app)
+{
+    $app['twig']->addGlobal('title', 'Hetic Pokedex');
+});
+
+$app->after(function() use ($app)
+{
+    
+});
+
+$app->finish(function() use ($app)
+{
+    
+});
 
 // Services
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -23,10 +67,10 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array (
         'driver'    => 'pdo_mysql',
-        'host'      => 'localhost',
-        'dbname'    => 'hetic_p2020_pokedex',
-        'user'      => 'root',
-        'password'  => 'root',
+        'host'      => $app['config']['db_host'],
+        'dbname'    => $app['config']['db_name'],
+        'user'      => $app['config']['db_user'],
+        'password'  => $app['config']['db_pass'],
         'charset'   => 'utf8'
     ),
 ));
@@ -58,23 +102,32 @@ $app->get('/pokemons', function() use ($app)
 {
 	$data = array();
 
-    $pokemonsModel = new Site\Models\Pokemons($app['db']);
-    $data['pokemons'] = $pokemonsModel->getAll();
+    $query = $app['db']->query('SELECT * FROM pokemons');
+    $pokemons = $query->fetchAll();
+    $data['pokemons'] = $pokemons;
 
     return $app['twig']->render('pages/pokemons.twig', $data);
 })
 ->bind('pokemons');
 
-$app->get('/pokemon/{slug}', function($slug) use ($app)
+$app->get('/pokemon/{id}', function($id) use ($app)
 {
 	$data = array();
 
     $pokemonsModel = new Site\Models\Pokemons($app['db']);
-    $data['pokemon'] = $pokemonsModel->getBySlug($slug);
+    $pokemon = $pokemonsModel->getById($id);
+
+    if(!$pokemon)
+    {
+        $app->abort(404);
+    }
+
+    $data['pokemon'] = $pokemon;
+    $data['title'] = $pokemon->name;
 
     return $app['twig']->render('pages/pokemon.twig', $data);
 })
-->assert('slug', '[a-zA-Z0-9_-]+')
+->assert('id', '[0-9]+')
 ->bind('pokemon');
 
 $app->match('/contact', function(Request $request) use ($app)
@@ -159,13 +212,13 @@ $app->match('/contact', function(Request $request) use ($app)
         // Get form data
         $form_data = $form->getData();
 
-        // $message = \Swift_Message::newInstance();
-        // $message->setSubject($form_data['subject'].' ('.$form_data['email'].')');
-        // $message->setFrom(array($form_data['email']));
-        // $message->setTo(array('bruno.simon@hetic.net'));
-        // $message->setBody($form_data['message']);
+        $message = new \Swift_Message();
+        $message->setSubject($form_data['subject'].' ('.$form_data['email'].')');
+        $message->setFrom(array($form_data['email']));
+        $message->setTo(array('bruno.simon@hetic.net'));
+        $message->setBody($form_data['message']);
 
-        // $app['mailer']->send($message);
+        $app['mailer']->send($message);
 
         return $app->redirect($app['url_generator']->generate('contact'));
     }
@@ -175,7 +228,11 @@ $app->match('/contact', function(Request $request) use ($app)
 
     return $app['twig']->render('pages/contact.twig', $data);
 })
-->bind('contact');
+->bind('contact')
+->before(function()
+{
+    
+});
 
 $app->match('/add', function() use ($app)
 {
@@ -271,6 +328,27 @@ $app->match('/add', function() use ($app)
     return $app['twig']->render('pages/add.twig', $data);
 })
 ->bind('add');
+
+$app->get('/random', function() use ($app)
+{
+    $url = $app['url_generator']->generate('pokemon', array('id' => rand(1, 811)));
+    return $app->redirect($url);
+});
+
+// Error
+$app->error(function (\Exception $e, Request $request, $code) use ($app)
+{
+    if($app['debug'])
+    {
+        return;
+    }
+
+    $data = array();
+    $data['title'] = 'Error';
+    $data['code'] = $code;
+
+    return $app['twig']->render('pages/error.twig', $data);
+});
 
 // Run Silex
 $app->run();
