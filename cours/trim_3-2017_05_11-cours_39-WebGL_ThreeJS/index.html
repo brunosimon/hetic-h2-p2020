@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 39 - WebGL - Three.js</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2020</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 39 - 2017-06-08</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2020">https://github.com/brunosimon/hetic-p2020</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2020/">http://bruno-simon.com/hetic/p2020/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>WebGL</h1>
+                    <h2 class="fragment">Avec Three.js</h2>
+                </section>
+
+                <section>
+                    <h2>Qu'est-ce que le WebGL ?</h2>
+                    <p class="fragment">API javascript permettant de faire des rendus 3D dans le browser</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Fait parti des standards HTML5</li>
+                        <li>Utilise un canvas</li>
+                        <li>WebGL utilise l'OpenGL</li>
+                        <li>OpenGL utilise la carte graphique pour faire des calculs de rendu, de matrices et de projection</li>
+                        <li>Accélération matérielle</li>
+                        <li>Permet aussi de faire de la 2D</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>À quoi sert la carte graphique ?</h2>
+                </section>
+    
+                <section>
+                    <ul>
+                        <li>Si un processeur devait traiter un rendu, il le ferait pixel par pixel</li>
+                        <li>Une image de 800x600 comprend donc 480 000 pixels à traiter un par un</li>
+                        <li>Cela lui prendrait trop de temps pour avoir une animation fluide</li>
+                        <li>Quand la carte graphique traite le rendu, elle fait des milliers de calculs en parallèle</li>
+                        <li>Cela lui prend donc moins de temps</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                </section>
+
+                <section>
+                    <p><a href="http://caniuse.com/#feat=webgl" target="_blank">CanIUse</a></p>
+                    <iframe src="https://caniuse.bitsofco.de/embed/index.html?feat=webgl&periods=future_1,current,past_1,past_2,past_3,past_4" frameborder="0" width="800" height="467"></iframe>
+                </section>
+
+                <section>
+                    <p>Peut nécessiter une carte graphique puissante<br>(Attention aux smartphones)</p>
+                </section>
+
+                <section>
+                    <h2>Composition</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Un rendu 3D va partir d'une <span class="hl">scène</span> (pouvant contenir des <span class="hl">objets</span>) et d'une <span class="hl">caméra</span> pour en déduire une <span class="hl">image 2D</span></li>
+                        <li>Les objets sont composés de géométries, elles-même composée de faces, sur lesquelles sont appliquées des matières</li>
+                        <li>La caméra possède des paramètres (angle de vue, orthographie ou perspective, distance min et max, zoom, etc.)</li>
+                        <li>Quid de la lumière</li>
+                    </ul>
+                    <p>On part de plusieurs éléments ayant chacun leurs paramètres pour en déduire une image</p>
+                </section>
+
+                <section>
+                    <p>On parle de projection</p>
+                    <img src="src/img/projection.png" alt="">
+                </section>
+
+                <section>
+                    <p>Ces projections et calculs sont faits dans des programmes codés en GLSL et envoyés à la carte graphique</p>
+                </section>
+
+                <section>
+                    <h2>Démonstrations</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><a href="http://i-remember.fr/" target="_blank">I Remember</a>*</li>
+                        <li><a href="http://letsplay.ouigo.com/" target="_blank">OUIGO - Let's play</a>*</li>
+                        <li><a href="https://scars.forhonorgame.com/" target="_blank">For Honors - Scars</a>*</li>
+                        <li><a href="http://stars.chromeexperiments.com/" target="_blank">100 000 Stars</a>*</li>
+                        <li><a href="http://particle-love.com/" target="_blank">Particle Love</a></li>
+                        <li><a href="http://www.deprogrammed.org/" target="_blank">Deprogrammed</a></li>
+                        <li><a href="https://www.valerian.bnpparibas/fr/intergalactic-mission" target="_blank">Valerian - Intergalactic Mission</a>*</li>
+                        <li><a href="https://playcanv.as/e/p/44MRmJRU/" target="_blank">After the Flood</a>*</li>
+                        <li><a href="http://www.thx.com/" target="_blank">THX</a>*</li>
+                        <li><a href="https://bruno-simon.com/lab/experiments/procedural-star/" target="_blank">Procedural Star</a>*</li>
+                        <li><a href="https://bruno-simon.com/lab/experiments/procedural-planet/" target="_blank">Procedural Planet</a>*</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Développer ces programmes, créer des géométries et effectuer les projections prendrait trop de temps. Nous allons utiliser la librairie Three.js</p>
+                </section>
+
+                <section>
+                    <h2>Three.js</h2>
+                    <p><a href="https://threejs.org/docs/#manual/introduction/Creating-a-scene" target="_blank">Documentation</a></p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Téléchargez <a href="https://raw.githubusercontent.com/mrdoob/three.js/dev/build/three.min.js" target="_blank" download>Three.js</a></li>
+                        <li>Créez un fichier <span class="hl">script.js</span></li>
+                        <li>Créez un fichier <span class="hl">index.html</span></li>
+                        <li>Chargez <span class="hl">three.min.js</span> et <span class="hl">script.js</span></li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;WebGL - Three.js&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script src="three.min.js"&gt;&lt;/script&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous allons coder le JS en utilisant les dernières features de javascript supportées dans les browser d'aujourd'hui</p>
+                    <p>On parle (à tort) d'ES6</p>
+                </section>
+
+                <section>
+                    <p>Pour fonctionner, nous allons avoir besoin de</p>
+                    <ul>
+                        <li>une scène</li>
+                        <li>un objet dans cette scène</li>
+                        <li>une caméra</li>
+                        <li>un renderer qui affichera le résultat dans un canvas</li>
+                        <li>une fonction qui s'executera à chaque frame pour faire des rendus</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Scene</h3>
+                    <p>La scène a pour simple objectif de contenir les différents objets</p>
+                    <pre><code contenteditable data-trim class="js">
+// Scene
+const scene = new THREE.Scene()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Camera</h3>
+                    <p>Il existe plusieurs types de caméras, mais deux sont à retenir</p>
+                    <ul>
+                        <li><a href="https://threejs.org/docs/index.html#api/cameras/PerspectiveCamera" target="_blank">Perspective</a> : Avec perspective (points de fuite)</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/cameras/OrthographicCamera" target="_blank">Orthographique</a> : Sans perspective (parallèle)</li>
+                    </ul>
+                    <p>Illu XXX</p>
+                </section>
+
+                <section>
+                    <p>Nous allons utiliser une caméra avec perspective dont les paramètres sont les suivants</p>
+                    <ul>
+                        <li>Field of view : angle de vue en degrés</li>
+                        <li>Aspect : rapport largeur par hauteur</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+let windowWidth = window.innerWidth
+let windowHeight = window.innerHeight
+
+// Camera
+const camera = new THREE.PerspectiveCamera(75, windowWidth / windowHeight)
+camera.position.z = 300
+scene.add(camera)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Object (Ou Mesh)</h3>
+                    <p>Un objet 3D est appelé <span class="u">Mesh</span> et se compose d'une géométrie et d'une matière</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Une mesh se compose d'une géométrie</li>
+                        <li>Une géométrie de composer de faces</li>
+                        <li>Une face se compose de vertices (ou vertex, ou points)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Three.js possède de nombreuses géométries pré-faites</p>
+                    <ul>
+                        <li><a href="https://threejs.org/docs/#api/geometries/BoxGeometry" target="_blank">Box</a></li>
+                        <li><a href="https://threejs.org/docs/#api/geometries/SphereGeometry" target="_blank">Sphere</a></li>
+                        <li><a href="https://threejs.org/docs/#api/geometries/CylinderGeometry" target="_blank">Cylinder</a></li>
+                        <li><a href="https://threejs.org/docs/#api/geometries/PlaneGeometry" target="_blank">Plane</a></li>
+                        <li>Etc.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Cette matière va définir quelle doit être la couleur à appliquer à chaque pixel visible de la géométrie</p>
+                    <p>Cette couleur peut varier selon un code hexadecimal, des lumières, une image, etc.</p>
+                </section>
+
+                <section>
+                    <p>Three.js possède de nombreuses matières, mais nous allons commencer avec la plus simple <a href="https://threejs.org/docs/#api/materials/MeshBasicMaterial" target="_blank">MeshBasicMaterial</a></p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Object
+const geometry = new THREE.BoxGeometry(100, 100, 100)
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Renderer</h3>
+                    <pre><code contenteditable data-trim class="js">
+// Renderer
+const renderer = new THREE.WebGLRenderer()
+renderer.setSize(windowWidth, windowHeight)
+document.body.appendChild(renderer.domElement)
+renderer.render(scene, camera)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Le renderer a pour rôle de prendre la scène et la caméra, d'envoyer le nécessaire à la carte graphique en passant par le WebGL et l'OpenGL et d'envoyer le résultat dans le canvas qu'il aura préalablement créé</p>
+                    <p>Il ne reste plus qu'à ajouter ce canvas dans notre body</p>
+                </section>
+
+                <section>
+                    <h3>Tester</h3>
+                    <p>Ouvrez <span class="hl">index.html</span> dans votre browser</p>
+                    <p>Vous devriez voir un carré rouge sur fond noir</p>
+                    <p>Ceci est votre premier rendu WebGL avec Three.js</p>
+                </section>
+
+                <section>
+                    <h3>CSS</h3>
+                    <p>Le canvas ne prend pas tout le viewport. C'est à cause des marges sur le body.</p>
+                    <p>Rajoutez le CSS suivant</p>
+                    <pre><code contenteditable data-trim class="css">
+canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Animation</h2>
+                </section>
+
+                <section>
+                    <p>Nous souhaiterions faire tourner le cube et faire bouger la caméra</p>
+                    <p>Comme pour l'animation de canvas, à chaque frame, nous allons modifier les coordonnées des objets et faire un rendu</p>
+                    <p>Nous allons utiliser <span class="hl">requestAnimationFrame</span> et faire un <span class="hl">render</span> à chaque frame</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Loop
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+
+    // Render
+    renderer.render(scene, camera)
+}
+
+loop()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous allons faire bouger la caméra en fonction de la souris</p>
+                    <p>Nous allons écouter l'événement <span class="u">mousemove</span> et enregistrer la position de la souris dans un objet <span class="u">mouse</span></p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Mouse
+const mouse = { x: 0.5, y: 0.5 }
+window.addEventListener('mousemove', (event) =>
+{
+    mouse.x = event.clientX / windowWidth - 0.5
+    mouse.y = event.clientY / windowHeight - 0.5
+})
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Les objets (appelés <span class="u">Mesh</span>) possèdent les propriétés <span class="u">position</span>, <span class="u">rotation</span> et <span class="u">scale</span></p>
+                    <p>La caméra possèdent les propriétés <span class="u">position</span> et <span class="u">rotation</span></p>
+                    <p>Chacune de ces propriétés possède les propriétés <span class="u">x</span>, <span class="u">y</span> et <span class="u">z</span> correspondant aux axes</p>
+                    <p>Nous allons modifier ces valeurs dans la fonction loop</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Loop
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+
+    // Update mesh
+    mesh.rotation.y += 0.005
+
+    // Update camera
+    camera.position.x = mouse.x * 300
+    camera.position.y = - mouse.y * 300
+    camera.lookAt(mesh.position)
+
+    // Render
+    renderer.render(scene, camera)
+}
+
+loop()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Construisez une maison !</h3>
+                </section>
+
+                <section>
+                    <p>Three.js permet de créer des objets vides pouvant servir de container</p>
+                    <p>Cela permet de les transformer plus facilement</p>
+                    <pre><code contenteditable data-trim class="js">
+const house = new THREE.Object3D()
+scene.add(house)
+
+const walls = new THREE.Mesh(
+    new THREE.BoxGeometry(150, 100, 150),
+    new THREE.MeshBasicMaterial({ color: 0xffcc99 })
+)
+house.add(walls)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Maison complète</p>
+                    <pre><code contenteditable data-trim class="js">
+// House
+const house = new THREE.Object3D()
+scene.add(house)
+
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(400, 400, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x66bb66 })
+)
+floor.rotation.x = - Math.PI * 0.5
+floor.position.y = - 50
+house.add(floor)
+
+const walls = new THREE.Mesh(
+    new THREE.BoxGeometry(150, 100, 150),
+    new THREE.MeshBasicMaterial({ color: 0xffcc99 })
+)
+house.add(walls)
+
+const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(120, 60, 4),
+    new THREE.MeshBasicMaterial({ color: 0x885522 })
+)
+roof.position.y += 80
+roof.rotation.y += Math.PI * 0.25
+house.add(roof)
+
+const door = new THREE.Mesh(
+    new THREE.BoxGeometry(2, 40, 20),
+    new THREE.MeshBasicMaterial({ color: 0xff8866 })
+)
+door.position.x = - 76
+door.position.y = - 30
+house.add(door)
+
+const bush1 = new THREE.Mesh(
+    new THREE.SphereGeometry(10, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0x228833 })
+)
+bush1.position.x = - 80
+bush1.position.z = 20
+bush1.position.y = - 45
+house.add(bush1)
+
+const bush2 = new THREE.Mesh(
+    new THREE.SphereGeometry(8, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0x228833 })
+)
+bush2.position.x = - 80
+bush2.position.z = - 20
+bush2.position.y = - 48
+house.add(bush2)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <img src="src/img/clap.gif" alt="">
+                </section>
+
+                <section>
+                    <h2>Lumières</h2>
+                </section>
+
+                <section>
+                    <p>La gestion des lumières est très gourmant en terme de performances</p>
+                    <p>Pour fonctionner, nous devons utiliser des matières réagissant à la lumière et rajouter des lumières</p>
+                </section>
+
+                <section>
+                    <h3>Matière</h3>
+                    <p>Three.js supporte plusieurs types de matières</p>
+                    <ul>
+                        <li><a href="https://threejs.org/docs/index.html#api/materials/MeshBasicMaterial" target="_blank">MeshBasicMaterial</a> : Couleur ou texture ne réagissant pas à la lumière</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/materials/MeshLambertMaterial" target="_blank">MeshLambertMaterial</a> : Couleur ou texture réagissant à la lumière avec un rendu moyen</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/materials/MeshPhongMaterial" target="_blank">MeshPhongMaterial</a> : Couleur ou texture réagissant à la lumière avec un rendu de meilleure qualité</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/materials/MeshStandardMaterial" target="_blank">MeshStandardMaterial</a> : Comme MeshPhongMaterial, mais avec des paramètres <span class="u">physically based</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p><span class="u">Physically based</span> correspond à une volonté de baser les paramètres d'une entité sur des valeurs physique proche de la réalité</p>
+                    <p>Exemples: gravité, force du vent, composition d'une matière, etc.</p>
+                </section>
+
+                <section>
+                    <p>Nous allons utiliser <span class="hl">MeshStandardMaterial</span> et rajouter en paramètre du metalness et du rougness</p>
+                    <pre><code contenteditable data-trim class="js">
+/* ... */
+    new THREE.MeshStandardMaterial({ color: 0x66bb66, metalness: 0.3, roughness: 0.8 })
+/* ... */
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nos objets ont disparu, mais c'est normal</p>
+                    <p>Nos matières étant basées sur la lumière, il faut rajouter des lumières</p>
+                </section>
+
+                <section>
+                    <p>Three.js supporte plusieurs types de lumières ayant des zones d'action différentes</p>
+                    <ul>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/AmbientLight" target="_blank">AmbientLight</a> : Général</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/DirectionalLight" target="_blank">DirectionalLight</a> : Dans une direction venant de l'infini</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/HemisphereLight" target="_blank">HemisphereLight</a> : Général, mais avec une distinction entre le sol et le ciel</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/PointLight" target="_blank">PointLight</a> : Provenant d'un point</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/RectAreaLight" target="_blank">RectAreaLight</a> : Rectangle infini</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/lights/SpotLight" target="_blank">SpotLight</a> : Cone</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Nous allons utiliser une <a href="https://threejs.org/docs/index.html#api/lights/PointLight" target="_blank">PointLight</a> que nous allons mettre au dessus de la porte, une <a href="https://threejs.org/docs/index.html#api/lights/DirectionalLight" target="_blank">DirectionalLight</a> pour imiter l'illumitation du soleil et une <a href="https://threejs.org/docs/index.html#api/lights/AmbientLight" target="_blank">AmbientLight</a> pour éclairer les faces cachées</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Lights
+const doorLight = new THREE.PointLight()
+doorLight.position.x = -102
+doorLight.position.y = 0
+doorLight.position.z = 0
+house.add(doorLight)
+
+const ambientLight = new THREE.AmbientLight(0x555555)
+scene.add(ambientLight)
+
+const sunLight = new THREE.DirectionalLight(0xffffff, 0.6)
+sunLight.position.x = 100
+sunLight.position.y = 100
+sunLight.position.z = 100
+scene.add(sunLight)
+                    </code></pre>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
