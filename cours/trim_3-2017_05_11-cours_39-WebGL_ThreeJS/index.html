@@ -83,29 +83,6 @@
                 </section>
 
                 <section>
-                    <h2>Composition</h2>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>Un rendu 3D va partir d'une <span class="hl">scène</span> (pouvant contenir des <span class="hl">objets</span>) et d'une <span class="hl">caméra</span> pour en déduire une <span class="hl">image 2D</span></li>
-                        <li>Les objets sont composés de géométries, elles-même composée de faces, sur lesquelles sont appliquées des matières</li>
-                        <li>La caméra possède des paramètres (angle de vue, orthographie ou perspective, distance min et max, zoom, etc.)</li>
-                        <li>Quid de la lumière</li>
-                    </ul>
-                    <p>On part de plusieurs éléments ayant chacun leurs paramètres pour en déduire une image</p>
-                </section>
-
-                <section>
-                    <p>On parle de projection</p>
-                    <img src="src/img/projection.png" alt="">
-                </section>
-
-                <section>
-                    <p>Ces projections et calculs sont faits dans des programmes codés en GLSL et envoyés à la carte graphique</p>
-                </section>
-
-                <section>
                     <h2>Démonstrations</h2>
                 </section>
 
@@ -118,7 +95,7 @@
                         <li><a href="http://particle-love.com/" target="_blank">Particle Love</a></li>
                         <li><a href="http://www.deprogrammed.org/" target="_blank">Deprogrammed</a></li>
                         <li><a href="https://www.valerian.bnpparibas/fr/intergalactic-mission" target="_blank">Valerian - Intergalactic Mission</a>*</li>
-                        <li><a href="https://playcanv.as/e/p/44MRmJRU/" target="_blank">After the Flood</a>*</li>
+                        <li><a href="https://playcanv.as/e/p/44MRmJRU/" target="_blank">After the Flood</a>* (préférer Firefox)</li>
                         <li><a href="http://www.thx.com/" target="_blank">THX</a>*</li>
                         <li><a href="https://bruno-simon.com/lab/experiments/procedural-star/" target="_blank">Procedural Star</a>*</li>
                         <li><a href="https://bruno-simon.com/lab/experiments/procedural-planet/" target="_blank">Procedural Planet</a>*</li>
@@ -126,20 +103,40 @@
                 </section>
 
                 <section>
+                    <h2>Composition</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Un rendu 3D va partir d'une <span class="hl">scène</span> (pouvant contenir des <span class="hl">objets</span>) et d'une <span class="hl">caméra</span> pour en déduire une <span class="hl">image 2D</span></li>
+                        <li>Les objets sont composés de géométries, elles-mêmes composée de faces, sur lesquelles sont appliquées des matières</li>
+                        <li>La caméra possède des paramètres (angle de vue, orthographie ou perspective, distance min et max, zoom, etc.)</li>
+                    </ul>
+                    <p>On part de plusieurs éléments ayant chacun leurs paramètres pour en déduire une image</p>
+                </section>
+
+                <section>
+                    <p>On parle de projection</p>
+                    <img src="src/img/projection.png" alt="">
+                </section>
+
+                <section>
+                    <p>Ces projections et calculs sont faits dans des programmes codés en GLSL et envoyés à la carte graphique</p>
                     <p>Développer ces programmes, créer des géométries et effectuer les projections prendrait trop de temps. Nous allons utiliser la librairie Three.js</p>
                 </section>
 
                 <section>
                     <h2>Three.js</h2>
+                    <p>Auteur: Ricardo Cabello (Mr. Doob)<br><a href="https://twitter.com/mrdoob" target="_blank">twitter</a>, <a href="http://mrdoob.com/" target="_blank">site</a></p>
                     <p><a href="https://threejs.org/docs/#manual/introduction/Creating-a-scene" target="_blank">Documentation</a></p>
                 </section>
 
                 <section>
+                    <p>Dans un nouveau dossier</p>
                     <ul>
-                        <li>Téléchargez <a href="https://raw.githubusercontent.com/mrdoob/three.js/dev/build/three.min.js" target="_blank" download>Three.js</a></li>
+                        <li>Téléchargez <a href="https://raw.githubusercontent.com/mrdoob/three.js/master/build/three.min.js" target="_blank" download>Three.js</a></li>
                         <li>Créez un fichier <span class="hl">script.js</span></li>
                         <li>Créez un fichier <span class="hl">index.html</span></li>
-                        <li>Chargez <span class="hl">three.min.js</span> et <span class="hl">script.js</span></li>
                     </ul>
                     <pre><code contenteditable data-trim class="html">
 &lt;!DOCTYPE html&gt;
@@ -154,6 +151,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
                     </code></pre>
+                    <p>Ce cours a été réalisé avec la version 85 de Three.js</p>
                 </section>
 
                 <section>
@@ -185,10 +183,13 @@ const scene = new THREE.Scene()
                     <h3>Camera</h3>
                     <p>Il existe plusieurs types de caméras, mais deux sont à retenir</p>
                     <ul>
-                        <li><a href="https://threejs.org/docs/index.html#api/cameras/PerspectiveCamera" target="_blank">Perspective</a> : Avec perspective (points de fuite)</li>
-                        <li><a href="https://threejs.org/docs/index.html#api/cameras/OrthographicCamera" target="_blank">Orthographique</a> : Sans perspective (parallèle)</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/cameras/OrthographicCamera" target="_blank">Orthographique</a> : Sans perspective (isométrique)</li>
+                        <li><a href="https://threejs.org/docs/index.html#api/cameras/PerspectiveCamera" target="_blank">Perspective</a> : Avec perspective</li>
                     </ul>
-                    <p>Illu XXX</p>
+                </section>
+
+                <section>
+                    <img src="src/img/orthographic-perspective-comparaison.png" alt="" class="no-style">
                 </section>
 
                 <section>
@@ -217,11 +218,15 @@ scene.add(camera)
                 </section>
 
                 <section>
+                    <p>Géométrie</p>
                     <ul>
-                        <li>Une mesh se compose d'une géométrie</li>
-                        <li>Une géométrie de composer de faces</li>
+                        <li>Une géométrie se compose de faces (ou triangles)</li>
                         <li>Une face se compose de vertices (ou vertex, ou points)</li>
                     </ul>
+                </section>
+
+                <section>
+                    <img src="src/img/faces-vertex.png" alt="" class="no-style">
                 </section>
 
                 <section>
@@ -236,7 +241,8 @@ scene.add(camera)
                 </section>
 
                 <section>
-                    <p>Cette matière va définir quelle doit être la couleur à appliquer à chaque pixel visible de la géométrie</p>
+                    <p>Matière</p>
+                    <p>La matière va définir quelle doit être la couleur à appliquer à chaque pixel visible de la géométrie</p>
                     <p>Cette couleur peut varier selon un code hexadecimal, des lumières, une image, etc.</p>
                 </section>
 
@@ -256,6 +262,11 @@ scene.add(mesh)
 
                 <section>
                     <h3>Renderer</h3>
+                    <p>Enfin, nous devons projeter cette scène vue de la caméra dans un canvas</p>
+                    <p>C'est le role du <span class="hl">renderer</span> qui va aussi créer un canvas qu'il suffira d'ajouter au <span class="hl">body</span></p>
+                </section>
+
+                <section>
                     <pre><code contenteditable data-trim class="js">
 // Renderer
 const renderer = new THREE.WebGLRenderer()
@@ -263,11 +274,6 @@ renderer.setSize(windowWidth, windowHeight)
 document.body.appendChild(renderer.domElement)
 renderer.render(scene, camera)
                     </code></pre>
-                </section>
-
-                <section>
-                    <p>Le renderer a pour rôle de prendre la scène et la caméra, d'envoyer le nécessaire à la carte graphique en passant par le WebGL et l'OpenGL et d'envoyer le résultat dans le canvas qu'il aura préalablement créé</p>
-                    <p>Il ne reste plus qu'à ajouter ce canvas dans notre body</p>
                 </section>
 
                 <section>
@@ -300,7 +306,7 @@ canvas
                 <section>
                     <p>Nous souhaiterions faire tourner le cube et faire bouger la caméra</p>
                     <p>Comme pour l'animation de canvas, à chaque frame, nous allons modifier les coordonnées des objets et faire un rendu</p>
-                    <p>Nous allons utiliser <span class="hl">requestAnimationFrame</span> et faire un <span class="hl">render</span> à chaque frame</p>
+                    <p>Nous allons utiliser <span class="hl">requestAnimationFrame</span></p>
                 </section>
 
                 <section>
@@ -320,7 +326,7 @@ loop()
 
                 <section>
                     <p>Nous allons faire bouger la caméra en fonction de la souris</p>
-                    <p>Nous allons écouter l'événement <span class="u">mousemove</span> et enregistrer la position de la souris dans un objet <span class="u">mouse</span></p>
+                    <p>Pour cela, nous allons écouter l'événement <span class="u">mousemove</span> et enregistrer la position de la souris dans un objet <span class="u">mouse</span></p>
                 </section>
 
                 <section>
@@ -450,7 +456,7 @@ house.add(bush2)
                 </section>
 
                 <section>
-                    <p>La gestion des lumières est très gourmant en terme de performances</p>
+                    <p>La gestion des lumières est très gourmande en performances</p>
                     <p>Pour fonctionner, nous devons utiliser des matières réagissant à la lumière et rajouter des lumières</p>
                 </section>
 
@@ -471,7 +477,7 @@ house.add(bush2)
                 </section>
 
                 <section>
-                    <p>Nous allons utiliser <span class="hl">MeshStandardMaterial</span> et rajouter en paramètre du metalness et du rougness</p>
+                    <p>Nous allons remplacer <span class="hl">MeshBasicMaterial</span> par <span class="hl">MeshStandardMaterial</span> et rajouter du metalness et du rougness en paramètres</p>
                     <pre><code contenteditable data-trim class="js">
 /* ... */
     new THREE.MeshStandardMaterial({ color: 0x66bb66, metalness: 0.3, roughness: 0.8 })
@@ -481,7 +487,7 @@ house.add(bush2)
 
                 <section>
                     <p>Nos objets ont disparu, mais c'est normal</p>
-                    <p>Nos matières étant basées sur la lumière, il faut rajouter des lumières</p>
+                    <p><span class="hl">MeshStandardMaterial</span> se basant sur la lumière, il faut rajouter ces lumières</p>
                 </section>
 
                 <section>
@@ -516,8 +522,139 @@ const sunLight = new THREE.DirectionalLight(0xffffff, 0.6)
 sunLight.position.x = 100
 sunLight.position.y = 100
 sunLight.position.z = 100
-scene.add(sunLight)
+house.add(sunLight)
                     </code></pre>
+                </section>
+
+                <section>
+                    <h2>Ombres</h2>
+                </section>
+
+                <section>
+                    <p>Les ombres ont toujours été un challenge pour la 3d temps réel. Même aujourd'hui, avec les cartes graphiques actuelles, les développeurs doivent faire preuve d'ingéniosité pour afficher des ombres</p>
+                    <p>Three.js intègre une gestion basique et peu réaliste des ombres</p>
+                </section>
+
+                <section>
+                    <p>Nous devons avertir le renderer que des ombres vont être utilisées</p>
+                    <pre><code contenteditable data-trim class="js">
+renderer.shadowMap.enabled = true
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous devons ensuite avertir si chaque objet (Mesh) doit générer une ombre (<span class="u">castShadow</span>) et/ou recevoir des ombres (<span class="u">receiveShadow</span>)</p>
+                    <pre><code contenteditable data-trim class="js">
+walls.castShadow = true
+walls.receiveShadow = true
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous devons enfin avertir chaque lumière si elle doit générer des ombres</p>
+                    <pre><code contenteditable data-trim class="js">
+doorLight.castShadow = true
+
+/* ... */
+
+sunLight.castShadow = true
+sunLight.shadow.camera.top = 120
+sunLight.shadow.camera.right = 120
+sunLight.shadow.camera.bottom = -120
+sunLight.shadow.camera.left = -120
+                    </code></pre>
+                    <p>Notre DirectionalLight nécessite quelques autres paramètres afin de fonctionner</p>
+                </section>
+
+                <section>
+                    <h2>Resize</h2>
+                </section>
+
+                <section>
+                    <p>Actuellement, si vous redimensionnez la fenêtre, le canvas conserve la même taille</p>
+                    <p>Nous devons écouter l'événement de resize et mettre à jour la caméra et le renderer</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+// Resize
+window.addEventListener('resize', () =>
+{
+    // Save width and height
+    windowWidth = window.innerWidth
+    windowHeight = window.innerHeight
+
+    // Update camera
+    camera.aspect = windowWidth / windowHeight
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(windowWidth, windowHeight)
+})
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Aller plus loin</h2>
+                </section>
+
+                <section>
+                    <h3>Shaders</h3>
+                    <p>Les shaders sont ces fameux programmes qui sont envoyés à la carte graphique et qui permettent de transformer notre scène composée d'objets en un rendu 2d</p>
+                    <p>Il existe deux types de shaders <span class="hl">vertex</span> et <span class="hl">fragment</span></p>
+                </section>
+
+                <section>
+                    <p>Vertex</p>
+                    <p>Le vertex shader est en charge des vertices</p>
+                    <p>Il va permettre d'appliquer une transformation afin d'avoir un effet tel qu'une ondulation</p>
+                </section>
+
+                <section>
+                    <p>Fragment</p>
+                    <p>Le fragment shader est en charge des pixels visibles de la géométrie</p>
+                    <p>Le programme va être exécuté pour chacun d'entre eux et va permettre de modifier la couleur</p>
+                </section>
+
+                <section>
+                    <p>Three.js possède un material appelé <a href="https://threejs.org/docs/#api/materials/ShaderMaterial" target="_blank">ShaderMaterial</a> permettant d'appliquer des shaders sur une Mesh</p>
+                </section>
+
+                <section>
+                    <p>Ressources</p>
+                    <ul>
+                        <li><a href="https://www.shadertoy.com/" target="_blank">Shadertoy</a></li>
+                        <li><a href="https://thebookofshaders.com/" target="_blank">The book of shaders</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Particules</h3>
+                    <p>Les particules sont très bien gérées en WebGL</p>
+                    <p>Il est possible d'en afficher des millions sans souci de performance</p>
+                    <p>Three.js les gère avec <a href="https://threejs.org/docs/#api/objects/Points" target="_blank">Points</a> et <a href="https://threejs.org/docs/#api/materials/PointsMaterial" target="_blank">PointsMaterial</a></p>
+                </section>
+
+                <section>
+                    <h3>Charger des modèles 3D</h3>
+                    <p>Three.js permet de charger des modèles 3D conçu dans des logiciels 3D au format <span class="hl">.obj</span></p>
+                    <p>Pour cela, il faut utiliser <a href="https://threejs.org/docs/#examples/loaders/OBJLoader" target="_blank">OBJLoader</a></p>
+                </section>
+
+                <section>
+                    <h3>Physique</h3>
+                    <p>Si vous souhaitez rajouter de la physique dans votre univers 3D, il faut utiliser un moteur de collision</p>
+                    <ul>
+                        <li><a href="http://www.cannonjs.org/" target="_blank">Canon.js</a></li>
+                        <li><a href="https://github.com/kripken/ammo.js/" target="_blank">Ammo.js</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Transpiler le JS</h3>
+                    <p>Nous avons utilisé des features de JS non compatible avec certains anciens navigateur</p>
+                    <p>L'action de rendre compatible notre code avec ces anciennes versions s'appelle du transpilage</p>
+                    <p>C'est ce que permet de faire <a href="https://babeljs.io/" target="_blank">Babel</a> que vous retrouverez dans ce <a href="https://github.com/brunosimon/static-template" target="_blank">template Gulp</a></p>
                 </section>
 
             </div>
