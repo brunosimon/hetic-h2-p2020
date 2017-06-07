@@ -567,6 +567,36 @@ sunLight.shadow.camera.left = -120
                 </section>
 
                 <section>
+                    <h2>Textures</h2>
+                </section>
+
+                <section>
+                    <p>Pour plus de réalisme, il vaut mieux utiliser des textures</p>
+                    <p><a href="https://threejs.org/docs/#api/textures/Texture" target="_blank">Texture</a> est l'objet permettant de créer soi-même une texture dans Three.js, mais <a href="https://threejs.org/docs/#api/loaders/TextureLoader" target="_blank">TextureLoader</a> automatise le processus</p>
+                    <pre><code contenteditable data-trim class="js">
+var grassTexture = new THREE.TextureLoader().load('grass.jpg');
+grassTexture.wrapS = THREE.RepeatWrapping;
+grassTexture.wrapT = THREE.RepeatWrapping;
+grassTexture.repeat.set( 4, 4 );
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Une fois la texture créée, il suffit de l'ajouter dans l'attribut map de la matière</p>
+                    <pre><code contenteditable data-trim class="js">
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(400, 400, 1, 1),
+    new THREE.MeshStandardMaterial({ map: grassTexture, metalness: 0.3, roughness: 0.8 })
+)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3 style="color:red;">Attention</h3>
+                    <p>Le chargement de textures ne fonctionnera pas en local sans lancer un serveur pour des raisons de sécurité</p>
+                </section>
+
+                <section>
                     <h2>Resize</h2>
                 </section>
 
