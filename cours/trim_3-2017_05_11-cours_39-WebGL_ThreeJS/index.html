@@ -64,8 +64,7 @@
                         <li>Si un processeur devait traiter un rendu, il le ferait pixel par pixel</li>
                         <li>Une image de 800x600 comprend donc 480 000 pixels à traiter un par un</li>
                         <li>Cela lui prendrait trop de temps pour avoir une animation fluide</li>
-                        <li>Quand la carte graphique traite le rendu, elle fait des milliers de calculs en parallèle</li>
-                        <li>Cela lui prend donc moins de temps</li>
+                        <li>Quand la carte graphique traite le rendu, elle fait des milliers de calculs en parallèle. Cela lui prend donc moins de temps.</li>
                     </ul>
                 </section>
 
@@ -109,10 +108,9 @@
                 <section>
                     <ul>
                         <li>Un rendu 3D va partir d'une <span class="hl">scène</span> (pouvant contenir des <span class="hl">objets</span>) et d'une <span class="hl">caméra</span> pour en déduire une <span class="hl">image 2D</span></li>
-                        <li>Les objets sont composés de géométries, elles-mêmes composée de faces, sur lesquelles sont appliquées des matières</li>
+                        <li>Les objets sont composés de géométries, elles-mêmes composée de faces, sur lesquelles sont appliquées une matière</li>
                         <li>La caméra possède des paramètres (angle de vue, orthographie ou perspective, distance min et max, zoom, etc.)</li>
                     </ul>
-                    <p>On part de plusieurs éléments ayant chacun leurs paramètres pour en déduire une image</p>
                 </section>
 
                 <section>
@@ -121,7 +119,7 @@
                 </section>
 
                 <section>
-                    <p>Ces projections et calculs sont faits dans des programmes codés en GLSL et envoyés à la carte graphique</p>
+                    <p>Ces projections et calculs sont faits dans des programmes appelé shaders (en GLSL) et envoyés à la carte graphique</p>
                     <p>Développer ces programmes, créer des géométries et effectuer les projections prendrait trop de temps. Nous allons utiliser la librairie Three.js</p>
                 </section>
 
@@ -160,12 +158,12 @@
                 </section>
 
                 <section>
-                    <p>Pour fonctionner, nous allons avoir besoin de</p>
+                    <p>Pour fonctionner, nous allons avoir besoin d'</p>
                     <ul>
                         <li>une scène</li>
                         <li>un objet dans cette scène</li>
                         <li>une caméra</li>
-                        <li>un renderer qui affichera le résultat dans un canvas</li>
+                        <li>un renderer qui fera le rendu et le mettra dans un canvas</li>
                         <li>une fonction qui s'executera à chaque frame pour faire des rendus</li>
                     </ul>
                 </section>
@@ -306,7 +304,7 @@ canvas
                 <section>
                     <p>Nous souhaiterions faire tourner le cube et faire bouger la caméra</p>
                     <p>Comme pour l'animation de canvas, à chaque frame, nous allons modifier les coordonnées des objets et faire un rendu</p>
-                    <p>Nous allons utiliser <span class="hl">requestAnimationFrame</span></p>
+                    <p>Nous allons utiliser <span class="hl fragment">requestAnimationFrame</span></p>
                 </section>
 
                 <section>
@@ -326,7 +324,7 @@ loop()
 
                 <section>
                     <p>Nous allons faire bouger la caméra en fonction de la souris</p>
-                    <p>Pour cela, nous allons écouter l'événement <span class="u">mousemove</span> et enregistrer la position de la souris dans un objet <span class="u">mouse</span></p>
+                    <p>Pour cela, nous allons écouter l'événement <span class="u">mousemove</span> et enregistrer la position de la souris dans un objet <span class="u">mouse</span> qui nous servira plus tard</p>
                 </section>
 
                 <section>
@@ -343,7 +341,7 @@ window.addEventListener('mousemove', (event) =>
 
                 <section>
                     <p>Les objets (appelés <span class="u">Mesh</span>) possèdent les propriétés <span class="u">position</span>, <span class="u">rotation</span> et <span class="u">scale</span></p>
-                    <p>La caméra possèdent les propriétés <span class="u">position</span> et <span class="u">rotation</span></p>
+                    <p>La caméra possède les propriétés <span class="u">position</span> et <span class="u">rotation</span></p>
                     <p>Chacune de ces propriétés possède les propriétés <span class="u">x</span>, <span class="u">y</span> et <span class="u">z</span> correspondant aux axes</p>
                     <p>Nous allons modifier ces valeurs dans la fonction loop</p>
                 </section>
@@ -456,7 +454,7 @@ house.add(bush2)
                 </section>
 
                 <section>
-                    <p>La gestion des lumières est très gourmande en performances</p>
+                    <p>La gestion des lumières est très gourmande en performance</p>
                     <p>Pour fonctionner, nous devons utiliser des matières réagissant à la lumière et rajouter des lumières</p>
                 </section>
 
@@ -625,19 +623,178 @@ window.addEventListener('resize', () =>
                 </section>
 
                 <section>
+                    <h2>Code final</h2>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="js">
+let windowWidth = window.innerWidth
+let windowHeight = window.innerHeight
+
+// Scene
+const scene = new THREE.Scene()
+
+// Camera
+const camera = new THREE.PerspectiveCamera(75, windowWidth / windowHeight)
+camera.position.z = 300
+scene.add(camera)
+
+// House
+const house = new THREE.Object3D()
+scene.add(house)
+
+var grassTexture = new THREE.TextureLoader().load('grass.jpg');
+grassTexture.wrapS = THREE.RepeatWrapping;
+grassTexture.wrapT = THREE.RepeatWrapping;
+grassTexture.repeat.set( 4, 4 );
+
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(400, 400, 1, 1),
+    new THREE.MeshStandardMaterial({ map: grassTexture, metalness: 0.3, roughness: 0.8 })
+)
+floor.rotation.x = - Math.PI * 0.5
+floor.position.y = - 50
+floor.receiveShadow = true
+house.add(floor)
+
+const walls = new THREE.Mesh(
+    new THREE.BoxGeometry(150, 100, 150),
+    new THREE.MeshStandardMaterial({ color: 0xffcc99, metalness: 0.3, roughness: 0.8 })
+)
+walls.castShadow = true
+walls.receiveShadow = true
+house.add(walls)
+
+const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(120, 60, 4),
+    new THREE.MeshStandardMaterial({ color: 0x885522, metalness: 0.3, roughness: 0.8 })
+)
+roof.castShadow = true
+roof.position.y += 80
+roof.rotation.y += Math.PI * 0.25
+house.add(roof)
+
+const door = new THREE.Mesh(
+    new THREE.BoxGeometry(2, 40, 20),
+    new THREE.MeshStandardMaterial({ color: 0xff8866, metalness: 0.3, roughness: 0.8 })
+)
+door.castShadow = true
+door.receiveShadow = true
+door.position.x = - 76
+door.position.y = - 30
+house.add(door)
+
+const bush1 = new THREE.Mesh(
+    new THREE.SphereGeometry(10, 32, 32),
+    new THREE.MeshStandardMaterial({ color: 0x228833, metalness: 0.3, roughness: 0.8 })
+)
+bush1.castShadow = true
+bush1.receiveShadow = true
+bush1.position.x = - 80
+bush1.position.z = 20
+bush1.position.y = - 45
+house.add(bush1)
+
+const bush2 = new THREE.Mesh(
+    new THREE.SphereGeometry(8, 32, 32),
+    new THREE.MeshStandardMaterial({ color: 0x228833, metalness: 0.3, roughness: 0.8 })
+)
+bush2.castShadow = true
+bush2.receiveShadow = true
+bush2.position.x = - 80
+bush2.position.z = - 20
+bush2.position.y = - 48
+house.add(bush2)
+
+// Lights
+const doorLight = new THREE.PointLight()
+doorLight.castShadow = true
+doorLight.position.x = -102
+doorLight.position.y = 0
+doorLight.position.z = 0
+house.add(doorLight)
+
+const ambientLight = new THREE.AmbientLight(0x555555)
+scene.add(ambientLight)
+
+const sunLight = new THREE.DirectionalLight(0xffffff, 0.6)
+sunLight.castShadow = true
+sunLight.shadow.camera.top = 120
+sunLight.shadow.camera.right = 120
+sunLight.shadow.camera.bottom = -120
+sunLight.shadow.camera.left = -120
+sunLight.shadow.mapSize.width = 1024
+sunLight.shadow.mapSize.height = 1024
+sunLight.position.x = 100
+sunLight.position.y = 100
+sunLight.position.z = 100
+house.add(sunLight)
+
+// Renderer
+const renderer = new THREE.WebGLRenderer()
+renderer.shadowMap.enabled = true
+renderer.setSize(windowWidth, windowHeight)
+document.body.appendChild(renderer.domElement)
+renderer.render(scene, camera)
+
+// Mouse
+const mouse = { x: 0.5, y: 0.5 }
+window.addEventListener('mousemove', (event) =>
+{
+    mouse.x = event.clientX / windowWidth - 0.5
+    mouse.y = event.clientY / windowHeight - 0.5
+})
+
+// Resize
+window.addEventListener('resize', () =>
+{
+    // Save width and height
+    windowWidth = window.innerWidth
+    windowHeight = window.innerHeight
+
+    // Update camera
+    camera.aspect = windowWidth / windowHeight
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(windowWidth, windowHeight)
+})
+
+// Loop
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+
+    // Update mesh
+    house.rotation.y += 0.005
+
+    // Update camera
+    camera.position.x = mouse.x * 300
+    camera.position.y = - mouse.y * 300
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+    // Render
+    renderer.render(scene, camera)
+}
+
+loop()
+                    </code></pre>
+                </section>
+
+                <section>
                     <h2>Aller plus loin</h2>
                 </section>
 
                 <section>
                     <h3>Shaders</h3>
-                    <p>Les shaders sont ces fameux programmes qui sont envoyés à la carte graphique et qui permettent de transformer notre scène composée d'objets en un rendu 2d</p>
+                    <p>Les shaders sont ces fameux programmes qui sont envoyés à la carte graphique et qui permettent de transformer notre scène composée d'objets en un rendu 2D</p>
                     <p>Il existe deux types de shaders <span class="hl">vertex</span> et <span class="hl">fragment</span></p>
                 </section>
 
                 <section>
                     <p>Vertex</p>
                     <p>Le vertex shader est en charge des vertices</p>
-                    <p>Il va permettre d'appliquer une transformation afin d'avoir un effet tel qu'une ondulation</p>
+                    <p>Il va permettre d'appliquer une transformation afin d'avoir un effet tel qu'une ondulation pour imiter des vagues</p>
                 </section>
 
                 <section>
@@ -647,7 +804,7 @@ window.addEventListener('resize', () =>
                 </section>
 
                 <section>
-                    <p>Three.js possède un material appelé <a href="https://threejs.org/docs/#api/materials/ShaderMaterial" target="_blank">ShaderMaterial</a> permettant d'appliquer des shaders sur une Mesh</p>
+                    <p>Three.js possède une matière appelée <a href="https://threejs.org/docs/#api/materials/ShaderMaterial" target="_blank">ShaderMaterial</a> permettant d'appliquer des shaders sur une Mesh</p>
                 </section>
 
                 <section>
